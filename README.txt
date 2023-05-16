@@ -5,3 +5,5 @@ Cập nhật thêm 1 số câu lệnh Script mới
  - Ngày 15/05/2023 (Tuấn làm)
   + Thêm danh sách truyện
   + Tìm kiếm truyện
+ - Ngày 16/06/2023 (Tuấn làm) 
+  Trong file add_truyen_moi.sql bạn có add thêm mấy truyện nữa rồi nhé
