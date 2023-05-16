@@ -7,3 +7,5 @@ Cập nhật thêm 1 số câu lệnh Script mới
   + Tìm kiếm truyện
  - Ngày 16/06/2023 (Tuấn làm) 
   Trong file add_truyen_moi.sql bạn có add thêm mấy truyện nữa rồi nhé
+ - Ngày 17/5/23 
+ + Việt xóa file bên ngoài web-doc-truyen và tạo 1 file mới trong ATuan để connect lại dữ liệu
