@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -103,150 +104,11 @@
     <div class="content">
         <div class="content-trai">
                 <div class="content-trai1">
-                    <div class="tieude content-trai1-child h10 ">TRUYỆN ĐỀ CỬ</div>
-                    <div class="theloai content-trai1-child h10" style=" display: flex;
-                    align-items: center;margin-left: 10px;
-                    ">
-                      <button type="button" class="btn btn-dark mr-10" >Ngôn tình</button>
-                      <button type="button" class="btn btn-dark mr-10">Truyện teen</button>
-                      <button type="button" class="btn btn-dark mr-10">Truyện cười</button>
-
-
-                    </div>
-                    <div class="slide_truyen content-trai1-child">
-                        <div class="slider">
-                            <div id="carouselExampleCaptions" class="carousel slide">
-                              <div class="carousel-indicators">
-                                <button type="button " data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" class="active" aria-current="true" aria-label="Slide 2"></button>
-                                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" class="active" aria-current="true" aria-label="Slide 3"></button>
-                              </div>
-                              <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                  <img src="/images/cuoi1.jpg" class="d-block w-100 carousel-image"  alt="...">
-                                  <div class="carousel-caption d-none d-md-block">
-                                    <h5>First slide label</h5>
-                                    <p>Some representative placeholder content for the first slide.</p>
-                                  </div>
-                                </div>
-                                <div class="carousel-item">
-                                  <img src="/images/cuoi2.jpg" class="d-block w-100 carousel-image" alt="...">
-                                  <div class="carousel-caption d-none d-md-block">
-                                    <h5>Second slide label</h5>
-                                    <p>Some representative placeholder content for the second slide.</p>
-                                  </div>
-                                </div>
-                                <div class="carousel-item">
-                                  <img src="/images/cuoi3.jpg" class="d-block w-100 carousel-image" alt="...">
-                                  <div class="carousel-caption d-none d-md-block">
-                                    <h5>Third slide label</h5>
-                                    <p>Some representative placeholder content for the third slide.</p>
-                                  </div>
-                                </div>
-                              </div>
-                              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                              </button>
-                              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                              </button>
-                            </div>
-                          </div>
-                    </div>
+                    <!--#include file="slide.asp"-->
                 </div>
                 <div class="content-trai2">
-                  <div class="container mt-4">
-                    <h4>TRUYỆN DỊCH CHỌN LỌC</h4>
-                    <div class="row mt-4">
-                      <div class="col-md-3">
-                        <div class="card">
-                          <img src="/images/thanhthilamgiau.jpg" class="card-img-top" alt="...">
-                          <div class="card-body">
-                            <h5 class="card-title">Truyện 1</h5>
-                            <p class="card-text">Nội dung truyện đề cử 1</p>
-                            <a href="#" class="btn btn-primary">Đọc truyện</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-3">
-                        <div class="card">
-                          <img src="/images/amduong.jpg" class="card-img-top" alt="...">
-                          <div class="card-body">
-                            <h5 class="card-title">Truyện 2</h5>
-                            <p class="card-text">Nội dung truyện đề cử 2</p>
-                            <a href="#" class="btn btn-primary">Đọc truyện</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-3">
-                        <div class="card">
-                          <img src="/images/chongma.jpg" class="card-img-top" alt="...">
-                          <div class="card-body">
-                            <h5 class="card-title">Truyện 3</h5>
-                            <p class="card-text">Nội dung truyện đề cử 3</p>
-                            <a href="#" class="btn btn-primary">Đọc truyện</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-3">
-                        <div class="card">
-                          <img src="/images/quynhap.jpg" class="card-img-top" alt="...">
-                          <div class="card-body">
-                            <h5 class="card-title">Truyện 4</h5>
-                            <p class="card-text">Nội dung truyện đề cử 4</p>
-                            <a href="#" class="btn btn-primary">Đọc truyện</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="container mt-4">
-                    
-                    <div class="row mt-4">
-                      <div class="col-md-3">
-                        <div class="card">
-                          <img src="/images/thanhthilamgiau.jpg" class="card-img-top" alt="...">
-                          <div class="card-body">
-                            <h5 class="card-title">Truyện 1</h5>
-                            <p class="card-text">Nội dung truyện đề cử 1</p>
-                            <a href="#" class="btn btn-primary">Đọc truyện</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-3">
-                        <div class="card">
-                          <img src="/images/amduong.jpg" class="card-img-top" alt="...">
-                          <div class="card-body">
-                            <h5 class="card-title">Truyện 2</h5>
-                            <p class="card-text">Nội dung truyện đề cử 2</p>
-                            <a href="#" class="btn btn-primary">Đọc truyện</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-3">
-                        <div class="card">
-                          <img src="/images/chongma.jpg" class="card-img-top" alt="...">
-                          <div class="card-body">
-                            <h5 class="card-title">Truyện 3</h5>
-                            <p class="card-text">Nội dung truyện đề cử 3</p>
-                            <a href="#" class="btn btn-primary">Đọc truyện</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-3">
-                        <div class="card">
-                          <img src="/images/quynhap.jpg" class="card-img-top" alt="...">
-                          <div class="card-body">
-                            <h5 class="card-title">Truyện 4</h5>
-                            <p class="card-text">Nội dung truyện đề cử 4</p>
-                            <a href="#" class="btn btn-primary">Đọc truyện</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                   !--#include file="truyen_chon_loc.asp"--
+                   #include file="truyen_chon_loc_1.asp"
                 </div>
                 <div class="content-trai3">
                   <div class="list-group">

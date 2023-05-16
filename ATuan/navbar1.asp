@@ -54,10 +54,15 @@
           </li>
         </ul>
 
-        <form class="form-inline my-2 my-lg-0 m20">
-          <input class="form-control mr-sm-2" type="search" placeholder="Tìm truyện, tác giả..." aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
+        <form class="form-inline my-2 my-lg-0 m20" method="get" action="/find.asp">
+          <input class="form-control mr-sm-2" type="search" placeholder="Tìm truyện, tác giả..." aria-label="Search" name ="searchInput">
+          <button class="btn btn-secondary" type="submit">Tìm kiếm</button>
         </form>
+        <% ' Mã ASP Classic để hiển thị kết quả nhập vào  
+        searchInput = Request.QueryString("searchInput")
+        
+        %>
+        
         <div>
           <%
               If (NOT isnull(Session("email"))) AND (TRIM(Session("email"))<>"") Then

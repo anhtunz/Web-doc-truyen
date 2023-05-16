@@ -47,7 +47,7 @@
            searchInput = Request.QueryString("searchInput")
            
             If searchInput <> "" Then ' Nếu có giá trị của tham số searchInput
-                Response.Write ("Bạn vừa nhập: " & searchInput)
+               
                 Set conn = Server.CreateObject("ADODB.Connection")
                 conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
                 ' Tạo truy vấn để lấy danh sách truyện liên quan
@@ -59,7 +59,7 @@
                 Response.Write "<p>Không tìm thấy truyện nào liên quan.</p>"
             else
             do while not rs.EOF
-            %>
+        %>
     </div>
     </div>
     </nav>

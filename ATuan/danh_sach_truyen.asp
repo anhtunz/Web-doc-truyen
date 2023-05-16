@@ -13,7 +13,6 @@
     
 </head>
 <style>
-
     /* Thanh nav-bar */
     .nav-bar{
         justify-content:center;

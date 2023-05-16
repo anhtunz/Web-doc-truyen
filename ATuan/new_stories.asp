@@ -1,3 +1,4 @@
+<!-- #include file="connect.asp" -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -99,42 +100,43 @@
     /* End content phải */
 </style>
 <body>
-
-    <div class="content">
-        <div class="content-trai">
-            <div class="content-trai1">
-              <div class="list-group">
-                    <h4>TRUYỆN MỚI CẬP NHẬT</h4>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex justify-content-start">
-                            <h5 class="mb-1">Thập niên 60: Xào tức phụ</h5>
-                            <span class="badge badge-primary badge-pill" style="color: blue; border-radius: 40% ">Dịch</span>
-                        </div>
-                        <div class="d-flex w-100 justify-content-between">
-                            <small>Chương 1</small>
-                            <small>3 days ago</small>
-                        </div>
-                    </a>
-                    
-            
-                </div>
-            </div>
-            
-            <div class="content-trai2">
-            </div>
-            <div class="content-trai3">
+    <div class="list-group">
+        <h4>TRUYỆN MỚI CẬP NHẬT</h4>
+            <%
                 
-            </div>
-            <div class="content-trai4">
-        
-            </div>
-        </div>
-        <div class="content-giua"></div>
-        <div class="content-phai">
-        </div>
-        </div>
-    
+                ' Kết nối đến cơ sở dữ liệu
+                Dim conn, rs
+                Set conn = Server.CreateObject("ADODB.Connection")
+                conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
 
+                ' Truy vấn dữ liệu
+                Dim sql
+                sql = "SELECT TOP 15 chuong.ten_chuong, truyen.ten_truyen FROM chuong INNER JOIN truyen ON chuong.id_truyen = truyen.id_truyen ORDER BY chuong.id_chuong DESC"
+                Set rs = conn.Execute(sql)
+
+                ' Duyệt qua từng bản ghi trong kết quả truy vấn
+                 Do While Not rs.EOF
+            %>
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex justify-content-start">
+                    <h5 class="mb-1"><%=rs("ten_truyen")%></h5>
+                    <span class="badge badge-primary badge-pill" style="color: blue; border-radius: 40% ">Dịch</span>
+                </div>
+                <div class="d-flex w-100 justify-content-between">
+                    <small><%=rs("ten_chuong")%></small>
+                    <small>1 days ago</small>
+                </div>
+            </a>
+            <%
+                rs.MoveNext
+                Loop
+
+                rs.Close
+                conn.Close
+                Set rs = Nothing
+                Set conn = Nothing
+            %>
+                
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
