@@ -36,8 +36,6 @@ body {
     font-size: 14px;
     box-sizing: border-box;
     outline: 0;
-    -webkit-text-size-adjust: none;
-    -webkit-tap-highlight-color: transparent;
     margin: 0;
     padding: 0;
     margin-top: 20px;
@@ -47,7 +45,7 @@ body {
     max-width: 1000px;
     display: flex;
     height: 3000px;
-    width: 70%;
+    width: 60%;
     margin: 0 auto;
     box-sizing: border-box;
 }
@@ -61,7 +59,7 @@ body {
     margin-bottom: 15px;
 }
 
-.main .container .main-col #story-detail .col1 {
+.main .container .main-col #story-detail .cot1 {
     width: 220px;
     flex-shrink: 0;
     margin-right: 20px;
@@ -75,16 +73,17 @@ body {
     text-align: center;
 }
 
-.main .container .main-col #story-detail .actions {
+.main .container .main-col #story-detail .mota {
     text-align: center;
     margin-bottom: 15px;
 }
 
-.main .container .content-phai {
-    width: 30%;
-    height: 1000px;
-    float: left;
-}
+/* Phần content phải */
+#content .content-phai{
+        width: 40%;
+        height: 1000px;
+        float: left;
+    }
 </style>
 </head>
 
@@ -96,48 +95,34 @@ body {
   <!-- Phần content -->
   <div id="main" class="main" data-type="story" role="main" itemscope="" itemprop="mainContentOfPage">
     <div class="container">
-      <div class="main-col"> <span itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem"> <a
-            itemprop="item"><i class="fa-home"></i> <span itemprop="name">Trang Chủ</span>
-          </a></span>
+      <div class="main-col"> <span>Trang Chủ
         <div itemscope="" itemtype="http://schema.org/Book">
           <div id="story-detail" data-type="2">
-            <meta itemprop="bookFormat" content="EBook">
-            <meta itemprop="datePublished" content="2018-08-17">
-            <div class="col1">
+            <div class="cot1">
               <div class="thumb"><img src="/anh/kethonnhanhchongongxayeuhetlong3ALaTemAZD.jpg" itemprop="image"
-                  class="cover" width="220" height="283" alt="Kết Hôn Nhanh Chóng - Ông Xã Yêu Hết Lòng"><span
-                  class="label-vip-2"></span><span class="label-hot-1"></span><span class="label-type-2"></span></div>
+                  class="cover" width="220" height="283" alt="Kết Hôn Nhanh Chóng - Ông Xã Yêu Hết Lòng"></div>
               <div class="infos">
                 <p class="author"><i class="fa-user"></i> <span><a itemprop="author" href="" title="Mộc Y Y">Mộc Y Y</a>
                   </span></p>
                 <p class="story_categories"><i class="fa-folder-open"></i> <span><a href="" itemprop="genre"
                       title="Ngôn Tình">Ngôn Tình</a></span></p>
                 <p>Dịch giả:&nbsp;<a href="">Ngôn Tình Hot Full</a></p>
-                <p><i class="fa-eye"></i> 9,466,953</p>
-                <p><i class="fa-star"></i> Đang cập nhật</p>
-                <p><i class="fa-refresh"></i> 23:34:46 25/04/2023</p>
-                <p><i class="fa-tags"></i> <span><a href="" title="truyện tiểu thuyết tình cảm">truyện tiểu thuyết tình
-                      cảm</a></span></p>
+                <p><i class=""></i> Đang cập nhật</p>
+                <p><i class=""></i> 23:34:46 25/04/2023</p>
+                <p><i class=""></i> <span><a href="" title="truyện tiểu thuyết tình cảm">
+                truyện tiểu thuyết tình cảm</a></span></p>
               </div>
             </div>
-            <div class="col2">
+            <div class="cot2">
               <h1 itemprop="name" class="title">Kết Hôn Nhanh Chóng - Ông Xã Yêu Hết Lòng</h1>
               <div class="rate">
                 <div class="rate-holder" data-score="6.2"><span style="width:62%"></span>
-                  <p id="rating-action"><i class="fa-star"></i><i class="fa-star"></i><i class="fa-star"></i><i
-                      class="fa-star"></i><i class="fa-star"></i><i class="fa-star"></i><i class="fa-star"></i><i
-                      class="fa-star"></i><i class="fa-star"></i><i class="fa-star"></i></p>
                 </div>
                 <div class="small"><em>Đánh giá: <strong><span>6.2</span></strong>/<span class="text-muted">10</span> từ
                     <strong><span>1172</span> lượt</strong></em>
-                  <div id="1" style="display:none" v="nipgg" q="7f4d593b" c="150.9" i="202" u="15.25" s="04202306"
-                    sg="svr_04152317-ga_04202306-bai_04242318" d="1" w="false" e="" a="3" m="BMe=" vn="9adfy">
-                    <div id="1" style="display:none" v="nipgg" q="7f4d593b" c="150.9" i="202" u="15.25" s="04202306"
-                      sg="svr_04152317-ga_04202306-bai_04242318" d="1" w="false" e="" a="3" m="BMe="></div>
-                  </div>
                 </div>
               </div>
-              <div class="actions">
+              <div class="mota">
                 <a class="chapter-list" href="#chapters">
                   <button type="button" class="btn btn-primary">Danh sách chương</button></a>
                 <a id="add_favorite" href="#">
@@ -172,7 +157,7 @@ body {
           </div>
           <div class="card-box">
             <header>
-              <h6><i class="fa-list-bullet"></i> 5 chương mới nhất truyện mới cập nhật</h6>
+              <h6><i class="fa-list-bullet"></i> 5 CHƯƠNG TRUYỆN MỚI NHẤT</h6>
             </header>
             <ul class="chapters v2">
               <li class="vip-1">
@@ -210,7 +195,7 @@ body {
           </div>
           <div class="card-box" id="chapters">
             <header>
-              <h6><i class="fa-list-bullet"></i> Danh sách chương truyện</h6>
+              <h6><i class="fa-list-bullet"></i> DANH SÁCH CÁC CHƯƠNG TRUYỆN</h6>
             </header>
             <ul class="chapters v2">
               <li class="vip-0">
