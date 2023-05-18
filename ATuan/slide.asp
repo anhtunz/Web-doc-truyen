@@ -1,4 +1,4 @@
-<!-- #include file="connect.asp" -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,35 +9,44 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
-
-    
 </head>
 <style>
-  .carousel-image {
-    object-fit: cover;
-    object-position: center;
-    width: 100%;
-    height: 100%;
+
+ .slider{
+      width:100%;
+      height: 100%;
   }
+  
+  .carousel-image{
+      max-height: 330px;
+      width: 100%;
+      object-fit: cover;
+  }   
+  .tieude{
+    font-size: 20px;
+  }
+  .carousel-caption p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
 </style>
 <body>
     <div class="slider">
-      <div class="tieude content-trai1-child h10 ">TRUYỆN ĐỀ CỬ</div>
-              <div class="theloai content-trai1-child h10" style=" display: flex; align-items: center;margin-left: 10px;margin-bottom: 20px ">
-                <button type="button" class="btn btn-dark mr-10" >Ngôn tình</button>
-                <button type="button" class="btn btn-dark mr-10">Truyện teen</button>
-                <button type="button" class="btn btn-dark mr-10">Truyện cười</button>
+      <div class="tieude content-trai1-child h10 ">
+        <h4>TRUYỆN ĐỀ CỬ</h4>
+      </div>
+              <div class="theloai content-trai1-child h10" style=" display: flex; align-items: center;margin-left: 10px;margin-bottom: 20px; margin-top: 10px; ">
+                <a href="#?id_the_loai=3" class="btn btn-dark mr-10">Ngôn tình</a>
+                <a href="#?id_the_loai=2" class="btn btn-dark mr-10">Truyện teen</a>
+                <a href="#?id_the_loai=4" class="btn btn-dark mr-10">Truyện cười</a>
               </div>
               <div class="slide_truyen content-trai1-child">
                   <div class="slider">
                   <%
-                    ' Kết nối đến cơ sở dữ liệu
-                    Dim conn, rs
                     Set conn = Server.CreateObject("ADODB.Connection")
                     conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
-
-                    ' Truy vấn dữ liệu từ table truyen
-                    Dim sql
                     sql = "SELECT TOP 5 * FROM truyen"
                     Set rs = conn.Execute(sql)
                   %>
@@ -56,7 +65,6 @@
                           rs.Close 
                         %>
                           <button type="button " data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                          
                         </div>
                         <div class="carousel-inner">
                         <% 
@@ -65,11 +73,13 @@
                           Do While Not rs.EOF 
                         %>
                           <div class="carousel-item <% If i = 0 Then Response.Write("active") %>">
+                           <a href="#?id_truyen=<%=rs("id_truyen")%>">
                             <img src="<%=rs("anh_truyen")%>" class="d-block w-100 carousel-image"  alt="...">
                             <div class="carousel-caption d-none d-md-block">
                               <h5><%=rs("ten_truyen")%></h5>
-                              <p>Some representative placeholder content for the first slide.</p>
+                              <p><%=rs("mo_ta_ndung")%></p>
                             </div>
+                            </a>
                           </div>
                           <% 
                             i = i + 1

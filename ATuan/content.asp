@@ -1,4 +1,4 @@
-
+<!-- #include file="connect.asp" -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,365 +13,296 @@
     
 </head>
 <style>
-    /* Phần content */
-
+  /* Phần content */
     .content{
-        height: 3000px;
+        height: 3200px;
         width: 70%;
         margin: 0 auto;
         box-sizing: border-box;
         
     } 
-
-    /* Phần content trái */
-
+    /* Phần content trái */ 
     .content .content-trai{
-        width: 65%;
-        height: 2000px;
+        width: 70%;
+        height: 100%;
         float: left;
         display: flex;
         flex-direction: column;
-    }
-
-    .content .content-trai .content-trai1{  
-        width: 100%;
-        height: 400px;
-        margin-bottom: 20px;
-    } 
-
-    .content .content-trai .content-trai1 .slide_truyen{ 
-        height: 320px;
-        position: relative;
-    }
-
-    .content .content-trai .content-trai1 .slide_truyen .slider{
-        width:100%;
-    }
-    .carousel-image{
-        max-height: 330px;
-        width: 100%;
-        object-fit: cover;
-    }   
-
-
-    /* End content trai 1 */
-
-    .content .content-trai .content-trai2{  
-        width: 100%;
-        height: 850px;
         
-        margin-bottom: 10px;
-        
-    } 
-    /* .content .content-trai .content-trai3{  
-        width: 100%;
-        height:25%;
-        background-color: green;
-        margin-bottom: 10px;
-    }  */
+    }
+      /* Phần content trái 1 */ 
+      .content .content-trai .content-trai1{  
+          width: 100%;
+          height: 400px;
+          margin-bottom: 20px;
+      } 
 
-    /* .content .content-trai .content-trai4{  
-        width: 100%;
-        height:25%;
-        background-color: black;
-    }  */
+      /* End content trai 1 */
+      /* Phần content trái 2 */ 
+      .content .content-trai .content-trai2{  
+          width:100%;
+          height: 850px;  
+          display: flex;
+          flex-wrap: wrap;
+      } 
 
+      /* End content trai 2 */
+      /* Phần content trái 3 */ 
+      .content .content-trai .content-trai3{  
+          width: 100%;
+          height: 1000px;
+          margin-bottom: 10px;
+      }  
+
+      /* End content trai 3 */
+
+      /* Phần content trái 4 */ 
+      .content .content-trai .content-trai4{  
+          width: 100%;
+          height: 620px;
+      }
+
+      /* End content trai 4 */
     /* End content trái */
 
     /* Phần content giữa */
-
     .content .content-giua{
         float: left;
         width: 5%;
-        height: 1000px;
-
+        height: 100%;
     }
 
     /* End content giữa */
 
-
     /* Phần content phải */
     .content .content-phai{
-        width: 30%;
-        height: 1000px;
+        width: 25%;
+        height: 100%;
         float: left;
     }
 
     /* End content phải */
+  /* End content*/
+  /* Chỉnh chi tiết các phần tử */
+    .truyen-tong{
+    width:100%;
+    height: 100%;
+    box-sizing: border-box;
+    }
+    .card {
+      flex: 1 0 25%; /* Chia tỷ lệ cân đối cho 4 card trên cùng một dòng */
+      height: 100%; /* Chiều cao của card bằng chiều cao của thẻ cha */
+      width: 100%;
+    }
+    .card-body h5,
+    .card-body p {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  /* End chỉnh chi tiết các phần tử */
+
 </style>
 <body>
-
     <div class="content">
-        <div class="content-trai">
-                <div class="content-trai1">
-                    <!--#include file="slide.asp"-->
+      <div class="content-trai">
+        <div class="content-trai1">
+          <!--#include file="slide.asp"-->
+        </div>
+        <div class="content-trai2">
+          <div class="container mt-4 truyen-tong">
+            <h4>TRUYỆN DỊCH CHỌN LỌC</h4>
+            <div class="row mt-4">
+              <%
+                Set conn = Server.CreateObject("ADODB.Connection")
+                conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
+                sql = "SELECT * FROM truyen WHERE id_truyen BETWEEN 4 AND 7"
+                Set rs = conn.Execute(sql)
+                ' Duyệt qua từng bản ghi trong kết quả truy vấn
+                Do While Not rs.EOF
+              %>
+              <div class="col-md-3">
+                <div class="card">
+                  <img src="<%=rs("anh_truyen")%>" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title"><%=rs("ten_truyen")%></h5>
+                    <p class="card-text"><%=rs("mo_ta_ndung")%></p>
+                    <a href="#?id_truyen=<%=rs("id_truyen")%>" class="btn btn-primary">Đọc truyện</a>
+                  </div>
                 </div>
-                <div class="content-trai2">
-                   !--#include file="truyen_chon_loc.asp"--
-                   #include file="truyen_chon_loc_1.asp"
+              </div>
+              <%
+                rs.MoveNext
+                Loop
+                rs.Close
+                conn.Close
+                Set rs = Nothing
+                Set conn = Nothing
+              %>
+            </div>
+            <div class="row mt-4">
+              <%         
+                Set conn = Server.CreateObject("ADODB.Connection")
+                conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
+                sql = "SELECT * FROM truyen WHERE id_truyen BETWEEN 8 AND 11"
+                Set rs = conn.Execute(sql)
+                ' Duyệt qua từng bản ghi trong kết quả truy vấn
+                Do While Not rs.EOF
+              %>
+              <div class="col-md-3">
+                <div class="card">
+                  <img src="<%=rs("anh_truyen")%>" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title"><%=rs("ten_truyen")%></h5>
+                    <p class="card-text"><%=rs("mo_ta_ndung")%></p>
+                    <a href="#?id_truyen=<%=rs("id_truyen")%>" class="btn btn-primary">Đọc truyện</a>
+                  </div>
                 </div>
-                <div class="content-trai3">
-                  <div class="list-group">
-                    <h4>TRUYỆN MỚI CẬP NHẬT</h4>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex justify-content-start">
-                            <h5 class="mb-1">Thập niên 60: Xào tức phụ</h5>
-                            <span class="badge badge-primary badge-pill" style="color: none; border-radius: 40% ">Dịch</span>
-                        </div>
-                        <div class="d-flex w-100 justify-content-between">
-                            <small>Chương 1</small>
-                            <small>3 days ago</small>
-                        </div>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex justify-content-start">
-                            <h5 class="mb-1">Thiên Giá Sủng Nhi: Vợ Mới Của Tổng Tài </h5>
-                            <span class="badge badge-primary badge-pill" style="color: none; border-radius: 40%">Dịch</span>
-                        </div>
-                        <div class="d-flex w-100 justify-content-between">
-                            <small>Chương 1</small>
-                            <small>1 days ago</small>
-                        </div>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex justify-content-start">
-                            <h5 class="mb-1">Cô Vợ Hợp Đồng Đáng Gờm </h5>
-                            <span class="badge badge-primary badge-pill" style="color: none; border-radius: 40%">Dịch</span>
-                        </div>
-                        <div class="d-flex w-100 justify-content-between">
-                            <small>Chương 1</small>
-                            <small>1 days ago</small>
-                        </div>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex justify-content-start">
-                            <h5 class="mb-1">Bộ Trưởng Cao Lãnh: Cưng Chiều Vợ Yêu Tận Trời </h5>
-                            <span class="badge badge-primary badge-pill" style="color: none; border-radius: 40%">Dịch</span>
-                        </div>
-                        <div class="d-flex w-100 justify-content-between">
-                            <small>Chương 1</small>
-                            <small>1 days ago</small>
-                        </div>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex justify-content-start">
-                            <h5 class="mb-1">Triệu Hồi Cuồng Triều Ở Mạt Thế </h5>
-                            <span class="badge badge-primary badge-pill" style="color: none; border-radius: 40%">Dịch</span>
-                        </div>
-                        <div class="d-flex w-100 justify-content-between">
-                            <small>Chương 1</small>
-                            <small>1 days ago</small>
-                        </div>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex justify-content-start">
-                            <h5 class="mb-1">Ngài Tiên Sinh, Hãy Kiềm Chế</h5>
-                            <span class="badge badge-primary badge-pill" style="color: none; border-radius: 40%">Dịch</span>
-                        </div>
-                        <div class="d-flex w-100 justify-content-between">
-                            <small>Chương 1</small>
-                            <small>1 days ago</small>
-                        </div>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex justify-content-start">
-                            <h5 class="mb-1">Trọng Sinh 80: Tức Phụ Có Điểm Cay</h5>
-                            <span class="badge badge-primary badge-pill" style="color: none; border-radius: 40%">Dịch</span>
-                        </div>
-                        <div class="d-flex w-100 justify-content-between">
-                            <small>Chương 1</small>
-                            <small>1 days ago</small>
-                        </div>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex justify-content-start">
-                            <h5 class="mb-1">Trở Thành Quốc Bảo Nhờ Mỹ Thực  </h5>
-                            <span class="badge badge-primary badge-pill" style="color: none; border-radius: 40%">Dịch</span>
-                        </div>
-                        <div class="d-flex w-100 justify-content-between">
-                            <small>Chương 1</small>
-                            <small>1 days ago</small>
-                        </div>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex justify-content-start">
-                            <h5 class="mb-1">Vợ Yêu Siêu Sao: Chồng Trước Anh Bị Loại</h5>
-                            <span class="badge badge-primary badge-pill" style="color: none; border-radius: 40%">Dịch</span>
-                        </div>
-                        <div class="d-flex w-100 justify-content-between">
-                            <small>Chương 1</small>
-                            <small>1 days ago</small>
-                        </div>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex justify-content-start">
-                            <h5 class="mb-1">Thập Niên 70: Trở Thành Nữ Xứng Nuôi Con, Làm Giàu</h5>
-                            <span class="badge badge-primary badge-pill" style="color: none; border-radius: 40%">Dịch</span>
-                        </div>
-                        <div class="d-flex w-100 justify-content-between">
-                            <small>Chương 1</small>
-                            <small>1 days ago</small>
-                        </div>
-                    </a>
-            
+              </div>
+              <%
+                rs.MoveNext
+                Loop
+                rs.Close
+                conn.Close
+                Set rs = Nothing
+                Set conn = Nothing
+              %>
+            </div>
+          </div>
+        </div>
+        <div class="content-trai3">
+          <div class="list-group">
+            <h4>TRUYỆN MỚI CẬP NHẬT</h4>
+            <%
+              Set conn = Server.CreateObject("ADODB.Connection")
+              conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
+              sql = "SELECT TOP 15 chuong.id_chuong, chuong.ten_chuong, truyen.ten_truyen FROM chuong INNER JOIN truyen ON chuong.id_truyen = truyen.id_truyen ORDER BY chuong.id_chuong DESC"
+              Set rs = conn.Execute(sql)
+              ' Duyệt qua từng bản ghi trong kết quả truy vấn
+              Do While Not rs.EOF
+              id_chuong = rs("id_chuong")
+            %>
+              <a href="#?id_chuong=<%=rs("id_chuong")%>" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex justify-content-start">
+                  <h5 class="mb-1"><%=rs("ten_truyen")%></h5>
+                  <span class="badge badge-primary badge-pill" style="color: blue; border-radius: 40% ">Dịch</span>
                 </div>
+                <div class="d-flex w-100 justify-content-between">
+                  <small><%=rs("ten_chuong")%></small>
+                  <small>1 days ago</small>
                 </div>
-                <div class="content-trai4">
-                  <div class="container mt-4">
-                    <h4>TRUYỆN FULL</h4>
-                    <div class="row mt-4">
-                      <div class="col-md-3">
-                        <div class="card">
-                          <img src="/images/thanhthilamgiau.jpg" class="card-img-top" alt="...">
-                          <div class="card-body">
-                            <h5 class="card-title">Truyện 1</h5>
-                            <p class="card-text">Nội dung truyện đề cử 1</p>
-                            <a href="#" class="btn btn-primary">Đọc truyện</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-3">
-                        <div class="card">
-                          <img src="/images/amduong.jpg" class="card-img-top" alt="...">
-                          <div class="card-body">
-                            <h5 class="card-title">Truyện 2</h5>
-                            <p class="card-text">Nội dung truyện đề cử 2</p>
-                            <a href="#" class="btn btn-primary">Đọc truyện</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-3">
-                        <div class="card">
-                          <img src="/images/chongma.jpg" class="card-img-top" alt="...">
-                          <div class="card-body">
-                            <h5 class="card-title">Truyện 3</h5>
-                            <p class="card-text">Nội dung truyện đề cử 3</p>
-                            <a href="#" class="btn btn-primary">Đọc truyện</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-3">
-                        <div class="card">
-                          <img src="/images/quynhap.jpg" class="card-img-top" alt="...">
-                          <div class="card-body">
-                            <h5 class="card-title">Truyện 4</h5>
-                            <p class="card-text">Nội dung truyện đề cử 4</p>
-                            <a href="#" class="btn btn-primary">Đọc truyện</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="container mt-4">
-                      <div class="row mt-4">
-                        <div class="col-md-3">
-                          <div class="card">
-                            <img src="/images/thanhthilamgiau.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                              <h5 class="card-title">Truyện 1</h5>
-                              <p class="card-text">Nội dung truyện đề cử 1</p>
-                              <a href="#" class="btn btn-primary">Đọc truyện</a>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-3">
-                          <div class="card">
-                            <img src="/images/amduong.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                              <h5 class="card-title">Truyện 2</h5>
-                              <p class="card-text">Nội dung truyện đề cử 2</p>
-                              <a href="#" class="btn btn-primary">Đọc truyện</a>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-3">
-                          <div class="card">
-                            <img src="/images/chongma.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                              <h5 class="card-title">Truyện 3</h5>
-                              <p class="card-text">Nội dung truyện đề cử 3</p>
-                              <a href="#" class="btn btn-primary">Đọc truyện</a>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-3">
-                          <div class="card">
-                            <img src="/images/quynhap.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                              <h5 class="card-title">Truyện 4</h5>
-                              <p class="card-text">Nội dung truyện đề cử 4</p>
-                              <a href="#" class="btn btn-primary">Đọc truyện</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+              </a>
+              <%
+                rs.MoveNext
+                Loop
+                rs.Close
+                conn.Close
+                Set rs = Nothing
+                Set conn = Nothing
+              %> 
+          </div>
+        </div>
+        <div class="content-trai4">
+          <div class="container mt-4">
+            <h4>TRUYỆN FULL</h4>
+              <div class="row mt-4">
+                <%
+                  Set conn = Server.CreateObject("ADODB.Connection")
+                  conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
+                  sql = "SELECT TOP 4 * FROM truyen WHERE tinh_trang = 'Full' ORDER BY id_truyen"
+                  Set rs = conn.Execute(sql)
+                  ' Duyệt qua từng bản ghi trong kết quả truy vấn
+                  Do While Not rs.EOF
+                %>
+                <div class="col-md-3">
+                  <div class="card">
+                  <img src="<%=rs("anh_truyen")%>" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title"><%=rs("ten_truyen")%></h5>
+                    <p class="card-text"><%=rs("mo_ta_ndung")%></p>
+                      <a href="#?id_truyen=<%=rs("id_truyen")%>" class="btn btn-primary">Đọc truyện</a>
+                  </div>
+                  </div>
+                </div>
+                <%
+                  rs.MoveNext
+                  Loop
+                  rs.Close
+                  conn.Close
+                  Set rs = Nothing
+                  Set conn = Nothing
+                %>
+              </div>
+              <div class="row mt-4">
+                <%
+                  Set conn = Server.CreateObject("ADODB.Connection")
+                  conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
+                  sql = "SELECT TOP 4 * FROM truyen WHERE tinh_trang = 'Full' AND id_truyen > 18"
+                  Set rs = conn.Execute(sql)
+                  ' Duyệt qua từng bản ghi trong kết quả truy vấn
+                  Do While Not rs.EOF
+                %>
+                <div class="col-md-3">
+                  <div class="card">
+                    <img src="<%=rs("anh_truyen")%>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title"><%=rs("ten_truyen")%></h5>
+                      <p class="card-text"><%=rs("mo_ta_ndung")%></p>
+                      <a href="#?id_truyen=<%=rs("id_truyen")%>" class="btn btn-primary">Đọc truyện</a>
                     </div>
                   </div>
                 </div>
-        </div>
-        <div class="content-giua"></div>
-        <div class="content-phai">
-          <div class="tieude content-trai1-child">
-            THỂ LOẠI TRUYỆN
+                <%
+                  rs.MoveNext
+                  Loop
+                  rs.Close
+                  conn.Close
+                  Set rs = Nothing
+                  Set conn = Nothing
+                %>
+              </div>    
+            </div>
           </div>
-          <div class="list" style="width: 100%; height: 80%;">
-            <ul class="list-group list-group-horizontal">
-                <li class="list-group-item w50">
-                    <a class="icon-link" href="#">
-                        <i class="bi bi-tags-fill"></i>
-                        Kiếm hiệp
-                    </a>
-                </li>
-                <li class="list-group-item w50">
-                    <a class="icon-link" href="#">
-                        <i class="bi bi-tags-fill"></i>
-                        Truyện teen
-                    </a>
-                </li>
-            </ul>
-            <ul class="list-group list-group-horizontal">
-                <li class="list-group-item w50">
-                    <a class="icon-link" href="#">
-                        <i class="bi bi-tags-fill"></i>
-                        Ngôn tình
-                </li>
-                <li class="list-group-item w50">
-                    <a class="icon-link" href="#">
-                        <i class="bi bi-tags-fill"></i>
-                        Truyện cười
-                    </a>
-                </li>
-            </ul>
-            <ul class="list-group list-group-horizontal">
-                <li class="list-group-item w50">
-                    <a class="icon-link" href="#">
-                        <i class="bi bi-tags-fill"></i>
-                        Quân sự
-                    </a>
-                </li>
-                <li class="list-group-item w50">
-                    <a class="icon-link" href="#">
-                        <i class="bi bi-tags-fill"></i>
-                        Lịch sử
-                    </a>
-                </li>
-            </ul>
-            <ul class="list-group list-group-horizontal">
-                <li class="list-group-item w50">
-                    <a class="icon-link" href="#">
-                        <i class="bi bi-tags-fill"></i>
-                        Tiểu thuyết 
-                    </a>
-                </li>
-                <li class="list-group-item w50">
-                    <a class="icon-link" href="#">
-                        <i class="bi bi-tags-fill"></i>
-                        Trinh thám
-                    </a>
-                </li>
-            </ul>
-          </div>
+      </div>
+      <div class="content-giua">
+
+      </div>
+      <div class="content-phai">
+        <div class="tieude content-trai1-child">
+          <h4>THỂ LOẠI TRUYỆN</h4>
         </div>
+        <%
+          Set conn = Server.CreateObject("ADODB.Connection")
+          conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
+          sql = "SELECT *  FROM the_loai "
+          Set rs = conn.Execute(sql)
+          ' Duyệt qua từng bản ghi trong kết quả truy vấn
+          Dim dem
+          dem = 0
+          Do While Not rs.EOF
+          If dem Mod 2 = 0 Then ' Chỉ hiển thị cho thẻ a đầu tiên của mỗi cặp
+          id_chuong = rs("id_the_loai")
+        %>
+        <ul class="list-group list-group-horizontal">
+          <a href="#?id_the_loai=<%=rs("id_the_loai")%>" class="list-group-item list-group-item-action"><%=rs("ten_the_loai")%></a>
+          <%
+            Else ' Cho thẻ a thứ hai của mỗi cặp
+          %>
+          <a href="#?id_the_loai=<%=rs("id_the_loai")%>" class="list-group-item list-group-item-action"><%=rs("ten_the_loai")%></a>
+        </ul>
+        <%
+          End If
+          dem = dem + 1
+          rs.MoveNext
+          Loop
+          rs.Close
+          conn.Close
+          Set rs = Nothing
+          Set conn = Nothing
+        %>
+      </div>
     </div>
+  </div>
     
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
