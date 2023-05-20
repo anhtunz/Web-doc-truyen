@@ -28,7 +28,6 @@
         float: left;
         display: flex;
         flex-direction: column;
-        
     }
       /* Phần content trái 1 */ 
       .content .content-trai .content-trai1{  
@@ -85,9 +84,9 @@
   /* End content*/
   /* Chỉnh chi tiết các phần tử */
     .truyen-tong{
-    width:100%;
-    height: 100%;
-    box-sizing: border-box;
+      width:100%;
+      height: 100%;
+      box-sizing: border-box;
     }
     .card {
       flex: 1 0 25%; /* Chia tỷ lệ cân đối cho 4 card trên cùng một dòng */
