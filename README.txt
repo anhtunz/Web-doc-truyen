@@ -9,3 +9,6 @@ Cập nhật thêm 1 số câu lệnh Script mới
   Trong file add_truyen_moi.sql bạn có add thêm mấy truyện nữa rồi nhé
  - Ngày 17/5/23 
  + Việt xóa file bên ngoài web-doc-truyen và tạo 1 file mới trong ATuan để connect lại dữ liệu
+- Ngày 20/5/2023
+ + Tuấn làm thêm giao diện add truyện, add chương, profile của tác giả
+ + Cập nhật thêm thuộc tính duyet trong database nhưng k add vào, vào design xong add thêm cột là được.
