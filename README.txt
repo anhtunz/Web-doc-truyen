@@ -12,3 +12,5 @@ Cập nhật thêm 1 số câu lệnh Script mới
 - Ngày 20/5/2023
  + Tuấn làm thêm giao diện add truyện, add chương, profile của tác giả
  + Cập nhật thêm thuộc tính duyet trong database nhưng k add vào, vào design xong add thêm cột là được.
+- Ngày 21/05/2023
+ + Cập nhật lại toàn bộ id trong database để thuộc tính tự tăng, thuộc tính DATE thành DATETIME trong table binh_luan sẽ tự import ngày giờ hiện tại khi comment
