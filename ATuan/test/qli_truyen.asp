@@ -15,10 +15,10 @@
 
 </head>
 <style>
-    /* Phần tổng */
+   /* Phần tổng */
     body{
         width: 100%;
-        height: 750px;
+        height: 900px;
         float: left;
     }
     .m40{
@@ -36,7 +36,7 @@
     /* Phần sidebar */
     .sidebar{
         width: 20%;
-        height: 700px;
+        height: 750px;
         float: left;
     }
     
@@ -59,26 +59,62 @@
 
     /* Phần content */
     .content {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        height: 700px;
-        width: 80%;
-        
-    }
-    .eooo{
-        margin-bottom: 20px;
-    }
-    .field-name,
-    .field-value{
-        font-size: 20px;
-    }
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 750px;
+    width: 80%;
+  }
+
+  .table {
+    table-layout: fixed;
+  }
+
+  .table td.text-center {
+    word-break: break-word;
+    max-width: 200px; /* Điều chỉnh độ rộng tối đa của cột */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
     
 </style>
 <body>
-  
+    <%
+    function Ceil(Number)
+        Ceil = Int(Number)
+        if Ceil<>Number Then
+            Ceil = Ceil + 1
+        end if
+    end function
+    function checkPage(cond, ret) 
+        if cond=true then
+            Response.write ret
+        else
+            Response.write ""
+        end if
+    end function
+    page = Request.QueryString("page")
+    limit = 10
+
+    if (trim(page) = "") or (isnull(page)) then
+        page = 1
+    end if
+
+    offset = (Clng(page) * Clng(limit)) - Clng(limit)
+
+    strSQL = "SELECT COUNT(id_truyen) AS count FROM truyen"
+    connDB.Open()
+    Set CountResult = connDB.execute(strSQL)
+
+    totalRows = CLng(CountResult("count"))
+
+    Set CountResult = Nothing
+    ' lay ve tong so trang
+    pages = Ceil(totalRows/limit)
+    %>
     <div class="navbar">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid" style="margin-bottom: 10px;">
@@ -107,7 +143,7 @@
                 <hr>
                 <ul class="nav nav-pills flex-column mb-auto">
                   <li class="nav-item">
-                    <a href="#" class="nav-link link-dark">
+                    <a href="/test/thongtin_user.asp" class="nav-link link-dark">
                         <span class="material-symbols-outlined">
                             person
                             </span>
@@ -115,7 +151,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href="#" class="nav-link link-dark">
+                    <a href="/test/qli_truyen.asp" class="nav-link link-dark">
                         <span class="material-symbols-outlined">
                             list
                         </span>
@@ -141,7 +177,7 @@
                   <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
                     <li><a class="dropdown-item" href="#">Thêm truyện...</a></li>
                     <li><a class="dropdown-item" href="#">Cài đặt</a></li>
-                    <li><a class="dropdown-item" href="#">Trang cá nhân</a></li>
+                    <li><a class="dropdown-item" href="/test/thongtin_user.asp">Trang cá nhân</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
                   </ul>
@@ -150,44 +186,71 @@
         </div>
         
         <div class="content">
-            <div class="eooo">
-                <h2>THÔNG TIN CÁ NHÂN</h2>
-            </div>
-            <div class="thongtin">
-                <div class="personal-info">
-                    <div class="info-row">
-                      <span class="field-name">Tên:</span>
-                      <span class="field-value fw-bold">John Doe</span>
-                    </div>
-                    <div class="info-row">
-                      <span class="field-name">Email:</span>
-                      <span class="field-value">johndoe@example.com</span>
-                    </div>
-                    <div class="info-row">
-                      <span class="field-name">Ngày sinh:</span>
-                      <span class="field-value">10/10/1990</span>
-                    </div>
-                    <div class="info-row">
-                      <span class="field-name">Nghệ danh:</span>
-                      <span class="field-value fw-bold">Superstar</span>
-                    </div>
-                    <div class="info-row">
-                      <span class="field-name">Giới tính:</span>
-                      <span class="field-value">Nam</span>
-                    </div>
-                    <div class="info-row m40">
-                      <span class="field-name">Giới thiệu:</span>
-                      <span class="field-value">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu arcu mauris.
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu arcu mauris
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu arcu mauris
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu arcu mauris
-    
-                      </span>
-                    </div>
-                  </div>
-            </div>
-            
+          <div class="dan">
+            <h2>DANH SÁCH TRUYỆN</h2>
+          </div>
+          <div class="dsach-truyen" style="width: 90%;">
+            <table class="table table-striped">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col" class="text-center">Tên truyện</th>
+                  <th scope="col" class="text-center">Năm xuất bản</th>
+                  <th scope="col" class="text-center">Thể loại</th>
+                  <th scope="col" class="text-center">Mô tả nội dung</th>
+                  <th scope="col" class="text-center">Số chương</th>
+                  <th scope="col" class="text-center">Tình trạng</th>
+                  <th scope="col" class="text-center">Thao tác</th>
+                </tr>
+              </thead>
+              <tbody>
+              <%
+                         Set cmdPrep = Server.CreateObject("ADODB.Command")
+                            cmdPrep.ActiveConnection = connDB
+                            cmdPrep.CommandType = 1
+                            cmdPrep.Prepared = True
+                            cmdPrep.CommandText = "SELECT * FROM truyen ORDER BY id_truyen OFFSET ? ROWS FETCH NEXT ? ROWS ONLY"
+                            cmdPrep.parameters.Append cmdPrep.createParameter("offset",3,1, ,offset)
+                            cmdPrep.parameters.Append cmdPrep.createParameter("limit",3,1, , limit)
+
+                            Set Result = cmdPrep.execute
+                            do while not Result.EOF
+                %>
+                <tr>
+                  <th scope="row" class="text-center"><%=Result("id_truyen")%></th>
+                  <td class="text-center"><%=Result("ten_truyen")%></td>
+                  <td class="text-center"><%=Result("nam_xb")%></td>
+                  <td class="text-center"><%=Result("mo_ta_ndung")%></td>
+                  <td class="text-center"><%=Result("so_chuong")%></td>
+                  <td class="text-center"><%=Result("tinh_trang")%></td>
+                  <td class="text-center">
+                    <button type="button" class="btn btn-primary">Sửa</button>
+                    <button type="button" class="btn btn-danger">Xóa</button>
+                  </td>
+                </tr>
+              </tbody>
+              <%
+                        Result.MoveNext
+                            loop
+                        ' Đóng kết nối CSDL
+                        Result.Close
+                        
+                        Set Result = Nothing
+                        Set conn = Nothing
+                %>
+            </table>
+          </div>
+          <nav aria-label="Page Navigation">
+                <ul class="pagination pagination-sm">
+                    <% if (pages>1) then 
+                        for i= 1 to pages
+                    %>
+                        <li class="page-item <%=checkPage(Clng(i)=Clng(page),"active")%>"><a class="page-link" href="qli_truyen.asp?page=<%=i%>"><%=i%></a></li>
+                    <%
+                        next
+                        end if
+                    %>
+                </ul>
+            </nav>
     
         </div>
     </div>

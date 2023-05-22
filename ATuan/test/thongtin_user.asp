@@ -75,10 +75,13 @@
     .field-value{
         font-size: 20px;
     }
+    .info-row{
+        margin-bottom: 5px;
+    }
     
 </style>
 <body>
-  
+
     <div class="navbar">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid" style="margin-bottom: 10px;">
@@ -107,7 +110,7 @@
                 <hr>
                 <ul class="nav nav-pills flex-column mb-auto">
                   <li class="nav-item">
-                    <a href="#" class="nav-link link-dark">
+                    <a href="/test/thongtin_user.asp" class="nav-link link-dark">
                         <span class="material-symbols-outlined">
                             person
                             </span>
@@ -115,7 +118,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href="#" class="nav-link link-dark">
+                    <a href="/test/qli_truyen.asp" class="nav-link link-dark">
                         <span class="material-symbols-outlined">
                             list
                         </span>
@@ -141,7 +144,7 @@
                   <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
                     <li><a class="dropdown-item" href="#">Thêm truyện...</a></li>
                     <li><a class="dropdown-item" href="#">Cài đặt</a></li>
-                    <li><a class="dropdown-item" href="#">Trang cá nhân</a></li>
+                    <li><a class="dropdown-item" href="/test/thongtin_user.asp">Trang cá nhân</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
                   </ul>
@@ -155,35 +158,59 @@
             </div>
             <div class="thongtin">
                 <div class="personal-info">
+                <%
+                    ' Kết nối đến cơ sở dữ liệu
+                    Set conn = Server.CreateObject("ADODB.Connection")
+                    conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
+                    ' Truy vấn dữ liệu từ bảng nguoi_dung với id_nguoi_dung = 1
+                    sql = "SELECT * FROM nguoi_dung WHERE id_nguoi_dung = 1"
+                    Set rs = conn.Execute(sql)
+
+                    ' Kiểm tra xem có bản ghi nào hay không
+                    If Not rs.EOF Then
+                        ' Hiển thị thông tin người dùng
+                        ngay_sinh = rs("ngay_sinh")
+    
+                        ' Định dạng lại ngày tháng năm
+                        ngay_sinh = FormatDateTime(ngay_sinh, 1) ' 1: Hiển thị ngày tháng năm
+                %>
                     <div class="info-row">
                       <span class="field-name">Tên:</span>
-                      <span class="field-value fw-bold">John Doe</span>
+                      <span class="field-value fw-bold"><%=rs("ho_ten")%></span>
                     </div>
                     <div class="info-row">
                       <span class="field-name">Email:</span>
-                      <span class="field-value">johndoe@example.com</span>
+                      <span class="field-value"><%=rs("email")%></span>
                     </div>
                     <div class="info-row">
                       <span class="field-name">Ngày sinh:</span>
-                      <span class="field-value">10/10/1990</span>
+                      <span class="field-value"><%=ngay_sinh%></span>
                     </div>
                     <div class="info-row">
                       <span class="field-name">Nghệ danh:</span>
-                      <span class="field-value fw-bold">Superstar</span>
+                      <span class="field-value fw-bold"><%=rs("nghe_danh")%></span>
                     </div>
                     <div class="info-row">
                       <span class="field-name">Giới tính:</span>
-                      <span class="field-value">Nam</span>
+                      <span class="field-value"><%=rs("gioi_tinh")%></span>
                     </div>
                     <div class="info-row m40">
                       <span class="field-name">Giới thiệu:</span>
                       <span class="field-value">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu arcu mauris.
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu arcu mauris
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu arcu mauris
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu arcu mauris
-    
+                        <%=rs("gioi_thieu")%>
                       </span>
+                      <%
+                        Else
+                            ' Không tìm thấy người dùng
+                            Response.Write "Không tìm thấy thông tin người dùng."
+                        End If
+
+                        ' Đóng kết nối và giải phóng tài nguyên
+                        rs.Close
+                        Set rs = Nothing
+                        conn.Close
+                        Set conn = Nothing
+                        %>
                     </div>
                   </div>
             </div>

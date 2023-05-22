@@ -100,7 +100,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link text-white">
+                        <a href="/test/thongtin_user.asp" class="nav-link text-white">
                             <span class="material-symbols-outlined">
                                 person
                                 </span>
