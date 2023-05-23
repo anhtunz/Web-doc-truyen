@@ -58,23 +58,42 @@
 
     /* Phần content */
     .content {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        height: 700px;
-        width: 80%;
+        align-items: center ;
+        justify-content: ;
+        text-align: ;
+        height: 100%;
+        width: 1200px;
+        box-shadow: 0 0 1px;
+        margin-bottom: 1rem;
         
     }
-    .eooo{
-        margin-bottom: 20px;
+    .TenTruyen {
+        font-size: 20px; 
+        padding: 20px; 
+        width: 300px; 
+        height: 60px; 
     }
-    .field-name,
-    .field-value{
-        font-size: 20px;
-    }
-    
+    #preview-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .preview-image {
+            width: 200px;
+            height: auto;
+            margin: 10px;
+        }
+    .divflex {
+        display: flex;
+
+        }
+    .left-div {
+            display: flex;
+            width:45%;
+        }
+        
+    .right-div{
+        }
 </style>
 <body>
     <div class="navbar">
@@ -152,52 +171,113 @@
             </div>
         </div>
         <div class="content">
-            <div class="eooo">
-                <h2>THÔNG TIN CÁ NHÂN</h2>
-            </div>
-            <div class="thongtin">
-                <div class="personal-info">
-                    <div class="info-row">
-                      <span class="field-name">Tên:</span>
-                      <span class="field-value fw-bold">John Doe</span>
+            <div class="card card-primary">
+              <div class="card-header">
+                <h2 class="card-title" style=" color: blue">Thêm Truyện Mới</h2>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form>
+                <div class="card-body">
+                  <div >
+                    <input type="TenTruyen" class="TenTruyen" id="TenTruyen" placeholder="Nhập Tên truyện">
+                  </div>
+                  <div class="TacGia" >
+                    <strong for="TacGia">Tác giả</strong>
+                    <input type="TacGia" class="form-control" id="TacGia" placeholder="Tên tác giả">
+                  </div>
+                  <div class= "divflex">
+                  <div class="left-div">
+                        <div class="LoaiTruyen">
+                            <strong for="LoaiTruyen">Loại truyện</strong>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="loaitruyen">
+                                        Truyện dịch
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="loaitruyen" >
+                                        Truyện sáng tác
+                                </div>
+                        </div>
+                        <div class="TinhTrang">
+                            <strong >Tình Trạng Truyện</strong>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="tinhtrang">
+                                        Đã hoàn thành
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="tinhtrang">
+                                        Đang dịch / Đang Convert
+                                </div>
+                        </div>
+                  </div>
+                    
+                    <div class="right-div">
+                        <input type="file" id="image-input" multiple>
+                            <div id="preview-container"></div>
+
+                            <script>
+                                function previewImages() {
+                                    var previewContainer = document.getElementById('preview-container');
+                                    var files = document.getElementById('image-input').files;
+                                    previewContainer.innerHTML = '';
+                                    for (var i = 0; i < files.length; i++) {
+                                        var file = files[i];
+                                        var img = document.createElement('img');
+                                        img.classList.add('preview-image');
+                                        img.src = URL.createObjectURL(file);
+                                        previewContainer.appendChild(img);
+                                    }
+                                }
+                                document.getElementById('image-input').addEventListener('change', previewImages);
+                            </script>
                     </div>
-                    <div class="info-row">
-                      <span class="field-name">Email:</span>
-                      <span class="field-value">johndoe@example.com</span>
-                    </div>
-                    <div class="info-row">
-                      <span class="field-name">Ngày sinh:</span>
-                      <span class="field-value">10/10/1990</span>
-                    </div>
-                    <div class="info-row">
-                      <span class="field-name">Nghệ danh:</span>
-                      <span class="field-value fw-bold">Superstar</span>
-                    </div>
-                    <div class="info-row">
-                      <span class="field-name">Giới tính:</span>
-                      <span class="field-value">Nam</span>
-                    </div>
-                    <div class="info-row m40">
-                      <span class="field-name">Giới thiệu:</span>
-                      <span class="field-value">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu arcu mauris.
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu arcu mauris
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu arcu mauris
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu arcu mauris
-    
-                      </span>
+                    <div>
+                    <div class="TheLoai">
+                            <strong >Thể Loại</strong>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="TheLoai">
+                                        Kiếm hiệp
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="TheLoai">
+                                        Cổ trang
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="TheLoai">
+                                        tình cảm
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="TheLoai">
+                                        trinh thám
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="TheLoai">
+                                        thám hiểm
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="TheLoai">
+                                        kinh dị
+                                </div>
+                        </div>
                     </div>
                   </div>
+                <div class="mb-3">
+                    <strong for="gioithieu" class="form-label">Mô tả truyện</strong>
+                    <textarea class="form-control" id="gioithieu" rows="3"></textarea>
+                </div>
+
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Đăng truyện</button>
+                  <button type="submit" class="btn btn-default float-right">Hủy bỏ</button>
+                </div>
+              </form>
             </div>
-            
-    
         </div>
     </div>
     
-    
-    
-    
-
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 </body>
