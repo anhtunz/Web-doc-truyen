@@ -15,10 +15,10 @@
 
 </head>
 <style>
-   /* Phần tổng */
+    /* Phần tổng */
     body{
         width: 100%;
-        height: 900px;
+        height: 750px;
         float: left;
     }
     .m40{
@@ -36,7 +36,7 @@
     /* Phần sidebar */
     .sidebar{
         width: 20%;
-        height: 750px;
+        height: 700px;
         float: left;
     }
     
@@ -64,7 +64,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    height: 750px;
+    height: 700px;
     width: 80%;
   }
 
@@ -79,10 +79,12 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-    
+
 </style>
 <body>
     <%
+    Dim id_truyen
+                    id_truyen = Request.QueryString("id_truyen") ' Lấy giá trị id_truyen từ URL
     function Ceil(Number)
         Ceil = Int(Number)
         if Ceil<>Number Then
@@ -105,7 +107,9 @@
 
     offset = (Clng(page) * Clng(limit)) - Clng(limit)
 
-    strSQL = "SELECT COUNT(id_truyen) AS count FROM truyen"
+    strSQL = "SELECT COUNT(id_chuong) AS count " & _
+      "FROM chuong " & _
+      "WHERE id_truyen = " & id_truyen
     connDB.Open()
     Set CountResult = connDB.execute(strSQL)
 
@@ -143,7 +147,7 @@
                 <hr>
                 <ul class="nav nav-pills flex-column mb-auto">
                   <li class="nav-item">
-                    <a href="/test/thongtin_user.asp" class="nav-link link-dark">
+                    <a href="#" class="nav-link link-dark">
                         <span class="material-symbols-outlined">
                             person
                             </span>
@@ -177,7 +181,7 @@
                   <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
                     <li><a class="dropdown-item" href="#">Thêm truyện...</a></li>
                     <li><a class="dropdown-item" href="#">Cài đặt</a></li>
-                    <li><a class="dropdown-item" href="/test/thongtin_user.asp">Trang cá nhân</a></li>
+                    <li><a class="dropdown-item" href="#">Trang cá nhân</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
                   </ul>
@@ -185,44 +189,44 @@
               </div>
         </div>
         
-        <div class="content">
+        <div class="content" >
+            <div class="nutthem" style="margin-bottom: 40px;">
+                <button type="button" class="btn btn-primary btn-lg" >THÊM CHƯƠNG MỚI</button>
+            </div>
           <div class="dan">
-            <h2>DANH SÁCH TRUYỆN</h2>
+            <h2>DANH SÁCH CHƯƠNG</h2>
           </div>
           <div class="dsach-truyen" style="width: 90%;">
-            <table class="table table-striped">
+            <table class="table table-striped" style="width: 100%;">
               <thead class="thead-dark">
-                <tr >
-                  <th scope="col" class="text-center">Tên truyện</th>
-                  <th scope="col" class="text-center">Năm xuất bản</th>
-                  <th scope="col" class="text-center">Thể loại</th>
-                  <th scope="col" class="text-center">Mô tả nội dung</th>
-                  <th scope="col" class="text-center">Số chương</th>
+                <tr>
+                  <th scope="col" class="text-center">Tên chương</th>
+                  <th scope="col" class="text-center">Nội dung chương</th>
                   <th scope="col" class="text-center">Tình trạng</th>
                   <th scope="col" class="text-center">Thao tác</th>
                 </tr>
               </thead>
               <tbody>
               <%
+                    
                   Set cmdPrep = Server.CreateObject("ADODB.Command")
                   cmdPrep.ActiveConnection = connDB
                   cmdPrep.CommandType = 1
                   cmdPrep.Prepared = True
-                  cmdPrep.CommandText = "SELECT * FROM truyen ORDER BY id_truyen OFFSET ? ROWS FETCH NEXT ? ROWS ONLY"
+                  cmdPrep.CommandText = "SELECT ten_chuong, ndung_chuong, duyet " & _
+                                        "FROM chuong " & _
+                                        "WHERE id_truyen = " & id_truyen
                   cmdPrep.parameters.Append cmdPrep.createParameter("offset",3,1, ,offset)
                   cmdPrep.parameters.Append cmdPrep.createParameter("limit",3,1, , limit)
                   Set Result = cmdPrep.execute
                   do while not Result.EOF
                 %>
-                <tr onclick="redirectToTruyenDetail(<%=Result("id_truyen")%>)">
-                  <th scope="row" class="text-center"><%=Result("id_truyen")%></th>
-                  <td class="text-center"><%=Result("ten_truyen")%></td>
-                  <td class="text-center"><%=Result("nam_xb")%></td>
-                  <td class="text-center"><%=Result("mo_ta_ndung")%></td>
-                  <td class="text-center"><%=Result("so_chuong")%></td>
-                  <td class="text-center"><%=Result("tinh_trang")%></td>
+                <tr>
+                  <th scope="row" class="text-center"><%=Result("ten_chuong")%></th>
+                  <td class="text-center" ><%=Result("ndung_chuong")%></td>
+                  <td class="text-center"><%=Result("duyet")%></td>
                   <td class="text-center">
-                    <button type="button" class="btn btn-primary">Sửa</button>
+                    <button type="button" class="btn btn-primary">Chỉnh sửa</button>
                     <button type="button" class="btn btn-danger">Xóa</button>
                   </td>
                 </tr>
@@ -243,7 +247,7 @@
                     <% if (pages>1) then 
                         for i= 1 to pages
                     %>
-                        <li class="page-item <%=checkPage(Clng(i)=Clng(page),"active")%>"><a class="page-link" href="qli_truyen.asp?page=<%=i%>"><%=i%></a></li>
+                        <li class="page-item <%=checkPage(Clng(i)=Clng(page),"active")%>"><a class="page-link" href="qli_chuong.asp?page=<%=i%>"><%=i%></a></li>
                     <%
                         next
                         end if
@@ -389,11 +393,7 @@
         </div>
         <!-- Copyright -->
       </footer>
-        <script>
-          function redirectToTruyenDetail(id) {
-            window.location.href = "qli_chuong.asp?id_truyen=" + id;
-          }
-        </script>
+    
     
     
     
