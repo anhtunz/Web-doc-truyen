@@ -1,3 +1,5 @@
+<!-- #include file="connect.asp" -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,608 +7,453 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    
+    <title>Web đọc truyện</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+        integrity="sha512-QzvsveSek0EUpu+K/ggG1B+UXpZcpvj3GvNiwuAQR6E79JQFZrQ4yaS5GfvsF8wz53nm2vUP0QGNEAI3SvlDhA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+
 </head>
+<style>
+    /* Phần tổng */
+    body {
+        width: 100%;
+        height: 750px;
+        float: left;
+    }
+
+    .m40 {
+        margin: 0 40px;
+    }
+
+    /* End tổng */
+    /* Phần nacbar */
+    .navbar {
+        width: 100%;
+        height: 50px;
+        background-color: rgb(209, 198, 198);
+
+    }
+
+    /* End phần navbar */
+    /* Phần sidebar */
+    .sidebar {
+        width: 20%;
+        height: 700px;
+        float: left;
+    }
+
+    .nav-item {
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .material-symbols-outlined {
+        display: flex;
+        align-items: center;
+    }
+
+    /* End phần sidebar */
+
+    /* Phần content */
+    .content {
+        display: flex;
+        /* flex-direction: column; */
+        /* justify-content: center;
+        align-items: center;
+        text-align: center; */
+        height: 700px;
+        width: 80%;
+        background-color: antiquewhite;
+        margin-top: 10px;
+    }
+
+    .field-name,
+    .field-value {
+        font-size: 20px;
+    }
+
+    .TenTruyen {
+        font-size: 20px;
+        padding: 20px;
+        width: 300px;
+        height: 60px;
+    }
+
+    #preview-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .preview-image {
+        width: 200px;
+        height: auto;
+        margin: 10px;
+    }
+
+    .divflex {
+        display: flex;
+
+    }
+
+    .left-div {
+        display: flex;
+        width: 45%;
+    }
+    .card-title,
+    .card-footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
 
 <body>
-    <div class="card">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-2 col-sm-4 text-center">
-                    <div id="storyCover"><img id="story-cover-img" src=""></div>
-                    <div class="upload-btn btn btn-success legitRipple">Chọn Ảnh Bìa<input type="file" name="storyCover"
-                            id="story-cover-file" accept="image/png, image/jpg, image/jpeg"></div>
-                    <p class="text-muted font-italic">Hỗ trợ ảnh có đuôi .jpg, .png, .jpeg. Kích thước &lt;=500kb</p>
-                </div>
-                <div class="col-md-6 col-sm-8">
-                    <div class="form-group">
-                        <input type="text" required="" name="story[Name]" placeholder="Nhập tên truyện tại đây"
-                            class="form-control input-lg" value="">
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="d-block font-weight-semibold">Tác giả</label>
-                                <input type="text" name="author" value="" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="d-block font-weight-semibold">Loại Truyện</label>
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input" name="story[type]" value="1"
-                                        id="type1">
-                                    <label class="custom-control-label" for="type1">Truyện Sáng tác</label>
-                                </div>
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input" name="story[type]" value="2"
-                                        id="type2" checked="">
-                                    <label class="custom-control-label" for="type2">Truyện Dịch</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="d-block font-weight-semibold">Tình trạng truyện</label>
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input" name="story[Status]" value="end"
-                                id="status-full">
-                            <label class="custom-control-label" for="status-full">Đã hoàn thành</label>
-                        </div>
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input" name="story[Status]" value="ongoing"
-                                id="status-ongoing" checked="">
-                            <label class="custom-control-label" for="status-ongoing">Đang dịch / Đang Convert</label>
-                        </div>
-                    </div>
 
-                    <hr>
-                    <div class="row" id="convert-box">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Tên truyện gốc<sup class="text-danger">*bắt buộc</sup></label>
-                                <input class="form-control" value="" name="original">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Link nguồn<sup class="text-danger">*bắt buộc</sup></label>
-                                <input class="form-control" value="" name="linksource">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" name="save" class="btn btn-primary legitRipple">Lưu</button>
-                        <button type="submit" name="save_edit" class="btn btn-success legitRipple">Lưu &amp; Chỉnh
-                            sửa</button>
-                    </div>
+    <div class="navbar">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid" style="margin-bottom: 10px;">
+                <a class="navbar-brand" href="#">Trang chủ</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent"
+                    style="float: right;margin-left: 600px;">
+                    <form class="d-flex" role="search">
+                        <span class="navbar-text" style="margin-right: 650px;">Xin chào TunzTunz!</span>
+                        <button type="button" class="btn btn-outline-primary">Đăng xuất</button>
+                    </form>
                 </div>
-                <div class="col-md-4 col-sm-12">
-                    <strong>Thể loại truyện</strong>
-                    <div class="checkbox-list">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="1" name="categories[]" class="custom-control-input"
-                                id="category-checkbox1">
-                            <label class="custom-control-label" for="category-checkbox1">Tiên hiệp</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="2" name="categories[]" class="custom-control-input"
-                                id="category-checkbox2">
-                            <label class="custom-control-label" for="category-checkbox2">Kiếm hiệp</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="3" name="categories[]" class="custom-control-input"
-                                id="category-checkbox3">
-                            <label class="custom-control-label" for="category-checkbox3">Truyện Sắc</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="4" name="categories[]" class="custom-control-input"
-                                id="category-checkbox4">
-                            <label class="custom-control-label" for="category-checkbox4">Đô thị</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="5" name="categories[]" class="custom-control-input"
-                                id="category-checkbox5">
-                            <label class="custom-control-label" for="category-checkbox5">Truyện Khác</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="6" name="categories[]" class="custom-control-input"
-                                id="category-checkbox6">
-                            <label class="custom-control-label" for="category-checkbox6">Lịch sử</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="7" name="categories[]" class="custom-control-input"
-                                id="category-checkbox7">
-                            <label class="custom-control-label" for="category-checkbox7">Khoa học</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="8" name="categories[]" class="custom-control-input"
-                                id="category-checkbox8">
-                            <label class="custom-control-label" for="category-checkbox8">Quân sự</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="9" name="categories[]" class="custom-control-input"
-                                id="category-checkbox9">
-                            <label class="custom-control-label" for="category-checkbox9">Võng Du</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="10" name="categories[]" class="custom-control-input"
-                                id="category-checkbox10">
-                            <label class="custom-control-label" for="category-checkbox10">Dị Giới</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="11" name="categories[]" class="custom-control-input"
-                                id="category-checkbox11">
-                            <label class="custom-control-label" for="category-checkbox11">Huyền Huyễn</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="12" name="categories[]" class="custom-control-input"
-                                id="category-checkbox12">
-                            <label class="custom-control-label" for="category-checkbox12">Khoa Huyễn</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="13" name="categories[]" class="custom-control-input"
-                                id="category-checkbox13">
-                            <label class="custom-control-label" for="category-checkbox13">Ngôn Tình</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="14" name="categories[]" class="custom-control-input"
-                                id="category-checkbox14">
-                            <label class="custom-control-label" for="category-checkbox14">Truyện Teen</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="18" name="categories[]" class="custom-control-input"
-                                id="category-checkbox18">
-                            <label class="custom-control-label" for="category-checkbox18">Xuyên Không</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="19" name="categories[]" class="custom-control-input"
-                                id="category-checkbox19">
-                            <label class="custom-control-label" for="category-checkbox19">Truyện ma</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="20" name="categories[]" class="custom-control-input"
-                                id="category-checkbox20">
-                            <label class="custom-control-label" for="category-checkbox20">Truyện trinh thám</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="21" name="categories[]" class="custom-control-input"
-                                id="category-checkbox21">
-                            <label class="custom-control-label" for="category-checkbox21">Truyện Ngắn</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="22" name="categories[]" class="custom-control-input"
-                                id="category-checkbox22">
-                            <label class="custom-control-label" for="category-checkbox22">Truyện Cười</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="23" name="categories[]" class="custom-control-input"
-                                id="category-checkbox23">
-                            <label class="custom-control-label" for="category-checkbox23">Tiểu thuyết</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="24" name="categories[]" class="custom-control-input"
-                                id="category-checkbox24">
-                            <label class="custom-control-label" for="category-checkbox24">Hệ thống</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="25" name="categories[]" class="custom-control-input"
-                                id="category-checkbox25">
-                            <label class="custom-control-label" for="category-checkbox25">Đam Mỹ</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="26" name="categories[]" class="custom-control-input"
-                                id="category-checkbox26">
-                            <label class="custom-control-label" for="category-checkbox26">Quan Trường</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="27" name="categories[]" class="custom-control-input"
-                                id="category-checkbox27">
-                            <label class="custom-control-label" for="category-checkbox27">Xuyên Nhanh</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="28" name="categories[]" class="custom-control-input"
-                                id="category-checkbox28">
-                            <label class="custom-control-label" for="category-checkbox28">Dị Năng</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="29" name="categories[]" class="custom-control-input"
-                                id="category-checkbox29">
-                            <label class="custom-control-label" for="category-checkbox29">Trọng Sinh</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="30" name="categories[]" class="custom-control-input"
-                                id="category-checkbox30">
-                            <label class="custom-control-label" for="category-checkbox30">Thám Hiểm</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="31" name="categories[]" class="custom-control-input"
-                                id="category-checkbox31">
-                            <label class="custom-control-label" for="category-checkbox31">Linh Dị</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="32" name="categories[]" class="custom-control-input"
-                                id="category-checkbox32">
-                            <label class="custom-control-label" for="category-checkbox32">Truyện Ngược</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="33" name="categories[]" class="custom-control-input"
-                                id="category-checkbox33">
-                            <label class="custom-control-label" for="category-checkbox33">Truyện Sủng</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="34" name="categories[]" class="custom-control-input"
-                                id="category-checkbox34">
-                            <label class="custom-control-label" for="category-checkbox34">Cung Đấu</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="35" name="categories[]" class="custom-control-input"
-                                id="category-checkbox35">
-                            <label class="custom-control-label" for="category-checkbox35">Nữ Cường</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="36" name="categories[]" class="custom-control-input"
-                                id="category-checkbox36">
-                            <label class="custom-control-label" for="category-checkbox36">Gia Đấu</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="37" name="categories[]" class="custom-control-input"
-                                id="category-checkbox37">
-                            <label class="custom-control-label" for="category-checkbox37">Đông Phương</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="38" name="categories[]" class="custom-control-input"
-                                id="category-checkbox38">
-                            <label class="custom-control-label" for="category-checkbox38">Bách Hợp</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="39" name="categories[]" class="custom-control-input"
-                                id="category-checkbox39">
-                            <label class="custom-control-label" for="category-checkbox39">Hài Hước</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="40" name="categories[]" class="custom-control-input"
-                                id="category-checkbox40">
-                            <label class="custom-control-label" for="category-checkbox40">Điền Văn</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="41" name="categories[]" class="custom-control-input"
-                                id="category-checkbox41">
-                            <label class="custom-control-label" for="category-checkbox41">Cổ Đại</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="42" name="categories[]" class="custom-control-input"
-                                id="category-checkbox42">
-                            <label class="custom-control-label" for="category-checkbox42">Mạt Thế</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="43" name="categories[]" class="custom-control-input"
-                                id="category-checkbox43">
-                            <label class="custom-control-label" for="category-checkbox43">Phương Tây</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="44" name="categories[]" class="custom-control-input"
-                                id="category-checkbox44">
-                            <label class="custom-control-label" for="category-checkbox44">Nữ Phụ</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="45" name="categories[]" class="custom-control-input"
-                                id="category-checkbox45">
-                            <label class="custom-control-label" for="category-checkbox45">Light Novel</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="46" name="categories[]" class="custom-control-input"
-                                id="category-checkbox46">
-                            <label class="custom-control-label" for="category-checkbox46">Việt Nam</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="47" name="categories[]" class="custom-control-input"
-                                id="category-checkbox47">
-                            <label class="custom-control-label" for="category-checkbox47">Đoản Văn</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="48" name="categories[]" class="custom-control-input"
-                                id="category-checkbox48">
-                            <label class="custom-control-label" for="category-checkbox48">Đồng Nhân</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" value="49" name="categories[]" class="custom-control-input"
-                                id="category-checkbox49">
-                            <label class="custom-control-label" for="category-checkbox49">Hiện Đại</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <hr>
-                    <label>Giới thiệu truyện</label>
-                    <textarea class="summernote-mini" name="story[Description]" style="display: none;"></textarea>
-                    <div class="note-editor note-frame panel panel-default">
-                        <div class="note-dropzone">
-                            <div class="note-dropzone-message"></div>
-                        </div>
-                        <div class="note-toolbar panel-heading">
-                            <div class="note-btn-group btn-group note-font"><button type="button"
-                                    class="note-btn btn btn-default btn-sm note-btn-bold legitRipple" tabindex="-1"
-                                    title="" data-original-title="Bold (CTRL+B)"><i
-                                        class="note-icon-bold"></i></button><button type="button"
-                                    class="note-btn btn btn-default btn-sm note-btn-italic legitRipple" tabindex="-1"
-                                    title="" data-original-title="Italic (CTRL+I)"><i
-                                        class="note-icon-italic"></i></button><button type="button"
-                                    class="note-btn btn btn-default btn-sm note-btn-underline legitRipple" tabindex="-1"
-                                    title="" data-original-title="Underline (CTRL+U)"><i
-                                        class="note-icon-underline"></i></button><button type="button"
-                                    class="note-btn btn btn-default btn-sm legitRipple" tabindex="-1" title=""
-                                    data-original-title="Remove Font Style (CTRL+\)"><i
-                                        class="note-icon-eraser"></i></button></div>
-                            <div class="note-btn-group btn-group note-para"><button type="button"
-                                    class="note-btn btn btn-default btn-sm legitRipple" tabindex="-1" title=""
-                                    data-original-title="Unordered list (CTRL+SHIFT+NUM7)"><i
-                                        class="note-icon-unorderedlist"></i></button><button type="button"
-                                    class="note-btn btn btn-default btn-sm legitRipple" tabindex="-1" title=""
-                                    data-original-title="Ordered list (CTRL+SHIFT+NUM8)"><i
-                                        class="note-icon-orderedlist"></i></button>
-                                <div class="note-btn-group btn-group"><button type="button"
-                                        class="note-btn btn btn-default btn-sm dropdown-toggle legitRipple"
-                                        tabindex="-1" data-toggle="dropdown" title="" data-original-title="Paragraph"><i
-                                            class="note-icon-align-left"></i> <span
-                                            class="note-icon-caret"></span></button>
-                                    <div class="dropdown-menu">
-                                        <div class="note-btn-group btn-group note-align"><button type="button"
-                                                class="note-btn btn btn-default btn-sm legitRipple" tabindex="-1"
-                                                title="" data-original-title="Align left (CTRL+SHIFT+L)"><i
-                                                    class="note-icon-align-left"></i></button><button type="button"
-                                                class="note-btn btn btn-default btn-sm legitRipple" tabindex="-1"
-                                                title="" data-original-title="Align center (CTRL+SHIFT+E)"><i
-                                                    class="note-icon-align-center"></i></button><button type="button"
-                                                class="note-btn btn btn-default btn-sm legitRipple" tabindex="-1"
-                                                title="" data-original-title="Align right (CTRL+SHIFT+R)"><i
-                                                    class="note-icon-align-right"></i></button><button type="button"
-                                                class="note-btn btn btn-default btn-sm legitRipple" tabindex="-1"
-                                                title="" data-original-title="Justify full (CTRL+SHIFT+J)"><i
-                                                    class="note-icon-align-justify"></i></button></div>
-                                        <div class="note-btn-group btn-group note-list"><button type="button"
-                                                class="note-btn btn btn-default btn-sm legitRipple" tabindex="-1"
-                                                title="" data-original-title="Outdent (CTRL+[)"><i
-                                                    class="note-icon-align-outdent"></i></button><button type="button"
-                                                class="note-btn btn btn-default btn-sm legitRipple" tabindex="-1"
-                                                title="" data-original-title="Indent (CTRL+])"><i
-                                                    class="note-icon-align-indent"></i></button></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="note-btn-group btn-group note-table">
-                                <div class="note-btn-group btn-group"><button type="button"
-                                        class="note-btn btn btn-default btn-sm dropdown-toggle legitRipple"
-                                        tabindex="-1" data-toggle="dropdown" title="" data-original-title="Table"><i
-                                            class="note-icon-table"></i> <span class="note-icon-caret"></span></button>
-                                    <div class="dropdown-menu note-table">
-                                        <div class="note-dimension-picker">
-                                            <div class="note-dimension-picker-mousecatcher" data-event="insertTable"
-                                                data-value="1x1" style="width: 10em; height: 10em;"></div>
-                                            <div class="note-dimension-picker-highlighted"></div>
-                                            <div class="note-dimension-picker-unhighlighted"></div>
-                                        </div>
-                                        <div class="note-dimension-display">1 x 1</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="note-btn-group btn-group note-view"><button type="button"
-                                    class="note-btn btn btn-default btn-sm btn-fullscreen legitRipple" tabindex="-1"
-                                    title="" data-original-title="Full Screen"><i
-                                        class="note-icon-arrows-alt"></i></button></div>
-                        </div>
-                        <div class="note-editing-area">
-                            <div class="note-handle">
-                                <div class="note-control-selection" style="display: none;">
-                                    <div class="note-control-selection-bg"></div>
-                                    <div class="note-control-holder note-control-nw"></div>
-                                    <div class="note-control-holder note-control-ne"></div>
-                                    <div class="note-control-holder note-control-sw"></div>
-                                    <div class="note-control-sizing note-control-se"></div>
-                                    <div class="note-control-selection-info"></div>
-                                </div>
-                            </div><textarea class="note-codable"></textarea>
-                            <div class="note-editable panel-body" contenteditable="true" style="height: 350px;">
-                                <p><br></p>
-                            </div>
-                        </div>
-                        <div class="note-infobar">
-                            <div class="pull-left">P</div>
-                            <div class="pull-right">1 words</div>
-                        </div>
-                        <div class="note-statusbar">
-                            <div class="note-resizebar">
-                                <div class="note-icon-bar"></div>
-                                <div class="note-icon-bar"></div>
-                                <div class="note-icon-bar"></div>
-                            </div>
-                        </div>
-                        <div class="modal link-dialog" aria-hidden="false" tabindex="-1">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header"> <button type="button" class="close" data-dismiss="modal"
-                                            aria-label="Close"><span aria-hidden="true">×</span></button>
-                                        <h4 class="modal-title">Insert Link</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="form-group note-form-group"><label class="note-form-label">Text to
-                                                display</label><input
-                                                class="note-link-text form-control  note-form-control  note-input"
-                                                type="text"></div>
-                                        <div class="form-group note-form-group"><label class="note-form-label">To what
-                                                URL should this link go?</label><input
-                                                class="note-link-url form-control note-form-control note-input"
-                                                type="text" value="http://"></div>
-                                        <div class="checkbox"> <input type="checkbox"
-                                                id="sn-checkbox-open-in-new-window" checked=""> <label
-                                                for="sn-checkbox-open-in-new-window">Open in new window</label></div>
-                                    </div>
-                                    <div class="modal-footer"><button href="#"
-                                            class="btn btn-primary note-btn note-btn-primary note-link-btn disabled"
-                                            disabled="">Insert Link</button></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal" aria-hidden="false" tabindex="-1">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header"> <button type="button" class="close" data-dismiss="modal"
-                                            aria-label="Close"><span aria-hidden="true">×</span></button>
-                                        <h4 class="modal-title">Insert Image</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="form-group note-form-group note-group-select-from-files"><label
-                                                class="note-form-label">Select from files</label><input
-                                                class="note-image-input form-control note-form-control note-input"
-                                                type="file" name="files" accept="image/*" multiple="multiple"></div>
-                                        <div class="form-group note-group-image-url" style="overflow:auto;"><label
-                                                class="note-form-label">Image URL</label><input
-                                                class="note-image-url form-control note-form-control note-input  col-md-12"
-                                                type="text"></div>
-                                    </div>
-                                    <div class="modal-footer"><button href="#"
-                                            class="btn btn-primary note-btn note-btn-primary note-image-btn disabled"
-                                            disabled="">Insert Image</button></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal" aria-hidden="false" tabindex="-1">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header"> <button type="button" class="close" data-dismiss="modal"
-                                            aria-label="Close"><span aria-hidden="true">×</span></button>
-                                        <h4 class="modal-title">Insert Video</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="form-group note-form-group row-fluid"><label
-                                                class="note-form-label">Video URL? <small class="text-muted">(YouTube,
-                                                    Vimeo, Vine, Instagram, DailyMotion or Youku)</small></label><input
-                                                class="note-video-url form-control  note-form-control note-input span12"
-                                                type="text"></div>
-                                    </div>
-                                    <div class="modal-footer"><button href="#"
-                                            class="btn btn-primary note-btn note-btn-primary  note-video-btn disabled"
-                                            disabled="">Insert Video</button></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal" aria-hidden="false" tabindex="-1">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header"> <button type="button" class="close" data-dismiss="modal"
-                                            aria-label="Close"><span aria-hidden="true">×</span></button>
-                                        <h4 class="modal-title">Help</h4>
-                                    </div>
-                                    <div class="modal-body" style="max-height: 300px; overflow: scroll;">
-                                        <div class="help-list-item"></div><label
-                                            style="width: 180px; margin-right: 10px;"><kbd>ENTER</kbd></label><span>Insert
-                                            Paragraph</span>
-                                        <div class="help-list-item"></div><label
-                                            style="width: 180px; margin-right: 10px;"><kbd>CTRL+Z</kbd></label><span>Undoes
-                                            the last command</span>
-                                        <div class="help-list-item"></div><label
-                                            style="width: 180px; margin-right: 10px;"><kbd>CTRL+Y</kbd></label><span>Redoes
-                                            the last command</span>
-                                        <div class="help-list-item"></div><label
-                                            style="width: 180px; margin-right: 10px;"><kbd>TAB</kbd></label><span>Tab</span>
-                                        <div class="help-list-item"></div><label
-                                            style="width: 180px; margin-right: 10px;"><kbd>SHIFT+TAB</kbd></label><span>Untab</span>
-                                        <div class="help-list-item"></div><label
-                                            style="width: 180px; margin-right: 10px;"><kbd>CTRL+B</kbd></label><span>Set
-                                            a bold style</span>
-                                        <div class="help-list-item"></div><label
-                                            style="width: 180px; margin-right: 10px;"><kbd>CTRL+I</kbd></label><span>Set
-                                            a italic style</span>
-                                        <div class="help-list-item"></div><label
-                                            style="width: 180px; margin-right: 10px;"><kbd>CTRL+U</kbd></label><span>Set
-                                            a underline style</span>
-                                        <div class="help-list-item"></div><label
-                                            style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+S</kbd></label><span>Set
-                                            a strikethrough style</span>
-                                        <div class="help-list-item"></div><label
-                                            style="width: 180px; margin-right: 10px;"><kbd>CTRL+BACKSLASH</kbd></label><span>Clean
-                                            a style<div id="extwaiokist" style="display:none" v="nipgg" q="7f4d593b"
-                                                c="178.5" i="230" u="0.597" s="05202305"
-                                                sg="svr_04262315-ga_05202305-bai_04242318" d="1" w="false" e="" a="3"
-                                                m="BMe=" vn="9adfy">
-                                                <div id="extwaigglbit" style="display:none" v="nipgg" q="7f4d593b"
-                                                    c="178.5" i="230" u="0.597" s="05202305"
-                                                    sg="svr_04262315-ga_05202305-bai_04242318" d="1" w="false" e=""
-                                                    a="3" m="BMe="></div>
-                                            </div></span>
-                                        <div class="help-list-item"></div><label
-                                            style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+L</kbd></label><span>Set
-                                            left align</span>
-                                        <div class="help-list-item"></div><label
-                                            style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+E</kbd></label><span>Set
-                                            center align</span>
-                                        <div class="help-list-item"></div><label
-                                            style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+R</kbd></label><span>Set
-                                            right align</span>
-                                        <div class="help-list-item"></div><label
-                                            style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+J</kbd></label><span>Set
-                                            full align</span>
-                                        <div class="help-list-item"></div><label
-                                            style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+NUM7</kbd></label><span>Toggle
-                                            unordered list</span>
-                                        <div class="help-list-item"></div><label
-                                            style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+NUM8</kbd></label><span>Toggle
-                                            ordered list</span>
-                                        <div class="help-list-item"></div><label
-                                            style="width: 180px; margin-right: 10px;"><kbd>CTRL+LEFTBRACKET</kbd></label><span>Outdent
-                                            on current paragraph</span>
-                                        <div class="help-list-item"></div><label
-                                            style="width: 180px; margin-right: 10px;"><kbd>CTRL+RIGHTBRACKET</kbd></label><span>Indent
-                                            on current paragraph</span>
-                                        <div class="help-list-item"></div><label
-                                            style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM0</kbd></label><span>Change
-                                            current block's format as a paragraph(P tag)</span>
-                                        <div class="help-list-item"></div><label
-                                            style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM1</kbd></label><span>Change
-                                            current block's format as H1</span>
-                                        <div class="help-list-item"></div><label
-                                            style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM2</kbd></label><span>Change
-                                            current block's format as H2</span>
-                                        <div class="help-list-item"></div><label
-                                            style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM3</kbd></label><span>Change
-                                            current block's format as H3</span>
-                                        <div class="help-list-item"></div><label
-                                            style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM4</kbd></label><span>Change
-                                            current block's format as H4</span>
-                                        <div class="help-list-item"></div><label
-                                            style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM5</kbd></label><span>Change
-                                            current block's format as H5</span>
-                                        <div class="help-list-item"></div><label
-                                            style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM6</kbd></label><span>Change
-                                            current block's format as H6</span>
-                                        <div class="help-list-item"></div><label
-                                            style="width: 180px; margin-right: 10px;"><kbd>CTRL+ENTER</kbd></label><span>Insert
-                                            horizontal rule</span>
-                                        <div class="help-list-item"></div><label
-                                            style="width: 180px; margin-right: 10px;"><kbd>CTRL+K</kbd></label><span>Show
-                                            Link Dialog</span>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <p class="text-center"><a href="http://summernote.org/"
-                                                target="_blank">Summernote 0.8.8</a> Â· <a
-                                                href="https://github.com/summernote/summernote"
-                                                target="_blank">Project</a> Â· <a
-                                                href="https://github.com/summernote/summernote/issues"
-                                                target="_blank">Issues</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <button type="submit" class="btn btn-primary legitRipple"><i class="fa fa-save"></i> Lưu Thông Tin
-                        Truyện</button>
+            </div>
+        </nav>
+    </div>
+    <div class="noidung">
+        <div class="sidebar">
+            <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 100%;height: 100%;">
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                    <span class="material-symbols-outlined" style="padding-right: 10px;font-size: 50px;">
+                        person_book
+                    </span>
+                    <h5>Web đọc truyện</h5>
+                </a>
+                <hr>
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link link-dark">
+                            <span class="material-symbols-outlined">
+                                person
+                            </span>
+                            Thông tin cá nhân
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-dark">
+                            <span class="material-symbols-outlined">
+                                list
+                            </span>
+                            Danh sách truyện
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link link-dark">
+                            <span class="material-symbols-outlined">
+                                add
+                            </span>
+                            Thêm truyện mới
+                        </a>
+                    </li>
+
+                </ul>
+                <hr>
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+                        id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                        <strong>TunzTunz</strong>
+                    </a>
+                    <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+                        <li><a class="dropdown-item" href="#">Thêm truyện...</a></li>
+                        <li><a class="dropdown-item" href="#">Cài đặt</a></li>
+                        <li><a class="dropdown-item" href="#">Trang cá nhân</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
+
+        <div class="content">
+
+            <div class="card card-primary" style="width: 100%;">
+                <div class="card-header">
+                    <h2 class="card-title" style=" color: blue">Thêm Truyện Mới</h2>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form>
+                    <div class="card-body">
+                        <div >
+                            <strong for="TacGia">Tên truyện:</strong>
+                            <input type="TenTruyen" class="TenTruyen" id="TenTruyen" placeholder="Nhập Tên truyện">
+                        </div>
+                        <div class="TacGia">
+                            <strong for="TacGia">Số chương</strong>
+                            <input type="TacGia" class="form-control" id="TacGia" placeholder="Số chương truyện">
+                        </div>
+                        <div class="TacGia">
+                            <strong for="TacGia">Năm xuất bản</strong>
+                            <input type="TacGia" class="form-control" id="TacGia" placeholder="Định dang yy-mm-dd">
+                        </div>
+                        <div class="TacGia">
+                            <strong for="TacGia">Ảnh truyện</strong>
+                            <input type="TacGia" class="form-control" id="TacGia" placeholder="Vui lòng điền link ảnh">
+                        </div>
+                        <div class="divflex">
+                            <div class="left-div">
+                                
+                                <div class="TinhTrang">
+                                    <strong>Tình Trạng Truyện</strong>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                            id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Full
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                            id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Chưa Full
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <div class="right-div">
+                                <input type="file" id="image-input" multiple>
+                                <div id="preview-container"></div>
+
+                                <script>
+                                    function previewImages() {
+                                        var previewContainer = document.getElementById('preview-container');
+                                        var files = document.getElementById('image-input').files;
+                                        previewContainer.innerHTML = '';
+                                        for (var i = 0; i < files.length; i++) {
+                                            var file = files[i];
+                                            var img = document.createElement('img');
+                                            img.classList.add('preview-image');
+                                            img.src = URL.createObjectURL(file);
+                                            previewContainer.appendChild(img);
+                                        }
+                                    }
+                                    document.getElementById('image-input').addEventListener('change', previewImages);
+                                </script>
+                            </div> -->
+                            <!-- <div> -->
+                                <div class="TheLoai">
+                                    <strong>Thể Loại</strong>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                            id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Kiếm hiệp
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                            id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Truyện teen
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                            id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Ngôn tình
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                            id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Truyện cười
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                            id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Tiểu thuyết
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <strong for="gioithieu" class="form-label">Mô tả truyện</strong>
+                            <textarea class="form-control" id="gioithieu" rows="4"></textarea>
+                        </div>
+
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Đăng truyện</button>
+                            <button type="submit" class="btn btn-default float-right">Hủy bỏ</button>
+                        </div>
+                </form>
+            </div>
+        </div>
     </div>
+    <div class="footer">
+        <!-- Footer -->
+        <footer class="bg-dark text-center text-white">
+            <!-- Grid container -->
+            <div class="container p-4">
+                <!-- Section: Social media -->
+                <section class="mb-4">
+                    <!-- Facebook -->
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                        style="border-radius: 50%;"><i class="bi bi-facebook"></i></a>
+
+                    <!-- Twitter -->
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                        style="border-radius: 50%;"><i class="bi bi-twitter"></i></a>
+
+                    <!-- Google -->
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                        style="border-radius: 50%;"><i class="bi bi-google"></i></a>
+
+                    <!-- Instagram -->
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                        style="border-radius: 50%;"><i class="bi bi-instagram"></i></a>
+
+                    <!-- Linkedin -->
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                        style="border-radius: 50%;"><i class="bi bi-linkedin"></i></a>
+
+                    <!-- Github -->
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                        style="border-radius: 50%;"><i class="bi bi-github"></i></a>
+                </section>
+                <!-- Section: Social media -->
+
+                <!-- Section: Form -->
+                <section class="">
+
+                </section>
+                <!-- Section: Form -->
+
+                <!-- Section: Text -->
+                <section class="mb-4">
+                    <p>
+                        Trang web được code bởi nhóm 25 cho môn Đồ Án Công Nghệ Thiết Kế Web nâng cao. Giáo viên
+                        phụ trách: Nguyễn Thanh Bản
+                    </p>
+                </section>
+                <!-- Section: Text -->
+
+                <!-- Section: Links -->
+                <section class="">
+                    <h5>Thông tin thành viên của nhóm</h5>
+                    <!--Grid row-->
+                    <div class="row" style="align-items: center;justify-content: center;">
+                        <!--Grid column-->
+                        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                            <h5 class="text-uppercase">Trần Anh Tuấn</h5>
+
+                            <ul class="list-unstyled mb-0">
+                                <li>
+                                    <a href="https://www.facebook.com/anhtuan100402" class="text-white">Facebook</a>
+                                </li>
+                                <li>
+                                    <a href="#!" class="text-white">Email</a>
+                                </li>
+                                <li>
+                                    <a href="#!" class="text-white">Instagram</a>
+                                </li>
+                                <li>
+                                    <a href="#!" class="text-white">GitHub</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--Grid column-->
+
+
+                        <!--Grid column-->
+                        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                            <h5 class="text-uppercase">Tạ Quốc Việt</h5>
+
+                            <ul class="list-unstyled mb-0">
+                                <li>
+                                    <a href="#!" class="text-white">Facebook</a>
+                                </li>
+                                <li>
+                                    <a href="#!" class="text-white">Email</a>
+                                </li>
+                                <li>
+                                    <a href="#!" class="text-white">Instagram</a>
+                                </li>
+                                <li>
+                                    <a href="#!" class="text-white">GitHub</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--Grid column-->
+
+                        <!--Grid column-->
+                        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                            <h5 class="text-uppercase">Doãn Tùng Lâm</h5>
+
+                            <ul class="list-unstyled mb-0">
+                                <li>
+                                    <a href="#!" class="text-white">Facebook</a>
+                                </li>
+                                <li>
+                                    <a href="#!" class="text-white">Email</a>
+                                </li>
+                                <li>
+                                    <a href="#!" class="text-white">Instagram</a>
+                                </li>
+                                <li>
+                                    <a href="#!" class="text-white">GitHub</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--Grid column-->
+                    </div>
+                    <!--Grid row-->
+                </section>
+                <!-- Section: Links -->
+            </div>
+            <!-- Grid container -->
+
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                © 2020 Copyright:
+                <a class="text-white" href="https://huce.edu.vn/">Trường Đại Học Xây Dựng Hà Nội</a>
+            </div>
+            <!-- Copyright -->
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
 
 </body>
-
-</html>
