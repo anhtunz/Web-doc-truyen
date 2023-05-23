@@ -159,7 +159,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href="/test/dangtruyen.asp" class="nav-link link-dark">
+                    <a href="" class="nav-link link-dark">
                       <span class="material-symbols-outlined">
                         add
                         </span>

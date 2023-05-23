@@ -8,7 +8,6 @@
     Dim conn, rs
     Set conn = Server.CreateObject("ADODB.Connection")
     conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
-
     Dim sql
     sql = "SELECT * FROM truyen"
     Set rs = conn.Execute(sql)
