@@ -241,23 +241,19 @@
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="" id="TheLoai">
-                                        Cổ trang
+                                        Truyện teen
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="" id="TheLoai">
-                                        tình cảm
+                                        Ngôn tình
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="" id="TheLoai">
-                                        trinh thám
+                                        Truyện cười
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="" id="TheLoai">
-                                        thám hiểm
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="TheLoai">
-                                        kinh dị
+                                        Tiểu thuyết
                                 </div>
                         </div>
                     </div>
