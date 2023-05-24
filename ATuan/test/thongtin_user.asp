@@ -151,7 +151,6 @@
                 </div>
               </div>
         </div>
-        
         <div class="content">
             <div class="eooo">
                 <h2>THÔNG TIN CÁ NHÂN</h2>
