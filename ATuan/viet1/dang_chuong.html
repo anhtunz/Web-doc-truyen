@@ -78,10 +78,12 @@
         background-color: antiquewhite;
         margin-top: 10px;
     }
+
     .Chuong {
         display: flex;
     }
-    .thongbao1{
+
+    .thongbao1 {
         display: flex;
     }
 
@@ -105,6 +107,7 @@
         display: flex;
         width: 45%;
     }
+
     .card-title,
     .card-footer {
         display: flex;
@@ -201,25 +204,33 @@
                 <!-- form start -->
                 <form>
                     <div class="card-body">
-                        <div >
-                            <button type="button" class="btn btn-info"><strong >Xem danh sách chương truyện</strong></button>
+                        <div>
+                            <button type="button" class="btn btn-info"><strong>Xem danh sách chương
+                                    truyện</strong></button>
                         </div>
                         <div class="Chuong" style="padding: 10px 10px 10px 0px">
                             <strong for="ChuongSo" style="margin-right: 40px;">Chương Số </strong>
                             <strong for="TenChuong">Tên Chương </strong>
                         </div>
                         <div class="Chuong">
-                            
-                            <input type="ChuongSo_nhap" class="form-control" id="ChuongSo" placeholder="1" style="width: 85px;margin-right: 40px;">
-                            <input type="TenChuong_nhap" class="form-control" id="TenChuong" placeholder="Nhập tên chương tại dây">
+
+                            <input type="ChuongSo_nhap" class="form-control" id="ChuongSo" placeholder="1"
+                                style="width: 85px;margin-right: 40px;">
+                            <input type="TenChuong_nhap" class="form-control" id="TenChuong"
+                                placeholder="Nhập tên chương tại dây">
                         </div>
                         <div class="thongbao1">
                             <p class="text-danger font-italic" style="margin-right: 50px;">Chỉ nhập số</p>
-                            <p class="text-danger font-italic">Chỉ nhập tên chương không nhập số chương ở đây. Nếu không có tên, có thể để trống.</p>
+                            <p class="text-danger font-italic">Chỉ nhập tên chương không nhập số chương ở đây. Nếu không
+                                có tên, có thể để trống.</p>
+                        </div>
+                        <div class="alert alert-info">
+                            Nội dung chương phải có ít nhất 400 từ mới có thể xuất bản. Khuyến khích 1 chương khoảng 2000 từ
                         </div>
                         <div class="mb-3">
-                            <strong for="gioithieu" class="form-label">Mô tả truyện</strong>
-                            <textarea class="form-control" id="gioithieu" rows="10"></textarea>
+                            <strong for="gioithieu" class="form-label">Nội dung chương</strong>
+                            <textarea class="form-control" id="gioithieu" rows="10"
+                                oninput="document.getElementById('word-counts').innerHTML = this.value.length + ' chữ'"></textarea>
                             <div id="word-counts">0 chữ</div>
                         </div>
 
