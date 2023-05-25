@@ -87,14 +87,10 @@
         margin: 10px;
     }
 
-    .divflex {
-        display: flex;
-
-    }
-
     .left-div {
         display: flex;
         width: 45%;
+        
     }
     .card-title,
     .card-footer {
@@ -118,126 +114,128 @@
                 <div class="card-header">
                     <h2 class="card-title" style=" color: blue">Thêm Truyện Mới</h2>
                 </div>
-                <form>
-                    <div class="card-body">
-                        <div>
-                            <strong for="TenTruyen">Tên truyện:</strong>
-                            <input type="text" class="TenTruyen" name="TenTruyen" placeholder="Nhập Tên truyện">
-                        </div>
-                        <div class="SoChuong">
-                            <strong for="SoChuong">Số chương</strong>
-                            <input type="text" class="form-control" name="SoChuong" placeholder="Số chương truyện">
-                        </div>
-                        <div class="NamXB">
-                            <strong for="NamXB">Năm xuất bản</strong>
-                            <input type="date" class="form-control" name="NamXB" placeholder="Định dang yy-mm-dd">
-                        </div>
-                        <div class="Anhtruyen">
-                            <strong for="Anhtruyen">Ảnh truyện</strong>
-                            <input type="text" class="form-control" name="Anhtruyen" placeholder="Vui lòng điền link ảnh">
-                        </div>
-                        
-                        <div class="divflex">
-                            <div class="left-div">
-                                
-                                 <form id="myForm" method="post">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="Default radio">
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            Full
-                                        </label>
-                                    </div>
-                                    <br>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="Default checked radio" checked>
-                                        <label class="form-check-label" for="flexRadioDefault2">
-                                            Chưa Full
-                                        </label>
-                                    </div>
-                                    <br>
-                                </form>
-                            </div>
 
-                                <div class="TheLoai">
-                                    <strong>Thể Loại</strong>
+                <%
+    If Request.ServerVariables("REQUEST_METHOD") = "POST" Then
+        Dim TenTruyen, SoChuong, NamXuatBan, AnhTruyen, TinhTrang, MoTa
+        TenTruyen = Request.Form("TenTruyen")
+        SoChuong = Request.Form("SoChuong")
+        NamXuatBan = Request.Form("NamXB")
+        AnhTruyen = Request.Form("Anhtruyen")
+        TinhTrang = Request.Form("flexRadioDefault")
+        TheLoai = Request.Form("flexRadioDefault1")
+        MoTa = Request.Form("gioithieu")
+
+        ' Gửi dữ liệu đến trang test.asp
+        Dim xmlhttp
+        Set xmlhttp = Server.CreateObject("MSXML2.ServerXMLHTTP")
+        Dim url
+        url = "test.asp"
+        xmlhttp.Open "POST", url, False
+        xmlhttp.setRequestHeader "Content-Type", "application/x-www-form-urlencoded"
+        xmlhttp.send "TenTruyen=" & Server.URLEncode(TenTruyen) & "&SoChuong=" & Server.URLEncode(SoChuong) & "&NamXB=" & Server.URLEncode(NamXuatBan) & "&Anhtruyen=" & Server.URLEncode(AnhTruyen) & "&flexRadioDefault=" & Server.URLEncode(TinhTrang) & "&gioithieu=" & Server.URLEncode(MoTa) & "&gioithieu=" & Server.URLEncode(TheLoai)
+
+        ' Kiểm tra phản hồi từ trang test.asp
+        If xmlhttp.Status = 200 Then
+            Response.Write("Dữ liệu đã được gửi thành công.")
+        Else
+            Response.Write("Có lỗi xảy ra khi gửi dữ liệu.")
+        End If
+    End If
+%>
+
+<div class="card-body">
+    <form id="myForm" method="post" action="test.asp">
+        <div>
+            <strong for="TenTruyen">Tên truyện:</strong>
+            <input type="text" class="TenTruyen" name="TenTruyen" placeholder="Nhập Tên truyện">
+        </div>
+        <div class="SoChuong">
+            <strong for="SoChuong">Số chương</strong>
+            <input type="text" class="form-control" name="SoChuong" placeholder="Số chương truyện">
+        </div>
+        <div class="NamXB">
+            <strong for="NamXB">Năm xuất bản</strong>
+            <input type="date" class="form-control" name="NamXB" placeholder="Định dang yy-mm-dd">
+        </div>
+        <div class="Anhtruyen">
+            <strong for="Anhtruyen">Ảnh truyện</strong>
+            <input type="text" class="form-control" name="Anhtruyen" placeholder="Vui lòng điền link ảnh">
+        </div>
+        <div class="divflex">
+            <div class="left-div">
+                <strong>Tình trạng :</strong>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="Full" style="display: flex; margin:2px; ">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Full
+                    </label>
+                </div>
+                <div class="form-check" >
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="Chưa Full" style="display: flex; margin:2px; " checked>
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        Chưa Full
+                    </label>
+                </div>
+            </div>
+            <div class="TheLoai" style="display: flex;">
+                                    <strong>Thể Loại: </strong>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                            id="flexRadioDefault1">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault1" value="1"
+                                            id="flexRadioDefault1" style=" margin-left:2px; ">
                                         <label class="form-check-label" for="flexRadioDefault1">
                                             Kiếm hiệp
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault1" value="2" style=" margin-left:2px; ">
                                         <label class="form-check-label">
                                             Truyện teen
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault">
-                                        <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault1" value="3" style=" margin-left:2px; ">
+                                        <label class="form-check-label" >
                                             Ngôn tình
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                            id="flexRadioDefault1">
-                                        <label class="form-check-label" for="flexRadioDefault1">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault1" value="4" style=" margin-left:2px; ">
+                                        <label class="form-check-label">
                                             Truyện cười
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                            id="flexRadioDefault1">
-                                        <label class="form-check-label" for="flexRadioDefault1">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault1" value="5" style=" margin-left:2px; ">
+                                        <label class="form-check-label" >
                                             Tiểu thuyết
                                         </label>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <strong for="gioithieu" class="form-label">Mô tả truyện</strong>
-                            <textarea class="form-control" id="gioithieu" rows="4"></textarea>
-                        </div>
+        </div>
+        <div class="mb-3">
+            <strong for="gioithieu" class="form-label">Mô tả truyện</strong>
+            <textarea class="form-control" id="gioithieu" name="gioithieu" rows="8"></textarea>
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary" value="Đăng truyện">Đăng</button>
+            <button type="button" class="btn btn-default float-right">Hủy bỏ</button>
+        </div>
+    </form>
+</div>
 
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-primary" onclick="submitForm()">Đăng truyện</button>
-                            <%
-                                TenTruyen = Request.QueryString("TenTruyen")
-                                SoChuong = Request.QueryString("SoChuong")
-                                NamXuatBan = Request.QueryString("NamXB")
-                                AnhTruyen = Request.QueryString("AnhTruyen")
-                                Response.Write("Ten: " & TenTruyen)
-                                Response.Write("Chuong: " & Sochuong)
-                                Response.Write("Nam: " & NamXB)
-                                Response.Write("Anh: " & AnhTruyen)
-                                Dim selectedValue
-                                selectedValue = ""
-                                If Request.Form("flexRadioDefault") <> "" Then
-                                    selectedValue = Request.Form("flexRadioDefault")
-                                End If
-                                Response.Write("Tinh trang: " & selectedValue)
-                            %>  
-                            <button type="submit" class="btn btn-default float-right">Hủy bỏ</button>
-                        </div>
-                </form>
+                
+
+                    
+                        
+                
             </div>
-            
-    
         </div>
     </div>
     <div class="footer">
       <!-- #include file="footer.asp" -->
     </div>
-
         
-        <script type="text/javascript">
-            function submitForm() {
-                var form = document.getElementById("myForm");
-                form.submit();
-            }
-        </script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 </body>
