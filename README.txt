@@ -14,3 +14,7 @@ Cập nhật thêm 1 số câu lệnh Script mới
  + Cập nhật thêm thuộc tính duyet trong database nhưng k add vào, vào design xong add thêm cột là được.
 - Ngày 21/05/2023
  + Cập nhật lại toàn bộ id trong database để thuộc tính tự tăng, thuộc tính DATE thành DATETIME trong table binh_luan sẽ tự import ngày giờ hiện tại khi comment
+
+- Ngày 26/05/2023: 
++ Tuấn làm được thêm và sửa truyện đã lket vs base
++ Mọi người đổi lại base trong thuộc tính tinh_trang chỗ nào Chưa Full đổi thành NotFull nhé
