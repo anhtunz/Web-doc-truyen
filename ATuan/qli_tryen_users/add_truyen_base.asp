@@ -9,9 +9,7 @@
     TheLoai = Request.Form("flexRadioDefault1")
     MoTa = Request.Form("gioithieu")
 
-    ' Xử lý dữ liệu ở đây...
-
-    ' Ví dụ: In ra các giá trị đã nhận được
+    ' In ra các giá trị đã nhận được
     Response.Write("Tên truyện: " & TenTruyen & "<br>")
     Response.Write("Số chương: " & SoChuong & "<br>")
     Response.Write("Năm xuất bản: " & NamXuatBan & "<br>")
@@ -21,8 +19,6 @@
     Response.Write("Mô tả: " & MoTa & "<br>")
 
 
-    
-    
     TenTruyen = Replace(Request.Form("TenTruyen"), "'", "''")
     SoChuong = Replace(Request.Form("SoChuong"), "'", "''")
     NamXuatBan = Replace(Request.Form("NamXB"), "'", "''")
@@ -33,7 +29,6 @@
     Dim strSQL
     Set conn = Server.CreateObject("ADODB.Connection")
     conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
-                
     strSQL = "INSERT INTO truyen (ten_truyen,id_the_loai, so_chuong, nam_xb, anh_truyen, tinh_trang, mo_ta_ndung, id_nguoi_dung) VALUES ('" & TenTruyen & "','" & TheLoai & "', '" & SoChuong & "', '" & NamXuatBan & "', '" & AnhTruyen & "', '" & TinhTrang & "', '" & MoTa & "', 1)"
     ' conn.Open "Provider=SQLOLEDB;Data Source=ten_may_chu;Initial Catalog=ten_csdl;User ID=ten_nguoi_dung;Password=mat_khau;"
     conn.Execute strSQL

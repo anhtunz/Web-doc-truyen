@@ -32,6 +32,9 @@
         
     }
     /* End phần navbar */
+    .noidung{
+      margin-top: 15px;
+    }
     /* Phần sidebar */
     .sidebar{
         width: 20%;
@@ -65,7 +68,15 @@
         text-align: center;
         height: 700px;
         width: 80%;
+
         
+    }
+        .eooo{
+        margin-bottom: 20px;
+    }
+        .field-name,
+    .field-value{
+        font-size: 20px;
     }
     .table {
     table-layout: fixed;
@@ -98,12 +109,12 @@
             <table class="table table-striped">
               <thead class="thead-dark">
                 <tr >
+                  <th scope="col" class="text-center">STT</th>
                   <th scope="col" class="text-center">Tên truyện</th>
                   <th scope="col" class="text-center">Năm xuất bản</th>
-                  <th scope="col" class="text-center">Thể loại</th>
                   <th scope="col" class="text-center">Mô tả nội dung</th>
                   <th scope="col" class="text-center">Số chương</th>
-                  <th scope="col" class="text-center">Tình trạng</th>
+                  <th scope="col" class="text-center">Xem</th>
                   <th scope="col" class="text-center">Thao tác</th>
                 </tr>
               </thead>
@@ -118,16 +129,21 @@
                   cmdPrep.parameters.Append cmdPrep.createParameter("limit",3,1, , limit)
                   Set Result = cmdPrep.execute
                   do while not Result.EOF
+                  ' đây là thẻ tr khi nhấn vào hàng sẽ ra danh sách chương
+                  ' <tr onclick="redirectToTruyenDetail(< %= Result("id_ tr uyen")% >)">
                 %>
-                <tr onclick="redirectToTruyenDetail(<%=Result("id_truyen")%>)">
+                
+                <tr>
                   <th scope="row" class="text-center"><%=Result("id_truyen")%></th>
                   <td class="text-center"><%=Result("ten_truyen")%></td>
                   <td class="text-center"><%=Result("nam_xb")%></td>
                   <td class="text-center"><%=Result("mo_ta_ndung")%></td>
                   <td class="text-center"><%=Result("so_chuong")%></td>
-                  <td class="text-center"><%=Result("tinh_trang")%></td>
                   <td class="text-center">
-                    <button type="button" class="btn btn-primary">Sửa</button>
+                    <button type="button" class="btn btn-primary" onclick = "redirectToTruyenDetail(<%=Result("id_truyen")%>)">Xem chương</button>
+                  </td>
+                  <td class="text-center">
+                    <button type="button" class="btn btn-primary" onclick = "suaTruyen(<%=Result("id_truyen")%>)">Sửa</button>
                     <button type="button" class="btn btn-danger">Xóa</button>
                   </td>
                 </tr>
@@ -135,7 +151,7 @@
               <%
                         Result.MoveNext
                             loop
-                        ' Đóng kết nối CSDL
+                        ' Đóng kết nối CSDL 
                         Result.Close
                         
                         Set Result = Nothing
@@ -163,10 +179,15 @@
     <div class="footer">
       <!-- #include file="footer.asp" -->
     </div>
-    
+        
         <script>
           function redirectToTruyenDetail(id) {
             window.location.href = "qli_chuong.asp?id_truyen=" + id;
+          }
+          function suaTruyen(id) {
+            // Tạo URL đích và chuyển hướng sang trang sua_truyen.asp
+            var url = "sua_truyen.asp?id_truyen=" + id;
+            window.location.href = url;
           }
         </script>
     

@@ -110,102 +110,90 @@
         </div>
         
         <div class="content">
+        <%
+                    Dim id_truyen
+                    id_truyen = Request.QueryString("id_truyen") ' Lấy giá trị id_truyen từ URL
+                    ' Kết nối đến cơ sở dữ liệu
+                    Set conn = Server.CreateObject("ADODB.Connection")
+                    conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456;"
+                    ' Truy vấn dữ liệu từ bảng nguoi_dung với id_nguoi_dung = 1
+                    sql = "SELECT * FROM truyen WHERE id_truyen= " & id_truyen
+                    Set rs = conn.Execute(sql)
+                    Dim tinh_trang
+                    tinh_trang = rs("tinh_trang")
+                 
+                    Dim the_loai
+                    the_loai = rs("id_the_loai")
+                 
+                %>
             <div class="card card-primary" style="width: 100%;">
                 <div class="card-header">
                     <h2 class="card-title" style=" color: blue">Thêm Truyện Mới</h2>
                 </div>
-
-                <%
-                    If Request.ServerVariables("REQUEST_METHOD") = "POST" Then
-                        Dim TenTruyen, SoChuong, NamXuatBan, AnhTruyen, TinhTrang, MoTa
-                        TenTruyen = Request.Form("TenTruyen")
-                        SoChuong = Request.Form("SoChuong")
-                        NamXuatBan = Request.Form("NamXB")
-                        AnhTruyen = Request.Form("Anhtruyen")
-                        TinhTrang = Request.Form("flexRadioDefault")
-                        TheLoai = Request.Form("flexRadioDefault1")
-                        MoTa = Request.Form("gioithieu")
-
-                        ' Gửi dữ liệu đến trang add_truyen_base.asp
-                        Dim xmlhttp
-                        Set xmlhttp = Server.CreateObject("MSXML2.ServerXMLHTTP")
-                        Dim url
-                        url = "add_truyen_base.asp"
-                        xmlhttp.Open "POST", url, False
-                        xmlhttp.setRequestHeader "Content-Type", "application/x-www-form-urlencoded"
-                        xmlhttp.send "TenTruyen=" & Server.URLEncode(TenTruyen) & "&SoChuong=" & Server.URLEncode(SoChuong) & "&NamXB=" & Server.URLEncode(NamXuatBan) & "&Anhtruyen=" & Server.URLEncode(AnhTruyen) & "&flexRadioDefault=" & Server.URLEncode(TinhTrang) & "&gioithieu=" & Server.URLEncode(MoTa) & "&gioithieu=" & Server.URLEncode(TheLoai)
-
-                        ' Kiểm tra phản hồi từ trang add_truyen_base.asp
-                        If xmlhttp.Status = 200 Then
-                            Response.Write("Dữ liệu đã được gửi thành công.")
-                        Else
-                            Response.Write("Có lỗi xảy ra khi gửi dữ liệu.")
-                        End If
-                    End If
-                %>
-                <div class="card-body">
-                    <form id="myForm" method="post" action="add_truyen_base.asp">
+                    <form id="myForm" method="post" action="sua_truyen_base.asp">
                         <div>
                             <strong for="TenTruyen">Tên truyện:</strong>
-                            <input type="text" class="TenTruyen" name="TenTruyen" placeholder="Nhập Tên truyện">
+                            <input type="text" class="TenTruyen" name="TenTruyen" value="<%= rs("ten_truyen") %>" placeholder="Nhập Tên truyện">
+                            
                         </div>
                         <div class="SoChuong">
                             <strong for="SoChuong">Số chương</strong>
-                            <input type="text" class="form-control" name="SoChuong" placeholder="Số chương truyện">
+                            <input type="text" class="form-control" name="SoChuong" value="<%= rs("so_chuong") %>" placeholder="Số chương truyện">
                         </div>
                         <div class="NamXB">
                             <strong for="NamXB">Năm xuất bản</strong>
-                            <input type="date" class="form-control" name="NamXB" placeholder="Định dang yy-mm-dd">
+                            <input type="date" class="form-control" name="NamXB" value="<%= rs("nam_xb") %>" placeholder="Định dang yy-mm-dd">
                         </div>
                         <div class="Anhtruyen">
                             <strong for="Anhtruyen">Ảnh truyện</strong>
-                            <input type="text" class="form-control" name="Anhtruyen" placeholder="Vui lòng điền link ảnh">
+                            <input type="text" class="form-control" name="Anhtruyen" value="<%= rs("anh_truyen") %>" placeholder="Vui lòng điền link ảnh">
                         </div>
                         <div class="divflex">
                             <div class="left-div">
-                                <strong>Tình trạng :</strong>
+                                <strong> Tình trạng :</strong>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="Full" style="display: flex; margin:2px; ">
+                                    <input <% If tinh_trang = "Full" Then Response.Write("checked") %> class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="Full" style="display: flex; margin:2px;">
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         Full
                                     </label>
                                 </div>
-                                <div class="form-check" >
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="NotFull" style="display: flex; margin:2px; " checked>
+                                <div class="form-check">
+                                    <input <% If tinh_trang = "NotFull" Then Response.Write("checked") %> class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="NotFull" style="display: flex; margin:2px; ">
                                     <label class="form-check-label" for="flexRadioDefault2">
                                         Chưa Full
                                     </label>
                                 </div>
                             </div>
+
                             <div class="TheLoai" style="display: flex;">
                                 <strong>Thể Loại: </strong>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault1" value="1"
+                                    <input <% If the_loai = 1 Then Response.Write("checked") %> class="form-check-input" type="radio" name="flexRadioDefault1" value="1"
                                     id="flexRadioDefault1" style=" margin-left:2px; ">
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         Kiếm hiệp
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault1" value="2" style=" margin-left:2px; ">
+                                    <input <% If the_loai = 2 Then Response.Write("checked") %> class="form-check-input" type="radio" name="flexRadioDefault1" value="2" style=" margin-left:2px; ">
                                     <label class="form-check-label">
                                         Truyện teen
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault1" value="3" style=" margin-left:2px; ">
+                                    <input <% If the_loai = 3 Then Response.Write("checked") %> class="form-check-input" type="radio" name="flexRadioDefault1" value="3" style=" margin-left:2px; ">
                                     <label class="form-check-label" >
                                         Ngôn tình
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault1" value="4" style=" margin-left:2px; ">
+                                    <input <% If the_loai = 4 Then Response.Write("checked") %> class="form-check-input" type="radio" name="flexRadioDefault1" value="4" style=" margin-left:2px; ">
                                     <label class="form-check-label">
                                         Truyện cười
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault1" value="5" style=" margin-left:2px; ">
+                                    <input <% If the_loai = 5 Then Response.Write("checked") %> class="form-check-input" type="radio" name="flexRadioDefault1" value="5" style=" margin-left:2px; ">
                                     <label class="form-check-label" >
                                         Tiểu thuyết
                                     </label>
@@ -214,13 +202,28 @@
                         </div>
                         <div class="mb-3">
                             <strong for="gioithieu" class="form-label">Mô tả truyện</strong>
-                            <textarea class="form-control" id="gioithieu" name="gioithieu" rows="8"></textarea>
+                            <textarea class="form-control" id="gioithieu" name="gioithieu" rows="8"> <%= rs("mo_ta_ndung") %></textarea>
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary" value="Đăng truyện">Đăng</button>
-                            <button type="button" class="btn btn-default float-right">Hủy bỏ</button>
+                            <a type="button" class="btn btn-default float-right" href= "qli_truyen.asp">Hủy bỏ</a>
                         </div>
                     </form>
+                    <%
+                        If Request.ServerVariables("REQUEST_METHOD") = "POST" Then ' Kiểm tra phương thức của request
+                            ' Lấy giá trị từ các trường input trong form
+                            Dim TenTruyen, SoChuong, NamXuatBan, AnhTruyen, TinhTrang, MoTa
+                            TenTruyen = Request.Form("TenTruyen")
+                            SoChuong = Request.Form("SoChuong")
+                            NamXuatBan = Request.Form("NamXB")
+                            AnhTruyen = Request.Form("Anhtruyen")
+                            TinhTrang = Request.Form("flexRadioDefault")
+                            TheLoai = Request.Form("flexRadioDefault1")
+                            MoTa = Request.Form("gioithieu")
+                            
+                            Response.Redirect "sua_truyen_base.asp"
+                        End If
+                    %>
                 </div>     
             </div>
         </div>
