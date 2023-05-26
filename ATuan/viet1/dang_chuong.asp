@@ -115,7 +115,43 @@
         align-items: center;
     }
 </style>
+<%
+    Dim id_truyen
+    id_truyen = Request.QueryString("id_truyen") ' Lấy giá trị id_truyen từ URL
+    function Ceil(Number)
+        Ceil = Int(Number)
+        if Ceil<>Number Then
+            Ceil = Ceil + 1
+        end if
+    end function
+    function checkPage(cond, ret) 
+        if cond=true then
+            Response.write ret
+        else
+            Response.write ""
+        end if
+    end function
+    page = Request.QueryString("page")
+    limit = 10
 
+    if (trim(page) = "") or (isnull(page)) then
+        page = 1
+    end if
+
+    offset = (Clng(page) * Clng(limit)) - Clng(limit)
+
+    strSQL = "SELECT COUNT(id_chuong) AS count " & _
+      "FROM chuong " & _
+      "WHERE id_truyen = " & id_truyen
+    connDB.Open()
+    Set CountResult = connDB.execute(strSQL)
+
+    totalRows = CLng(CountResult("count"))
+
+    Set CountResult = Nothing
+    ' lay ve tong so trang
+    pages = Ceil(totalRows/limit)
+    %>
 <body>
 
     <div class="navbar">
@@ -200,23 +236,48 @@
                 <div class="card-header">
                     <h2 class="card-title" style=" color: green">Thêm chương truyện</h2>
                 </div>
+
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form>
+                <form method="post" action="test.asp">
                     <div class="card-body">
                         <div>
-                            <button type="button" class="btn btn-info"><strong>Xem danh sách chương
-                                    truyện</strong></button>
+                        <%
+                        
+    If Request.ServerVariables("REQUEST_METHOD") = "POST" Then
+        Dim Chuongso, SoChuong, Noidung
+        ChuongSo = Request.Form("ChuongSo_nhap")
+        TenChuong = Request.Form("TenChuong_nhap")
+        NoiDung = Request.Form("NoiDungChuong")
+
+        ' Gửi dữ liệu đến trang test.asp
+        Dim xmlhttp
+        Set xmlhttp = Server.CreateObject("MSXML2.ServerXMLHTTP")
+        Dim url
+        url = "test.asp"
+        xmlhttp.Open "POST", url, False
+        xmlhttp.setRequestHeader "Content-Type", "application/x-www-form-urlencoded"
+        xmlhttp.send "ChuongSo=" & Server.URLEncode(ChuongSo) & "&TenChuong=" & Server.URLEncode(TenChuong) & "&NoiDung=" & Server.URLEncode(NoiDung) 
+
+        ' Kiểm tra phản hồi từ trang test.asp
+        If xmlhttp.Status = 200 Then
+            Response.Write("Dữ liệu đã được gửi thành công.")
+        Else
+            Response.Write("Có lỗi xảy ra khi gửi dữ liệu.")
+        End If
+    End If
+%>
+                        <a class="btn btn-info" href="qli_chuong.asp?id_truyen=<%=id_truyen%>"><b>Xem danh sách chương</b></a>
                         </div>
                         <div class="Chuong" style="padding: 10px 10px 10px 0px">
-                            <strong for="ChuongSo" style="margin-right: 40px;">Chương Số </strong>
-                            <strong for="TenChuong">Tên Chương </strong>
+                            <strong name="ChuongSo" style="margin-right: 40px;">Chương Số </strong>
+                            <strong name="TenChuong">Tên Chương </strong>
                         </div>
                         <div class="Chuong">
 
-                            <input type="ChuongSo_nhap" class="form-control" id="ChuongSo" placeholder="1"
+                            <input name="ChuongSo_nhap" class="form-control" id="ChuongSo_nhap" placeholder="1" 
                                 style="width: 85px;margin-right: 40px;">
-                            <input type="TenChuong_nhap" class="form-control" id="TenChuong"
+                            <input name="TenChuong_nhap" class="form-control" id="TenChuong_nhap" 
                                 placeholder="Nhập tên chương tại dây">
                         </div>
                         <div class="thongbao1">
@@ -228,8 +289,8 @@
                             Nội dung chương phải có ít nhất 400 từ mới có thể xuất bản. Khuyến khích 1 chương khoảng 2000 từ
                         </div>
                         <div class="mb-3">
-                            <strong for="gioithieu" class="form-label">Nội dung chương</strong>
-                            <textarea class="form-control" id="gioithieu" rows="10"
+                            <strong for="NoiDungChuong" class="form-label">Nội dung chương: </strong>
+                            <textarea class="form-control" id="NoiDungChuong" rows="10" name="NoiDungChuong"
                                 oninput="document.getElementById('word-counts').innerHTML = this.value.length + ' chữ'"></textarea>
                             <div id="word-counts">0 chữ</div>
                         </div>
@@ -237,7 +298,7 @@
                         <!-- /.card-body -->
 
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Đăng chương</button>
+                            <button type="submit" class="btn btn-primary" onclick="redirectToTruyenDetail(<%=("id_truyen")%>)" >Đăng chương</button>
                             <button type="submit" class="btn btn-default float-right">Hủy bỏ</button>
                         </div>
                 </form>
@@ -245,136 +306,14 @@
         </div>
     </div>
     <div class="footer">
-        <!-- Footer -->
-        <footer class="bg-dark text-center text-white">
-            <!-- Grid container -->
-            <div class="container p-4">
-                <!-- Section: Social media -->
-                <section class="mb-4">
-                    <!-- Facebook -->
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                        style="border-radius: 50%;"><i class="bi bi-facebook"></i></a>
-
-                    <!-- Twitter -->
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                        style="border-radius: 50%;"><i class="bi bi-twitter"></i></a>
-
-                    <!-- Google -->
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                        style="border-radius: 50%;"><i class="bi bi-google"></i></a>
-
-                    <!-- Instagram -->
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                        style="border-radius: 50%;"><i class="bi bi-instagram"></i></a>
-
-                    <!-- Linkedin -->
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                        style="border-radius: 50%;"><i class="bi bi-linkedin"></i></a>
-
-                    <!-- Github -->
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                        style="border-radius: 50%;"><i class="bi bi-github"></i></a>
-                </section>
-                <!-- Section: Social media -->
-
-                <!-- Section: Form -->
-                <section class="">
-
-                </section>
-                <!-- Section: Form -->
-
-                <!-- Section: Text -->
-                <section class="mb-4">
-                    <p>
-                        Trang web được code bởi nhóm 25 cho môn Đồ Án Công Nghệ Thiết Kế Web nâng cao. Giáo viên
-                        phụ trách: Nguyễn Thanh Bản
-                    </p>
-                </section>
-                <!-- Section: Text -->
-
-                <!-- Section: Links -->
-                <section class="">
-                    <h5>Thông tin thành viên của nhóm</h5>
-                    <!--Grid row-->
-                    <div class="row" style="align-items: center;justify-content: center;">
-                        <!--Grid column-->
-                        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                            <h5 class="text-uppercase">Trần Anh Tuấn</h5>
-
-                            <ul class="list-unstyled mb-0">
-                                <li>
-                                    <a href="https://www.facebook.com/anhtuan100402" class="text-white">Facebook</a>
-                                </li>
-                                <li>
-                                    <a href="#!" class="text-white">Email</a>
-                                </li>
-                                <li>
-                                    <a href="#!" class="text-white">Instagram</a>
-                                </li>
-                                <li>
-                                    <a href="#!" class="text-white">GitHub</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!--Grid column-->
-
-
-                        <!--Grid column-->
-                        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                            <h5 class="text-uppercase">Tạ Quốc Việt</h5>
-
-                            <ul class="list-unstyled mb-0">
-                                <li>
-                                    <a href="#!" class="text-white">Facebook</a>
-                                </li>
-                                <li>
-                                    <a href="#!" class="text-white">Email</a>
-                                </li>
-                                <li>
-                                    <a href="#!" class="text-white">Instagram</a>
-                                </li>
-                                <li>
-                                    <a href="#!" class="text-white">GitHub</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!--Grid column-->
-
-                        <!--Grid column-->
-                        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                            <h5 class="text-uppercase">Doãn Tùng Lâm</h5>
-
-                            <ul class="list-unstyled mb-0">
-                                <li>
-                                    <a href="#!" class="text-white">Facebook</a>
-                                </li>
-                                <li>
-                                    <a href="#!" class="text-white">Email</a>
-                                </li>
-                                <li>
-                                    <a href="#!" class="text-white">Instagram</a>
-                                </li>
-                                <li>
-                                    <a href="#!" class="text-white">GitHub</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!--Grid column-->
-                    </div>
-                    <!--Grid row-->
-                </section>
-                <!-- Section: Links -->
-            </div>
-            <!-- Grid container -->
-
-            <!-- Copyright -->
-            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-                © 2020 Copyright:
-                <a class="text-white" href="https://huce.edu.vn/">Trường Đại Học Xây Dựng Hà Nội</a>
-            </div>
-            <!-- Copyright -->
-        </footer>
-
+      <!-- #include file="footer.asp" -->
+    </div>
+        <script>
+          function redirectToTruyenDetail(id) {
+            window.location.href = "test.asp?id_truyen=" + id;
+          }
+        </script>
+    
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
