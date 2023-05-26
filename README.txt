@@ -18,3 +18,4 @@ Cập nhật thêm 1 số câu lệnh Script mới
 - Ngày 26/05/2023: 
 + Tuấn làm được thêm và sửa truyện đã lket vs base
 + Mọi người đổi lại base trong thuộc tính tinh_trang chỗ nào Chưa Full đổi thành NotFull nhé
++ Hoàn thành phần thêm sửa xóa truyện
