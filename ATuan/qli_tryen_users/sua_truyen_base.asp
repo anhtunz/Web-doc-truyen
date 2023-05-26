@@ -1,6 +1,6 @@
 
 <%
-TenTruyen = Request.Form("TenTruyen")
+    TenTruyen = Request.Form("TenTruyen")
     SoChuong = Request.Form("SoChuong")
     NamXuatBan = Request.Form("NamXB")
     AnhTruyen = Request.Form("Anhtruyen")

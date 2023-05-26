@@ -144,8 +144,8 @@
                   </td>
                   <td class="text-center">
                     <button type="button" class="btn btn-primary" onclick = "suaTruyen(<%=Result("id_truyen")%>)">Sửa</button>
-                    <button type="button" class="btn btn-danger">Xóa</button>
-                  </td>
+                    <button type="button" class="btn btn-danger" onclick = "XoaTruyen(<%=Result("id_truyen")%>, <%=page%>)">Xóa</button>
+                  </td> 
                 </tr>
               </tbody>
               <%
@@ -187,6 +187,11 @@
           function suaTruyen(id) {
             // Tạo URL đích và chuyển hướng sang trang sua_truyen.asp
             var url = "sua_truyen.asp?id_truyen=" + id;
+            window.location.href = url;
+          }
+          function XoaTruyen(id, page) {
+            // Tạo URL đích và chuyển hướng sang trang sua_truyen.asp
+            var url = "xoa_truyen.asp?id_truyen=" + id + "&page=" + page;
             window.location.href = url;
           }
         </script>

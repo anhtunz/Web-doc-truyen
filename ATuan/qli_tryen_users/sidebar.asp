@@ -40,7 +40,7 @@
                     <strong>TunzTunz</strong>
                   </a>
                   <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                    <li><a class="dropdown-item" href="#">Thêm truyện...</a></li>
+                    <li><a class="dropdown-item" href="them_truyen.asp">Thêm truyện...</a></li>
                     <li><a class="dropdown-item" href="#">Cài đặt</a></li>
                     <li><a class="dropdown-item" href="info.asp">Trang cá nhân</a></li>
                     <li><hr class="dropdown-divider"></li>
