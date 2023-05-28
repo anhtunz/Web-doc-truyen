@@ -1,5 +1,6 @@
 <!-- #include file="connect.asp" -->
 <%
+    page = Request.QueryString("page")
     Dim TenTruyen, SoChuong, NamXuatBan, AnhTruyen, TinhTrang, MoTa
     TenTruyen = Request.Form("TenTruyen")
     SoChuong = Request.Form("SoChuong")
@@ -39,5 +40,5 @@
 
     ' Hiển thị thông báo thành công
     Response.Write("Dữ liệu đã được thêm vào cơ sở dữ liệu thành công.")
-    Response.Redirect "qli_truyen.asp"
+    Response.Redirect "qli_truyen.asp?page= " &page
 %>

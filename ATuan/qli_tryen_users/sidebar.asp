@@ -36,7 +36,7 @@
                 <hr>
                 <div class="dropdown">
                   <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                    <img src="https://toigingiuvedep.vn/wp-content/uploads/2022/04/meme-cheems-anh-meme-cheems.jpg" alt="" width="32" height="32" class="rounded-circle me-2">
                     <strong>TunzTunz</strong>
                   </a>
                   <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">

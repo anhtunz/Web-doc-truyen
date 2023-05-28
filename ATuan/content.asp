@@ -283,11 +283,11 @@
           id_chuong = rs("id_the_loai")
         %>
         <ul class="list-group list-group-horizontal">
-          <a href="#?id_the_loai=<%=rs("id_the_loai")%>" class="list-group-item list-group-item-action"><%=rs("ten_the_loai")%></a>
+          <a href="the_loai_truyen.asp?id_the_loai=<%=rs("id_the_loai")%>" class="list-group-item list-group-item-action"><%=rs("ten_the_loai")%></a>
           <%
             Else ' Cho thẻ a thứ hai của mỗi cặp
           %>
-          <a href="#?id_the_loai=<%=rs("id_the_loai")%>" class="list-group-item list-group-item-action"><%=rs("ten_the_loai")%></a>
+          <a href="the_loai_truyen.asp?id_the_loai=<%=rs("id_the_loai")%>" class="list-group-item list-group-item-action"><%=rs("ten_the_loai")%></a>
         </ul>
         <%
           End If

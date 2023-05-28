@@ -116,6 +116,9 @@
                 </div>
 
                 <%
+                    If (isnull(Session("email")) OR TRIM(Session("email")) = "") Then
+                    Response.redirect("/login.asp")
+                    End If
                     If Request.ServerVariables("REQUEST_METHOD") = "POST" Then
                         Dim TenTruyen, SoChuong, NamXuatBan, AnhTruyen, TinhTrang, MoTa
                         TenTruyen = Request.Form("TenTruyen")

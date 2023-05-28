@@ -39,18 +39,18 @@
             <a class="nav-link" href="#">Trang chủ <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Đăng truyện</a>
+            <a class="nav-link" href="/qli_tryen_users/them_truyen.asp">Đăng truyện</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Thể loại
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Kiếm hiệp</a>
-              <a class="dropdown-item" href="#">Truyện teen</a>
-              <a class="dropdown-item" href="#">Ngôn tình</a>
-              <a class="dropdown-item" href="#">Truyện cười</a>
-              <a class="dropdown-item" href="#">Tiểu thuyết</a>
+              <a class="dropdown-item" href="the_loai_truyen.asp?id_the_loai=1">Kiếm hiệp</a>
+              <a class="dropdown-item" href="the_loai_truyen.asp?id_the_loai=2">Truyện teen</a>
+              <a class="dropdown-item" href="the_loai_truyen.asp?id_the_loai=3">Ngôn tình</a>
+              <a class="dropdown-item" href="the_loai_truyen.asp?id_the_loai=4">Truyện cười</a>
+              <a class="dropdown-item" href="the_loai_truyen.asp?id_the_loai=5">Tiểu thuyết</a>
           </li>
         </ul>
 
