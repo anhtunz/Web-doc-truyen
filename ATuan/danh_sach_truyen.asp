@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web đọc truyện</title>
+    <title>Thể loại truyện</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
@@ -13,64 +13,134 @@
     
 </head>
 <style>
+  /* Phần content */
+    .content{
+        height: 3200px;
+        width: 70%;
+        margin: 0 auto;
+        box-sizing: border-box;
+        
+    } 
+    /* Phần content trái */ 
+    .content .content-trai{
+        width: 70%;
+        height: 100%;
+        float: left;
+        display: flex;
+        flex-direction: column;
+    }
+      /* Phần content trái 1 */ 
+      .content .content-trai .content-trai1{  
+          width: 100%;
+          height: 400px;
+          margin-bottom: 20px;
+      } 
 
-    /* Thanh nav-bar */
-    .nav-bar{
+      /* End content trai 1 */
+      /* Phần content trái 2 */ 
+      .content .content-trai .content-trai2{  
+          width:100%;
+          height: 850px;  
+          display: flex;
+          flex-wrap: wrap;
+      } 
+
+      /* End content trai 2 */
+      /* Phần content trái 3 */ 
+      .content .content-trai .content-trai3{  
+          width: 100%;
+          height: 1000px;
+          margin-bottom: 10px;
+      }  
+
+      /* End content trai 3 */
+
+      /* Phần content trái 4 */ 
+      .content .content-trai .content-trai4{  
+          width: 100%;
+          height: 620px;
+      }
+
+      /* End content trai 4 */
+    /* End content trái */
+
+    /* Phần content giữa */
+    .content .content-giua{
+        float: left;
+        width: 5%;
+        height: 100%;
+    }
+
+    /* End content giữa */
+
+    /* Phần content phải */
+    .content .content-phai{
+        width: 25%;
+        height: 100%;
+        float: left;
+    }
+
+    /* End content phải */
+  /* End content*/
+
+    .center{
+        display:flex;
         justify-content:center;
-        height: 50px;
-        background-color: rgb(87, 234, 87);
-        margin-bottom: 30px;
+        align-items: center;
     }
-    .m20{
-        margin-right: 20px;
-    }
-    /* End nav-bar */
 
 </style>
+<%
+    function Ceil(Number)
+        Ceil = Int(Number)
+        if Ceil<>Number Then
+            Ceil = Ceil + 1
+        end if
+    end function
+    function checkPage(cond, ret) 
+        if cond=true then
+            Response.write ret
+        else
+            Response.write ""
+        end if
+    end function
+    page = Request.QueryString("page")
+    limit = 10
+
+    if (trim(page) = "") or (isnull(page)) then
+        page = 1
+    end if
+
+    offset = (Clng(page) * Clng(limit)) - Clng(limit)
+
+    strSQL = "SELECT COUNT(id_truyen) AS count FROM truyen"
+    connDB.Open()
+    Set CountResult = connDB.execute(strSQL)
+
+    totalRows = CLng(CountResult("count"))
+
+    Set CountResult = Nothing
+    ' lay ve tong so trang
+    pages = Ceil(totalRows/limit)
+%>
 <body>
-  <div class="nav-bar">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Web đọc truyện</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-        <form class="form-inline my-2 my-lg-0 m20">
-          <input class="form-control mr-sm-2" type="search" placeholder="Tìm truyện, tác giả..." aria-label="Search" name ="searchInput">
-        <a href="/test/find.asp searchInput=<%=Request.Form("searchInput")%>" class="btn btn-secondary">Tìm kiếm</a>
-        
-        </form>
-        <% ' Mã ASP Classic để hiển thị kết quả nhập vào  
-        searchInput = Request.QueryString("searchInput")
-        Response.Write("Giá trị của biến searchInput: " & searchInput)
-            If searchInput <> "" Then ' Nếu có giá trị của tham số searchInput
-                ' Hiển thị đoạn text vừa nhập ra màn hình
-                Set conn = Server.CreateObject("ADODB.Connection")
-                conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
-
-                ' Tạo truy vấn để lấy danh sách truyện liên quan
-                sql = "SELECT truyen.ten_truyen, nguoi_dung.nghe_danh, truyen.so_chuong FROM truyen INNER JOIN nguoi_dung ON truyen.id_nguoi_dung = nguoi_dung.id_nguoi_dung WHERE ten_truyen LIKE '%" & searchInput & "%' OR nghe_danh LIKE '%" & searchInput & "%'"
-
-                ' Thực hiện truy vấn
-                Set rs = conn.Execute(sql)
-                End If
-        %>
-        </div>
-    </nav>
-    </div>
-  </div>  
-                    <%
+  <!-- Phần navbar -->
+    <!-- #include file="navbar.asp" -->
+    
+    <div class="content">
+      <div class="content-trai">
+      <h4 class = "center">Danh sách tất cả truyện</h4>
+        <%
                         ' Kết nối đến CSDL
                         Set conn = Server.CreateObject("ADODB.Connection")
                         conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
                         ' Truy vấn dữ liệu từ CSDL
-                        Set rs = conn.Execute("SELECT truyen.ten_truyen, nguoi_dung.nghe_danh, truyen.so_chuong FROM truyen INNER JOIN nguoi_dung ON truyen.id_nguoi_dung = nguoi_dung.id_nguoi_dung")
+                        Set rs = conn.Execute("SELECT truyen.id_truyen,truyen.ten_truyen, nguoi_dung.nghe_danh, truyen.so_chuong FROM truyen INNER JOIN nguoi_dung ON truyen.id_nguoi_dung = nguoi_dung.id_nguoi_dung ")
                         ' Hiển thị dữ liệu
                         Do While Not rs.EOF
                     %>
                     
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <a href="#?id_truyen=<%=rs("id_truyen")%>" class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex justify-content-start">
                             <h5 class="mb-1"><%=rs("ten_truyen")%></h5>
                             <span class="badge badge-primary badge-pill" style="color: blue; border-radius: 40% ">Dịch</span>
@@ -90,21 +160,77 @@
                         Set rs = Nothing
                         Set conn = Nothing
                     %>
-                    
-    
+                    <nav aria-label="Page Navigation">
+                <ul class="pagination pagination-sm">
+                    <% if (pages>1) then 
+                        for i= 1 to pages
+                    %>
+                        <li class="page-item <%=checkPage(Clng(i)=Clng(page),"active")%>"><a class="page-link" href="danh_sach_truyen.asp?page=<%=i%>"><%=i%></a></li>
+                    <%
+                        next
+                        end if
+                    %>
+                </ul>
+            </nav>
+      </div>
+      <div class="content-giua">
+
+      </div>
+      <div class="content-phai">
+        <div class="tieude content-trai1-child">
+          <h4 class = "center" >THỂ LOẠI TRUYỆN</h4>
+        </div>
+        <%
+          Set conn = Server.CreateObject("ADODB.Connection")
+          conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
+          sql = "SELECT *  FROM the_loai "
+          Set rs = conn.Execute(sql)
+          ' Duyệt qua từng bản ghi trong kết quả truy vấn
+          Dim dem
+          dem = 0
+          Do While Not rs.EOF
+          If dem Mod 2 = 0 Then ' Chỉ hiển thị cho thẻ a đầu tiên của mỗi cặp
+          id_chuong = rs("id_the_loai")
+        %>
+        <ul class="list-group list-group-horizontal">
+          <a href="the_loai_truyen.asp?id_the_loai=<%=rs("id_the_loai")%>" class="list-group-item list-group-item-action"><%=rs("ten_the_loai")%></a>
+          <%
+            Else ' Cho thẻ a thứ hai của mỗi cặp
+          %>
+          <a href="the_loai_truyen.asp?id_the_loai=<%=rs("id_the_loai")%>" class="list-group-item list-group-item-action"><%=rs("ten_the_loai")%></a>
+        </ul>
+        <%
+          End If
+          dem = dem + 1
+          rs.MoveNext
+          Loop
+          rs.Close
+          conn.Close
+          Set rs = Nothing
+          Set conn = Nothing
+        %>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- Phần footer -->
+    <!-- #include file="footer.asp" -->
+
+  </div>
 
 
+    <!-- Optional JavaScript; choose one of the two! -->
 
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
 
-
-
-
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-
+    -->
 
 </body>
