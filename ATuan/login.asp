@@ -18,12 +18,15 @@ If (NOT isnull(email) AND NOT isnull(password) AND TRIM(email)<>"" AND TRIM(pass
     cmdPrep.Parameters(1)=password
     Dim result
     set result = cmdPrep.execute()
+    
     'kiem tra ket qua result o day
     If not result.EOF Then
         ' dang nhap thanh cong
         Session("email")=result("email")
-        Session("Success")="Đăng nhập thành công"
-        Response.redirect("index.asp")
+        Session("Success")= "Login thanh cong!!!"
+        
+        Response.Redirect("index.asp?email=" & email)
+       
     Else
         ' dang nhap ko thanh cong
         Session("Error") = "Sai email hoặc mật khẩu"

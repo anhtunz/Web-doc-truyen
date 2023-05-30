@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -22,7 +23,14 @@
     /* End nav-bar */
 
 </style>
+<%
+    Dim email
+    email = Request.QueryString("email")
+
+%>
+
 <body>
+    
     <div class="nav-bar">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
@@ -37,7 +45,7 @@
                             <a class="nav-link active" aria-current="page" href="index.asp">Trang chủ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/qli_tryen_users/them_truyen.asp">Đăng truyện</a>
+                                <a class="nav-link" href="/qli_tryen_users/them_truyen.asp?email=<%= Server.URLEncode(email) %>">Đăng truyện</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="danh_sach_truyen.asp">Danh sách truyện</a>

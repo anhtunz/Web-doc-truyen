@@ -92,7 +92,39 @@
     
 </style>
 <body>
-    <!-- #include file="phantrang.asp" -->
+    <%
+      Dim id_nguoi_dung
+      id_nguoi_dung = Request.QueryString("id_nguoi_dung")
+    function Ceil(Number)
+        Ceil = Int(Number)
+        if Ceil<>Number Then
+            Ceil = Ceil + 1
+        end if
+    end function
+    function checkPage(cond, ret) 
+        if cond=true then
+            Response.write ret
+        else
+            Response.write ""
+        end if
+    end function
+    page = Request.QueryString("page")
+    limit = 10
+
+    if (trim(page) = "") or (isnull(page)) then
+        page = 1
+    end if
+
+    offset = (Clng(page) * Clng(limit)) - Clng(limit)
+
+    strSQL = "SELECT COUNT(id_truyen) AS count FROM truyen where id_nguoi_dung= " &id_nguoi_dung
+    connDB.Open()
+    Set CountResult = connDB.execute(strSQL)
+    totalRows = CLng(CountResult("count"))
+    Set CountResult = Nothing
+    ' lay ve tong so trang
+    pages = Ceil(totalRows/limit)
+%>
     <div class="navbar">
        <!-- #include file="navbar.asp" -->
     </div>
@@ -120,11 +152,12 @@
               </thead>
               <tbody>
               <%
+                  
                   Set cmdPrep = Server.CreateObject("ADODB.Command")
                   cmdPrep.ActiveConnection = connDB
                   cmdPrep.CommandType = 1
                   cmdPrep.Prepared = True
-                  cmdPrep.CommandText = "SELECT * FROM truyen ORDER BY id_truyen OFFSET ? ROWS FETCH NEXT ? ROWS ONLY"
+                  cmdPrep.CommandText = "SELECT * FROM truyen WHERE id_nguoi_dung = " & id_nguoi_dung & " ORDER BY id_truyen OFFSET ? ROWS FETCH NEXT ? ROWS ONLY"
                   cmdPrep.parameters.Append cmdPrep.createParameter("offset",3,1, ,offset)
                   cmdPrep.parameters.Append cmdPrep.createParameter("limit",3,1, , limit)
                   Set Result = cmdPrep.execute
@@ -164,7 +197,7 @@
                     <% if (pages>1) then 
                         for i= 1 to pages
                     %>
-                        <li class="page-item <%=checkPage(Clng(i)=Clng(page),"active")%>"><a class="page-link" href="qli_truyen.asp?page=<%=i%>"><%=i%></a></li>
+                        <li class="page-item <%=checkPage(Clng(i)=Clng(page),"active")%>"><a class="page-link" href="qli_truyen.asp?id_nguoi_dung=<%=id_nguoi_dung%>&page=<%=i%>"><%=i%></a></li>
                     <%
                         next
                         end if

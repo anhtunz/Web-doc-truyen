@@ -92,11 +92,13 @@
             <div class="thongtin">
                 <div class="personal-info">
                 <%
+                    Dim id_nguoi_dung
+                    id_nguoi_dung = Request.QueryString("id_nguoi_dung")
                     ' Kết nối đến cơ sở dữ liệu
                     Set conn = Server.CreateObject("ADODB.Connection")
                     conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456;"
                     ' Truy vấn dữ liệu từ bảng nguoi_dung với id_nguoi_dung = 1
-                    sql = "SELECT * FROM nguoi_dung WHERE id_nguoi_dung = 1"
+                    sql = "SELECT * FROM nguoi_dung WHERE id_nguoi_dung = "&id_nguoi_dung
                     Set rs = conn.Execute(sql)
 
                     ' Kiểm tra xem có bản ghi nào hay không

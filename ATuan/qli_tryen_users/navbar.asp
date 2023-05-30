@@ -1,14 +1,34 @@
+
+
+<%
+    
+    email = Session("email")
+    Set conn = Server.CreateObject("ADODB.Connection")
+    conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
+    
+    sql = "SELECT * FROM nguoi_dung WHERE email = '" & email & "'"
+    
+    Set rs = conn.Execute(sql)
+ %>
  <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid" style="margin-bottom: 10px;">
-              <a class="navbar-brand" href="#">Trang chủ</a>
+              <a class="navbar-brand" href="/index.asp">Trang chủ</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent" style="float: right;margin-left: 600px;">                
                 <form class="d-flex" role="search">
-                    <span class="navbar-text" style="margin-right: 650px;">Xin chào TunzTunz!</span>
+                    <span class="navbar-text" style="margin-right: 650px;">Xin chào <%= rs("nghe_danh") %>!</span>
                     <button type="button" class="btn btn-outline-primary">Đăng xuất</button>
                 </form>
               </div>
             </div>
           </nav>
+
+
+  <%
+    rs.Close
+    conn.Close
+    Set rs = Nothing
+    Set conn = Nothing
+  %> 
