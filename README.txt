@@ -19,3 +19,11 @@ Cập nhật thêm 1 số câu lệnh Script mới
 + Tuấn làm được thêm và sửa truyện đã lket vs base
 + Mọi người đổi lại base trong thuộc tính tinh_trang chỗ nào Chưa Full đổi thành NotFull nhé
 + Hoàn thành phần thêm sửa xóa truyện
+
+- Ngày 30/5: 
+ + Tuấn thêm cột thoi gian vào 2 chương trong table truyện và chương truyện, cái này cập nhật tự động và không cần nhập thời gian
+    Code: ALTER TABLE truyen ADD truyen_thoi_gian DATETIME DEFAULT GETDATE();
+          ALTER TABLE chuong ADD chuong_thoi_gian DATETIME DEFAULT GETDATE();
+ + Bổ sung tay thêm 1 thể loại nữa là Truyện ma, cái này mn vào hẳn table thêm cho nhanh
+ + Cập nhật thêm truyện và chương của truyện đó ở 2 thể loại là tiểu thuyết và truyện ma, code chi tiết ở trong file SQL_SCript, copy chạy là xong.
+ 

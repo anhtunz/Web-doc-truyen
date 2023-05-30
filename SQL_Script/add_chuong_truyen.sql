@@ -1,152 +1,82 @@
 ﻿INSERT INTO dbo.chuong  VALUES(
-'81',
-N'NGUYÊN NHÂN HỌC TRÒ KHÔNG THÍCH MÔN LỊCH SỬ',
-N'- Lịch sử là một môn học thú vị và bổ ích. Nó sẽ cho các em biết những gì đã từng xảy ra trong quá khứ.
-
-Jimmy nghe vậy liền nói:
-
-- Thưa cô, em nghĩ mình không nên học môn lịch sử.
-
-- Tại sao? - giáo viên kinh ngạc.
-
-Jimmy nhún vai:
-
-- Vì môn này không có tương lai ạ!
-
-- !?!
+N'Chương 1: Khí Phách Đại Tiểu Thư (1)',
+N'
+Sầm Tuế đến tận lúc chết rồi mới biết, bản thân chính là nữ phụ trong một cuốn tiểu thuyết.
+Bởi vì thiết lập tiểu thuyết và thuộc tính nhân vật, kiếp trước Sầm Tuế luôn có một tình yêu cao thượng dù có gặp bao trở ngại cũng không quay đầu,
+trên đời ngoài tình yêu ra cũng không quan tâm những thứ khác, đối với nam chính Trần Vũ luôn hết mực lấy lòng, không màng tôn nghiêm.
+Sau khi nam chính gặp được nữ chính Lâm Vũ Tây, động tâm với cô ta, Sầm Tuế tâm tình ngày càng méo mó, 
+không cam lòng làm mọi việc xấu để phá hoại mối quan hệ giữa Trần Vũ và Lâm Vũ Tây, thế là cả đoạn đường bị vả mặt, 
+cuối cùng lại tự tìm đường chết.Mà những việc xấu mà cô làm, vừa hay giúp tình cảm giữa nam chính và nữ chính thêm sâu đậm.
+Linh hồn lang thang trong thế giới tiểu thuyết mãi không tan, Sầm Tuế chợt nhìn lại cuộc đời mình, chỉ số thông minh của một người bình thường vốn đã mất 
+nay lại đột nhiên thức tỉnh, cô phát hiện, tình yêu thuần túy cô luôn tin tưởng ở đời trước kia, xét theo một góc nhìn khác, lại nực cười như vậy.
+Trong lúc nhất thời, cô không biết nên đem bản thân của trước kia đánh cho thức tỉnh, hay đem những người hạ thấp IQ của cô, 
+những người luôn xem cô là công cụ kia mạnh mẽ đánh một trận.Trong khi lồng ngực đang khó chịu, đột nhiên một thanh âm từ đâu cất lên.
+Thanh âm trống rỗng xa xăm, phảng phất đến từ một thế giới khác, bao trùm lên tất cả không gian.
+“Sầm Tuế, chúc mừng cô đã thành công hoàn thành sứ mệnh nhân vật của mình, hiện tại cho cô một phần thưởng là quay về điểm khởi đầu của cốt truyện, 
+sống lại một lần, không cần làm nhân vật pháo hôi, không cần làm theo kịch bản tiểu thuyết, chỉ cần thuận theo ý nguyện của mình mà sống tiếp.
+”Sầm Tuế nghe xong, ngây ngẩn một hồi, miệng nhẹ nhàng thảng thốt: “Cái gì?”Thanh âm trống rỗng không mang theo nhiều cảm xúc: “Làm vì mình, 
+sống một cuộc sống mà cô muốn, đi đi.”Tim Sầm Tuế không nhịn được mà đập liên hồi, trước kia cuộc sống của cô quá nghẹt thở và uất ức rồi, 
+đương nhiên muốn viết lại cuộc đời của mình. Cả một đời của Sầm Tuế, dựa vào đâu phải lãng phí cho một người khác không quan trọng?
+Dòng suy nghĩ của cô nhất thời rất loạn, còn chưa kịp xử lý, theo bản năng dứt khoát hỏi: “Còn có phần thưởng nào khác không? 
+Bàn tay vàng… chẳng hạn?”Thanh âm xa xăm kia chợt cười một tiếng, nhẹ nhàng nói ra một câu: “Gỗ tử đàn, hoành thất thụ bát.
+”Nghe bảy chữ kia đến hồ đồ, trong đầu Sầm Tuế toàn là dấu hỏi, mặc dù hiện tại hình như cô không có thực thể.
+Đanh định mở miệng hỏi cụ thể ý nghĩa của câu nói đó, kết quả lời còn chưa ra, linh hồn của cô đột nhiên bị hút vào một mảng hắc ám vô biên, 
+bao quanh bởi vô số giấy trắng mực đen, trải qua một hồi va chạm rất nhanh, sau đó chốc lát bình ổn lại.Sầm Tuế đột ngột mở to mắt ra, 
+phát hiện bản thân đang ngồi ở đại sảnh nơi bán vé trong rạp chiếu phim.Tay trái cô đang cầm hai tấm vé xem phim, tay phải đang cầm chặt điện thoại. 
+Trên điện thoại đang hiện một liên hệ truyền đến một thanh âm máy móc: “—Số máy quý khách vừa gọi hiện đang bận, xin quý khách vui lòng…”
+Sầm Tuế dùng đoạn thời gian ngắn nhất bình ổn lại tinh thần, chờ màn hình quay lại trang nhật ký cuộc gọi, cô ngay lập tức thoát ra màn hình chính xem thời gian.
+Xem xong thời gian, lại cúi đầu nhìn hai tấm vé trong tay.Theo như thời gian xem được trên điện thoại, cô đã trùng sinh về năm 21 tuổi.
+Xác thực là khởi điểm của cốt truyện trong tiểu thuyết, nữ chính Lâm Vũ Tây rất nhanh sẽ cùng nam chính Trần Vũ gặp nhau rồi.
+Mà hiện tại, cô vẫn đang là bạn gái của Trần Vũ.Ánh mắt lướt qua vé xem phim, dừng trên chiếc váy cô đang mặc.
 ',
-'17'
-)
-INSERT INTO dbo.chuong  VALUES(
-'82',
-N'CÔ GIÁO MUỐN GẶP BỐ',
-N'- Cái gì thế này?
-
-Con trai Tồ nhún vai đáp:
-
-- Thì ảnh của bố đấy mà!
-
-- Vì sao nó lại nằm ở đây? - Tồ tò mò.
-
-Cậu con trai đáp:
-
-- Vì cô giáo con muốn nhìn thấy bố.
-
-- Thật à? - Tồ sung sướng hỏi lại - Cô giáo con nói thế nào?
-
-- Cô bảo muốn biết mặt "đứa ngu nào" đã làm bài hộ con.
-
-- !!!
-
-',
-'18'
+'40',
+'1'
 )
 
 INSERT INTO dbo.chuong  VALUES(
-'83',
-N'TÁC HẠI KHÔN LƯỜNG CỦA VIỆC MỞ MIỆNG LÚC NGỦ',
-N'- Bác sĩ! Bác sĩ! - người phụ nữ nói với giọng hoảng hốt - Tối qua chồng tôi ngủ mở miệng, kết quả là một con chuột chui tọt vào miệng anh ấy. Tôi phải làm gì bây giờ?
-
-Vị bác sĩ ngẫm nghĩ một lúc rồi bảo:
-
-- Cách nhanh nhất bây giờ là chị kiếm sợi dây, buộc một miếng phô mai rồi thả vào miệng chồng chị. Đợi con chuột cắn vào phô mai rồi dùng dây từ từ kéo ra.
-
-Người phụ nữ nghe thế liền thở phào, đáp:
-
-- Vâng, tôi biết rồi. Cảm ơn bác sĩ. Để tôi ra chợ mua đầu cá.
-
-- Tôi có bảo chị dùng đầu cá đâu? - bác sĩ kinh ngạc.
-
-Người phụ nữ thở dài đáp:
-
-- À, tôi quên chưa nói. Tôi phải tìm cách dụ con mèo ra khỏi miệng chồng tôi trước đã.
-
-- !!!
-
+N'Chương 2: Khí Phách Đại Tiểu Thư (2)',
+N'
+Cô hiện tại đang mặc một chiếc váy dài màu trắng thanh
+thuần, bên ngoài khoác một chiếc vest ngắn, mái tóc đen dài đến ngang lưng, tùy
+tiện xõa thẳng trên vai.Đây chính là kiểu con gái mà Trần Vũ thích—ôn nhu thục nữ,
+đơn giản thanh thuần.Nữ chính trong tiểu thuyết Lâm Vũ Tây, chính là kiểu bạch
+liên hoa ôn nhu như vậy.Sầm Tuế hít một hơi thật sâu, nhìn lại chiếc váy trắng dài
+đang mặc cùng mái tóc đen xõa thẳng của bản thân, bất mãn hừ một tiếng.Cô không phải cảm thấy trang
+phục đang mặc thật xấu, chỉ là bản chất con người cô không phải là cái dạng ôn
+nhu thục nữ kia, ngoại hình cũng không phải, vì vậy bộ trang phục mặc trên người cô lại đem đến cảm giác không hài hòa
+khó giải thích.Tất cả cách ăn mặc trang điểm của Sầm Tuế đều dựa trên sở thích của Trần Vũ, để phù hợp với sở thích của anh cũng như kiểu quần áo cô mặc, Sầm Tuế luôn cố gắng làm ra vẻ ôn nhu dịu dàng. Vì vậy nhiều lúc chính cô cảm thấy bản thân mình rất giả tạo.Một người vì tình yêu mà đánh mất bản thân, đến cả phong cách ăn mặc cũng thuận theo sở thích của người đó, chính là cô chứ ai.Điều chỉnh lại dòng suy nghĩ, Sầm Tuế cẩn thận nhìn lại vé xem phim trong tay, bắt đầu lục tìm cảnh tượng này trong ký ức.Nếu như cô nhớ không lầm, hai ngày trước Trần Vũ tùy tiện nói muốn đi xem một bộ phim khoa học viễn tưởng mới phát hành gần đây, cô liên cùng anh hẹn thời gian, rồi mua hai tấm vé xem phim.Mua được vé xong cô nhắn tin gửi thời gian và vị trí cho Trần Vũ, trong lòng rất mong chờ buổi hẹn hò ngày hôm nay.Kết quả cô cầm vé đứng đợi anh ở rạp đến tận lúc phim sắp chiếu, Trần Vũ vẫn chưa đến.Cô gọi cho anh mấy cuộc điện thoại, anh đều không nghe, mãi sau anh rốt cuộc cũng nhận, đầu dây điện thoại bên kia truyền đến nhưng âm thanh ồn ào, anh rõ ràng đang làm gì đó, ngữ khí thờ ơ hỏi: “Có chuyện gì?” Trong lúc còn làm công cụ bị tình yêu che mờ mắt, Sầm Tuế hèn mọn đến muốn mạng.Rõ ràng cô vừa có tiền, vừa xinh đẹp, cái gì cũng không thiếu, nhưng trước mặt Trần Vũ lại không thể cứng đầu một chút, không dám giận càng không dám vô lý náo loạn, bởi vì Trần Vũ vốn dĩ không thèm để ý đến cô.Nhưng Trần Vũ là tất cả đối với cô, không có anh, cô sống không nổi.Đoạn thời gian này cô vẫn chỉ là một đứa ngây thơ, ngoài tình yêu ra, cô cái gì cũng chưa từng để tâm.Sau này trong tiểu thuyết cô biến thành tâm lý méo mó hắc hóa, cũng tại vì Trần Vũ đã yêu Lâm Vũ Tây, hơn nữa còn là chân tình thực cảm, đối với những cô gái khác hoàn toàn không giống. Cô cảm thấy yêu chính là một loại vũ nhục cực đại, không trải qua kích thích, sẽ trở nên cực đoan.Sầm Tuế vẫn còn nhớ dáng vẻ lấy lòng Trần Vũ của mình lúc đó.Cô siết nhẹ cổ họng, nhẹ nhàng hỏi anh: “Chúng ta đã hẹn nhau đi xem phim, anh quên rồi sao?”Trần Vũ vĩnh viễn là bộ dáng thờ ơ, không để tâm nói: “Đúng là bận quá nên quên rồi, lần sau đi, ở đây còn có việc không đến được, không thì em xem một mình đi, lúc nào có thời gian tôi sẽ đi xem sau.”Trần Vũ nói xong câu này, không để Sầm Tuế có cơ hội đáp lời, cúp máy ngay.Sầm Tuế cố nhịn sự tủi thân đang trào dâng trong lòng, lại gọi đi lần nữa, hai lần gọi đi, anh trực tiếp tắt máy luôn.Hồi tưởng xong, Sầm Tuế chỉ cảm thấy bản thân lúc đó vừa đáng thương vừa đáng trách.Mặc dù cô cũng từng vì những chuyện tương tự mà tức giận với Trần Vũ, nhưng mỗi lần cũng đều là cô tự dỗ dành bản thân, rồi lại đi nhận sai lấy lòng Trần Vũ, sau đó làm hòa.Từ đầu đến cuối chỉ có mình cô độc diễn.
 ',
-'19'
+'40',
+'1'
 )
 
 INSERT INTO dbo.chuong  VALUES(
-'84',
-N'NHỔ RĂNG KHÔNG ĐAU',
-N'Nhưng khi vừa leo lên ghế nằm, ông ta đã ngồi bật dậy và hét toáng lên. Nha sĩ bèn trấn an:
-
-- Ông đừng tỏ ra căng thẳng quá. Hãy uống một chút rượu này đi!
-
-Người đàn ông uống một cốc rượu rồi lên ghế nằm. Nhưng ông lại hét lên khi nha sĩ đến gần.
-
-- Ông hãy uống thêm một cốc rượu nữa xem sao!
-
-Sau khi lặp lại khoảng 10 lần, người đàn ông tỏ ra bình tĩnh hơn. Nha sĩ hỏi:
-
-- Thế nào, lần này ông không còn sợ nữa chứ?
-
-- Hết hoàn toàn! Tôi không còn sợ nữa! Mà này tôi nói cho ông biết, bây giờ kẻ nào dám đụng đến răng của tôi sẽ phải hối hận đấy!
-
-- !!!
-
-- !!!
+N'Chương 3: Khí Phách Đại Tiểu Thư (3)',
+N'
+Mặc dù đây là những việc khi cô còn là thiết lập nhân vật phụ, dưới tình huống IQ và thần chí đều không hoàn chỉnh làm ra, nhưng dù sao đều thật sự phát sinh qua rồi.Những uất ức và sự hèn mọn đó, khiến cô hiện tại chỉ muốn cho bản thân lúc đó một bạt tai, khiến mình thanh tỉnh lại.May mắn là, hiện tại cô cuối cùng cũng tỉnh ngộ rồi.Có chỉ số thông minh và ý thức của một người bình thường, nhân cách kiện toàn, tâm lý không vấn đề gì nữa, sẽ không ngu ngốc tự chà đạp bản thân nữa.Chậm rãi thở ra một hơi, Sầm Tuế lười nghĩ về những chuyện không vui vẻ vừa rồi.Cô xách túi đứng lên, đi mua một cốc nước ép hoa quả tươi cùng một hộp bắp rang bơ, từ tốn cầm vé xem phim tiến vào rạp.Đeo kính 3D lên mắt, một bên uống nước ép hoa quả, ăn bắp rang bơ, một bên thưởng thức bộ phim.Bộ phim này lúc đó cô vẫn chưa xem, bởi toàn bộ tâm tư cô lúc đó đều ở trên người Trần Vũ, làm gì nghĩ đến việc xem phim, kia chẳng qua là vì muốn cùng Trần Vũ hẹn hò mà thôi.Mặc dù là người yêu của nhau, nhưng Trần Vũ rất ít khi bên cạnh Sầm Tuế, điều này chính là thể hiện rõ, Trần Vũ đối với Lâm Vũ Tây có bao nhiêu khác biệt. Hiện tại Sầm Tuế lười không muốn nhìn mặt tên cẩu nam nhân đó, để hắn đến chỗ nữ chính diễn trò tình bỉ kim kiên thì hơn.Cô phải trân trọng cơ hội lần này, sống một cuộc đời mới thật vui vẻ hạnh phúc, sẽ không lãng phí thời gian ngàn vàng của mình trên người cẩu nam nhân đó cùng nữ chính bạch liên hoa nữa.Bộ phim này rất hay, hiệu ứng cũng rất kích thích.Sầm Tuế xem đến thoải mái, lúc đèn trong rạp chiếu phim sáng, vẫn dang rộng eo lười chưa chịu đứng dậy.Nước ép hoa quả đã uống sạch, bắp rang bơ cũng hết rồi, dạ dày cũng được lấp khá đầy rồi.Cô đứng dậy, bước ra khỏi rạp chiếu phim.Sầm Tuế đứng bên cạnh lan can kính, đưa mắt nhìn một vòng trung tâm thương mại, nghiêm túc hít một hơi thật sâu, cảm nhận bầu không khí sau khi được tái sinh.Không khí vừa ngọt, vừa thơm, giống như chiếc bánh phô mát vừa ra lò, mỗi một miếng đều khiến người ta mãn nguyện.Hai tiếng đồng hồ trôi qua, đủ để cô thích ứng với tất cả của hiện tại rồi.Sầm Tuế nhớ lại bản thân của trước kia, sau khi bị Trần Vũ cho leo cây, không còn tâm trạng xem phim nữa, mang tâm trạng không vui đó quay trở về. Cha Sầm mẹ Sầm cả ngày đều không có nhà, cô cũng không vội quay về. Cô trực tiếp lưu lại Trung tâm thương mại, đi dạo quanh một vòng các cửa hàng bán đồ cao cấp.Trong lúc dạo quanh mua sắm, cũng đem toàn bộ đồ đang mặc từ đầu xuống chân đều thay đổi, từ bông tai nhỏ trên dái tai, cho đến quần áo túi xách, đều được thay đổi thành phong cách phù hợp với bản thân.Sau khi thay đổi xong quần áo, cô đi tiếp vào một salon làm tóc.Dưới sự giúp đỡ của thầy Tony, uốn mái tóc thẳng lúc đầu thành những lọn tóc xoăn, màu tóc cũng được nhuộm thành màu nâu mật ong.Thế là một tiểu bạch hoa cố ý gia vẻ trong sáng thuần khiết, trong chốc lát biến thành một đại tỷ toàn thân khí chất cao quý ngút ngàn.Trong lúc chờ nhuộm tóc, Sầm Tuế cầm điện thoại lên lướt lướt một hồi.Trong đầu suy nghĩ ba Sầm và mẹ Sầm có chuyện gì, bữa tối cũng không về ăn. Cô mở nhóm wechat “Tố Liêu Tả Muội Hoa” (Chị em cây khế =))) ra, nhắn vào nhóm một tin nhắn, gào thét một câu: [Ra ngoài tụ tập đi chứ mấy má.]Tố Liêu Tả Muội Hoa Nhất Hào Đào Mẫn Nhi: [Không phải là cậu đang đi hẹn hò à?]Tố Liêu Tả Muội Hoa Nhị Hào Trần Đại Noãn: [Tự nhiên nhớ đến chị em rồi sao =)]Tố Liêu Tả Muội Hoa Tam Hào Chu Nhị Bảo: [Bị cho leo cây rồi chứ gì??
 
 ',
-'21'
+'40',
+'1'
 )
+
 
 INSERT INTO dbo.chuong  VALUES(
-'85',
-N'VUA NÓI DỐI ĐI CÂU CÁ',
-N'- Thu hoạch khá chứ anh bạn?
-
-- Quá tốt là đằng khác! - Thomas cười lớn - Anh không tưởng tượng được đâu, hôm qua tôi câu được hơn 10 kg cá hồi ở đây luôn đấy!
-
-Người đàn ông cười cười:
-
-- Anh biết mình đang nói chuyện với ai chứ?
-
-- Không! - Thomas nghi hoặc đáp.
-
-Người đàn ông nghiêm mặt:
-
-- Bảo vệ mới tại khu vực này!
-
-- À, vậy chắc anh chưa biết tôi là ai rồi! - Thomas cười lớn.
-
-Viên bảo vệ hỏi:
-
-- Anh là ai?
-
-Thomas vỗ ngực tự hào:
-
-- Người 3 năm liền đoạt cúp vô địch của cuộc thi nói dối của thành phố.
-
-- !?!
+N'Chương 4: Khí Phách Đại Tiểu Thư (4)',
+N'
+Sầm Tuế xem điện thoại, cười cười trả lời tin nhắn: [Mời các chị em ăn cơm còn không bằng lòng à? Không bằng lòng thì một mình chị đây ăn hết nhé?]Đào Mẫn Nhi: [Đừng, mình bay tới đây, quán nào đó?]Trần Đại Noãn: [Minh đi rửa mặt đã.]Châu Nhị Bảo: [Minh đi trang điểm chút]Nhìn mấy đứa bạn thân mỗi người một câu, nụ cười trên môi Sầm Tuế càng thêm ấm áp.Cô đặt bàn ở một nhà hàng Tây, sau đó nhắn tên nhà hàng lên nhóm chat.Cô cùng ba người Đào Mẫn Nhi lớn lên cùng nhau, vẫn luôn coi nhau là chị em tốt.Thực ra hiện tại họ là những cô gái mới lớn chỉ mới ngoài 20, thích trang điểm, thích ăn đồ ngon, thích phô trương là điều rất bình thường, nhưng tuyệt không có ý xấu gì. Nhưng trong cốt truyện của tiểu thuyết, họ đều bị biến thành những cô gái ác độc đáng ghét.Nếu đã sống lại rồi, Sầm Tuế tuyệt đối sẽ không mang theo họ đi vào con đường cũ giống như đời trước nữa. Cô muốn bản thân có một cuộc sống khác, một cuộc sống hoàn toàn mới, nơi mà ba mẹ cùng những người bạn đã bị cô liên lụy trong cốt truyện nguyên bản được hạnh phúc mãn nguyện.Sầm Tuế làm tóc xong đi đến nhà hàng, ba người Đào Mẫn Nhi vẫn chưa tới.Cô dựa theo sở thích của cả ba, trước gọi một vài món, sau đó ngồi bên bàn ăn an tâm đợi mọi người.Cũng chỉ đợi khoảng 5,6 phút sau, ba người Đào Mẫn Nhi cũng lần lượt đến.Nhưng sau khi cả ba đến quán, phải đứng tìm Sầm Tuế một hồi lâu, ánh mắt lướt qua Sầm Tuế ba bốn lần, đều không nhận ra cô.Chỉ đến khi cô giơ tay lên, ánh mắt ba người họ mới cố định trên khuôn mặt cô, mới chấn kinh nhận ra bạn mình.Ba người xách túi đến bên bàn Sầm Tuế, vẫn duy trì bộ dáng không thể tưởng tượng nổi.Phải biết rằng Sầm Tuế giả dạng tiểu bạch hoa hiền lành thục nữ đã mấy năm rồi, trước giờ đều trang điểm kĩ càng, ăn mặc lại cực kỳ thống nhất, đột nhiên đổi phong cách cái huỵch như thế, khiến cho hảo tỷ muội đều sắp không nhận ra rồi.Trần Đại Noãn từ từ ngồi xuống ghế, nhìn chằm chằm đứa bạn thân, dùng khẩu hình miệng phun ra hai từ: “Đ* m*”Đào Mẫn Nhi cũng ngẩn ra, nhìn nhìn Sầm Tuế nói: “Cái qu** gì vậy?”Chu Nhị Bảo nhấp nháy hai mắt, nhìn chằm chằm cô.Sàm Tuế vui vẻ cười một tiếng, hơi hơi nâng khuỷu tay lên: “Thế nào, đẹp không?”Đào Mẫn Nhi buột miệng nói ra: “Này nào chỉ dừng lại ở đẹp thôi, đây phải nói là trên quả tuyệt vời, cool lắm. Cậu mà là cái dạng tiểu bạch hoa khí chất ôn nhu kia sao, mình thấy cái vibe đại tỷ khí chất cao lãnh ngang ngược này mới đã cái nư của cậu đó.”Trần Đại Noãn và Chu Nhị Bảo vẫn đang nhìn Sầm Tuế không rời mắt. Mái tóc của cô được uốn xoăn bồng bềnh, cộng thêm màu tóc mới nhuộm, làm nổi bật lên khuôn mặt thanh tú cùng làn da trắng sứ của Sầm Tuế.Phần thân trên là chiếc áo yếm ngắn, để lộ ra một phần bụng, bên ngoài khoác hờ chiếc áo vest, kết hợp với hoa tai EL và vòng tay kim cương vàng hồng của Tiffany, nhìn ở góc độ nào cũng toát lên khí chất thời thượng.Trần Đại Noãn và Chu Nhị Bảo đều giơ ngón tay cái lên với Sầm Tuế, đồng thời gật đầu thán phục.Sầm Tuế rất hài lòng, cả thân thể và tinh thần đều rất thoải mái.Chu Nhị Bảo đột nhiên thành thật hỏi: “Sao tự dưng lại đổi kiểu tóc? Tuế Tuế, Không phải cậu nói Trần Vũ không thích kiểu này sao, anh ta thích kiểu em gái hàng xóm ngọt ngào cơ mà?”Nghe thấy cái tên Trần Vũ này, Sầm Tuế không nhịn được cười lạnh một tiếng: “Anh ta thích hay không thì liên quan gì đến mình chứ?”Đào Mẫn Nhi và Trần Đại Noãn không hẹn mà cùng mở to mắt, vẻ mặt trông chời hỏi: “Chia tay rồi sao?”Bọn họ cũng không muốn Sầm Tuế và Trần Vũ ở bên nhau, cô vì Trần Vũ mà đánh mất bản thân, mất hết tôn nghiêm, còn chịu bao nhiêu là uất ức.
 
 ',
-'20'
+'40',
+'1'
 )
+
 
 INSERT INTO dbo.chuong  VALUES(
-'86',
-N'BỊ SA THẢI VÌ HOÀN THÀNH 200% CÔNG VIỆC',
-N'- Lý do anh nghỉ công việc trước là gì?
-
-- Tôi luôn hoàn thành 200% mục tiêu công việc. Nhưng có vẻ khách hàng không thích điều đó nên đã gửi khiếu nại lên công ty. - ứng viên buồn bã kể.
-
-- Sao lạ thế? - người phỏng vấn kinh ngạc - Trước đây anh làm công việc gì?
-
-Ứng viên đáp:
-
-- Tôi làm tài xế taxi.
-
-- !?!
-
+N'Chương 5: Khí Phách Đại Tiểu Thư (5)',
+N'
+Sầm Tuế muốn giữ chặt Trần Vũ cũng không sai, nhưng cô ngày càng trở nên khiêm tốn hèn mọn, hèn mọn đến mức sắp sa vào vũng bùn lầy mất rồi.Sầm Tuế chợt cười một tiếng: “Vẫn chưa.”Khi sắc mặt của đám Đào Mẫn Nhi hơi biến, Sầm Tuế cười nhẹ bồi thêm một câu: “Nhưng mà cũng sắp rồi.”Ba người Đào Mẫn Nhi liếc mắt nhìn nhau, không có nói thêm câu gì nữa.Chính là sợ rằng lần này Sẩm Tuế quay về sẽ đem nhưng lời đó thành sấm to mưa lớn một hồi rồi qua đi mà thôi, miệng thì hét lên muốn chia tay, kết quả mấy ngày sau lại khó chịu không đành, khóc lên khóc xuống rồi lại đi tìm Trần Vũ xin lỗi, nói mình không rời xa anh được, muốn cùng anh làm hòa.Sầm Tuế cũng không muốn nói về Trần vũ nữa, đổi ngữ khí nói: “Không nói cái này nữa, ăn cơm trước đi.”Mức phí ở nhà hàng này không thấp, món ăn được bày biện rất tinh tế và đẹp mắt. Trước khi ăn nhóm tỷ muội hoa bốn người cùng chụp một bức ảnh, sau đó cùng chụp những bức ảnh nhóm cùng đồ ăn, đăng lên vòng bạn bè.Chu Nhị Bảo học thiết kế, cho nên rất am hiểu photoshop. Cô đem những bức ảnh photoshop lên cẩn thận, mỗi người trong ảnh đều như xinh hơn một phần.Sầm Tuế nhận ảnh xong, chỉnh lại thứ tự một hồi rồi đăng lên vòng bạn bè với hai từ: [Vui vẻ]*****Buổi chiều Trần Vũ cùng bạn bè tổ chức đánh cờ, chơi xong cả một buổi, buổi tối lại đi bar.Anh cứ nghĩ sau khi bản thân tắt máy xong, Sầm Tuế chắc chắn sẽ gửi cho anh rất nhiều tin nhắn, hỏi xem anh ở đâu, đang bận làm gì, cẩn thận dè dặt lấy lòng anh. Nhưng ngoài ý muốn chính là, sau khi mở máy điện thoại lên, cả buổi chiều đều không có bất cứ tin nhắn nào của Sầm Tuế.Trần Vũ ngồi cạnh quầy bar, cầm điện thoại lướt lướt vài cái.Bấm vào xem vòng bạn bè, phía dưới lật lại một vài tấm ảnh, chợt anh nhìn thấy vòng bạn bè của Sầm Tuế có tin mới.Bốn cô gái trang điểm xinh đẹp tinh xảo.Kết hợp bức ảnh chụp món bít tết cùng gan ngỗng thật ngon mắt và tinh tế, tạo thành bốn chữ “Tú sắc khả san”.Trần Vũ nhìn thấy bức ảnh trong nháy mắt ngẩn ra, bởi vì Sầm Tuế trong bức ảnh kia cùng với Sầm Tuế mà anh quen biết hình như không phải cùng một người.Mặc dù vẫn là khuôn mặt đó, nhưng thần thái trên mặt cùng với cách ăn mặc trang điểm của cô, đều cực kì thu hút.Hoặc là nhìn cô ấy đơn giản nhẹ nhàng quá lâu rồi, đột nhiên thay đổi khiến anh kinh ngạc không thôi. Vẫn còn một chuyện khiến anh cảm thấy kỳ lạ chính là, bình thường Sầm Tuế bị anh lạnh nhạt, cơ bản không phải là tức giận với anh một chút, thì cũng là tự mình ủy khuất thống khổ.Bộ dáng không có chuyện gì như hôm nay, không những thay đổi tạo hình, còn kéo bạn bè đi tụ tập, vẫn là lần đầu tiên thấy.Hình như, cô hoàn toàn không để ý việc anh lạnh nhạt với cô.Chắc chắn là… Đang giả vờ phải không?Trần Vũ ném điện thoại sang một bên, chuyện kỳ lạ trong lòng qua đi, nâng ly lên cùng bạn bè uống rượu, nói chuyện phiếm.Tuy nhiên trong lúc nói chuyện, toàn không nhịn được mà nghĩ về bức ảnh ban nãy.Một ly rượu xuống bụng, anh lại không khống chế được mà cầm điện thoại lên, mở khóa bấm vào bức ảnh selfie của Sầm Tuế, nhìn chằm chằm một hồi lâu.Xem xong quay lại trang trò chuyện, phát hiện Sầm Tuế vẫn chưa gửi tin nhắn cho anh, trong lòng vậy mà có chút không vui.Anh muốn gửi tin nhắn đi, nhưng sau một hồi viết rồi lại xóa, dứt khoát ném điện thoại sang một bên.Anh căng thẳng cái gì chứ, tất cả tâm tư của người phụ nữ đó không phải đều ở trên người anh sao, không phải thiếu anh thì không sống được sao, lẽ nào có thể chạy được được đi đâu chứ?
 ',
-'22'
+'40',
+'1'
 )
-
-
-
-
-
-
-

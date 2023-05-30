@@ -1,0 +1,1 @@
+ALTER TABLE truyen ADD thoi_gian DATETIME DEFAULT GETDATE();
