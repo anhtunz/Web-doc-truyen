@@ -1,4 +1,4 @@
-<!-- #include file="connect.asp" -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -175,7 +175,7 @@
             <%
               Set conn = Server.CreateObject("ADODB.Connection")
               conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
-              sql = "SELECT TOP 15 chuong.id_chuong, chuong.ten_chuong, truyen.ten_truyen FROM chuong INNER JOIN truyen ON chuong.id_truyen = truyen.id_truyen ORDER BY chuong.id_chuong DESC"
+              sql = "SELECT TOP 15 chuong.id_chuong, chuong.ten_chuong,chuong.chuong_thoi_gian, truyen.ten_truyen FROM chuong INNER JOIN truyen ON chuong.id_truyen = truyen.id_truyen ORDER BY chuong.id_chuong DESC"
               Set rs = conn.Execute(sql)
               ' Duyệt qua từng bản ghi trong kết quả truy vấn
               Do While Not rs.EOF
@@ -188,7 +188,7 @@
                 </div>
                 <div class="d-flex w-100 justify-content-between">
                   <small><%=rs("ten_chuong")%></small>
-                  <small>1 days ago</small>
+                  <small>Cập nhật: <%=rs("chuong_thoi_gian")%></small>
                 </div>
               </a>
               <%

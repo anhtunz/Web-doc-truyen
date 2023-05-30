@@ -1,4 +1,3 @@
-<!-- #include file="connect.asp" -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,34 +51,34 @@
     <div class="content">
       <div class="content-trai">
         <%                 
-        Dim id_the_loai
-        id_the_loai = Request.QueryString("id_the_loai")
-        
-        Set conn = Server.CreateObject("ADODB.Connection")
-                        conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
-                        ' Truy vấn dữ liệu từ CSDL
-                        Set rs = conn.Execute ("SELECT truyen.ten_truyen, nguoi_dung.nghe_danh, truyen.so_chuong FROM truyen JOIN nguoi_dung ON truyen.id_nguoi_dung = nguoi_dung.id_nguoi_dung JOIN the_loai ON truyen.id_the_loai = the_loai.id_the_loai WHERE the_loai.id_the_loai ="  & id_the_loai)
-                        Do While Not rs.EOF
-                    %>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex justify-content-start">
-                            <h5 class="mb-1"><%=rs("ten_truyen")%></h5>
-                            <span class="badge badge-primary badge-pill" style="color: blue; border-radius: 40% ">Dịch</span>
-                        </div>
-                        <div class="d-flex w-100 justify-content-between">
-                            <small>Tác giả: <%=rs("nghe_danh")%></small>
-                            <small>Số chương: <%=rs("so_chuong")%></small>
-                        </div>
-                    </a>
-                    <%
-                        rs.MoveNext
-                        Loop
-                        ' Đóng kết nối CSDL
-                        rs.Close
-                        conn.Close
-                        Set rs = Nothing
-                        Set conn = Nothing
-      %>
+          Dim id_the_loai
+          id_the_loai = Request.QueryString("id_the_loai")
+          
+          Set conn = Server.CreateObject("ADODB.Connection")
+          conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
+          ' Truy vấn dữ liệu từ CSDL
+          Set rs = conn.Execute ("SELECT truyen.ten_truyen, nguoi_dung.nghe_danh, truyen.so_chuong FROM truyen JOIN nguoi_dung ON truyen.id_nguoi_dung = nguoi_dung.id_nguoi_dung JOIN the_loai ON truyen.id_the_loai = the_loai.id_the_loai WHERE the_loai.id_the_loai ="  & id_the_loai)
+          Do While Not rs.EOF
+        %>
+        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex justify-content-start">
+                <h5 class="mb-1"><%=rs("ten_truyen")%></h5>
+                <span class="badge badge-primary badge-pill" style="color: blue; border-radius: 40% ">Dịch</span>
+            </div>
+            <div class="d-flex w-100 justify-content-between">
+                <small>Tác giả: <%=rs("nghe_danh")%></small>
+                <small>Số chương: <%=rs("so_chuong")%></small>
+            </div>
+        </a>
+        <%
+          rs.MoveNext
+          Loop
+          ' Đóng kết nối CSDL
+          rs.Close
+          conn.Close
+          Set rs = Nothing
+          Set conn = Nothing
+        %>
       </div>
       <div class="content-giua">
 

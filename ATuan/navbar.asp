@@ -48,12 +48,27 @@
                                 Thể loại
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="the_loai_truyen.asp?id_the_loai=1">Kiếm hiệp</a></li>
-                                <li><a class="dropdown-item" href="the_loai_truyen.asp?id_the_loai=2">Truyện teen</a></li>
-                                <li><a class="dropdown-item" href="the_loai_truyen.asp?id_the_loai=3">Ngôn tình</a></li>
-                                <li><a class="dropdown-item" href="the_loai_truyen.asp?id_the_loai=4">Truyện cười</a></li>
-                                <li><a class="dropdown-item" href="the_loai_truyen.asp?id_the_loai=5">Tiểu thuyết</a></li>
+                            <%
+                                Set conn = Server.CreateObject("ADODB.Connection")
+                                conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
+                                sql = "SELECT *  FROM the_loai "
+                                Set rs = conn.Execute(sql)
+                                ' Duyệt qua từng bản ghi trong kết quả truy vấn
+                                Do While Not rs.EOF
+                                
+                            %>
+                                <li><a class="dropdown-item" href="the_loai_truyen.asp?id_the_loai=<%=rs("id_the_loai")%>"><%=rs("ten_the_loai")%></a></li>
+                            <%
+                                rs.MoveNext
+                                Loop                                
+                            %>   
                             </ul>
+                            <%
+                                rs.Close
+                                conn.Close
+                                Set rs = Nothing
+                                Set conn = Nothing 
+                            %>
                         </li>
                     </ul>
                     <form class="d-flex m20" method="get" action="/find.asp">

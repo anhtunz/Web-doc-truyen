@@ -15,7 +15,7 @@
 <style>
   /* Phần content */
     .content{
-        height: 3200px;
+        height: 800px;
         width: 70%;
         margin: 0 auto;
         box-sizing: border-box;
@@ -88,137 +88,104 @@
         justify-content:center;
         align-items: center;
     }
+    .right{
+        margin : auto;  
+    }
 
 </style>
-<%
-    function Ceil(Number)
-        Ceil = Int(Number)
-        if Ceil<>Number Then
-            Ceil = Ceil + 1
-        end if
-    end function
-    function checkPage(cond, ret) 
-        if cond=true then
-            Response.write ret
-        else
-            Response.write ""
-        end if
-    end function
-    page = Request.QueryString("page")
-    limit = 10
-
-    if (trim(page) = "") or (isnull(page)) then
-        page = 1
-    end if
-
-    offset = (Clng(page) * Clng(limit)) - Clng(limit)
-
-    strSQL = "SELECT COUNT(id_truyen) AS count FROM truyen"
-    connDB.Open()
-    Set CountResult = connDB.execute(strSQL)
-
-    totalRows = CLng(CountResult("count"))
-
-    Set CountResult = Nothing
-    ' lay ve tong so trang
-    pages = Ceil(totalRows/limit)
-%>
+<!-- #include file="qli_tryen_users/phantrang.asp" -->
 <body>
   <!-- Phần navbar -->
     <!-- #include file="navbar.asp" -->
     
     <div class="content">
       <div class="content-trai">
-      <h4 class = "center">Danh sách tất cả truyện</h4>
+        <h4 class = "center">Danh sách tất cả truyện</h4>
         <%
-                        ' Kết nối đến CSDL
-                        Set conn = Server.CreateObject("ADODB.Connection")
-                        conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
-                        ' Truy vấn dữ liệu từ CSDL
-                        Set rs = conn.Execute("SELECT truyen.id_truyen,truyen.ten_truyen, nguoi_dung.nghe_danh, truyen.so_chuong FROM truyen INNER JOIN nguoi_dung ON truyen.id_nguoi_dung = nguoi_dung.id_nguoi_dung ")
-                        ' Hiển thị dữ liệu
-                        Do While Not rs.EOF
-                    %>
-                    
-                    <a href="#?id_truyen=<%=rs("id_truyen")%>" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex justify-content-start">
-                            <h5 class="mb-1"><%=rs("ten_truyen")%></h5>
-                            <span class="badge badge-primary badge-pill" style="color: blue; border-radius: 40% ">Dịch</span>
-                        </div>
-                        <div class="d-flex w-100 justify-content-between">
-                            <small>Tác giả: <%=rs("nghe_danh")%></small>
-                            <small>Số chương: <%=rs("so_chuong")%></small>
-                        </div>
-                    </a>
-                    <%
-                        rs.MoveNext
-                        Loop
-
-                        ' Đóng kết nối CSDL
-                        rs.Close
-                        conn.Close
-                        Set rs = Nothing
-                        Set conn = Nothing
-                    %>
-                    <nav aria-label="Page Navigation">
-                <ul class="pagination pagination-sm">
-                    <% if (pages>1) then 
-                        for i= 1 to pages
-                    %>
-                        <li class="page-item <%=checkPage(Clng(i)=Clng(page),"active")%>"><a class="page-link" href="danh_sach_truyen.asp?page=<%=i%>"><%=i%></a></li>
-                    <%
-                        next
-                        end if
-                    %>
-                </ul>
-            </nav>
+            Set cmdPrep = Server.CreateObject("ADODB.Command")
+            cmdPrep.ActiveConnection = connDB
+            cmdPrep.CommandType = 1
+            cmdPrep.Prepared = True
+            cmdPrep.CommandText = "SELECT truyen.id_truyen, truyen.ten_truyen, nguoi_dung.nghe_danh, truyen.so_chuong FROM truyen INNER JOIN nguoi_dung ON truyen.id_nguoi_dung = nguoi_dung.id_nguoi_dung ORDER BY truyen.id_truyen OFFSET ? ROWS FETCH NEXT ? ROWS ONLY"
+            cmdPrep.parameters.Append cmdPrep.createParameter("offset",3,1, ,offset)
+            cmdPrep.parameters.Append cmdPrep.createParameter("limit",3,1, , limit)
+            Set Result = cmdPrep.execute
+            do while not Result.EOF
+        %>
+        <a href="#?id_truyen=<%=Result("id_truyen")%>" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex justify-content-start">
+                <h5 class="mb-1"><%=Result("ten_truyen")%></h5>
+                <span class="badge badge-primary badge-pill" style="color: blue; border-radius: 40% ">Dịch</span>
+            </div>
+            <div class="d-flex w-100 justify-content-between">
+                <small>Tác giả: <%=Result("nghe_danh")%></small>
+                <small>Số chương: <%=Result("so_chuong")%></small>
+            </div>
+        </a>
+        <%
+            Result.MoveNext
+            loop
+            ' Đóng kết nối CSDL 
+            Result.Close
+            Set Result = Nothing
+            Set conn = Nothing
+        %>
+        <nav class= "right" aria-label="Page Navigation">
+            <ul class="pagination pagination-sm">
+                <% if (pages>1) then 
+                    for i= 1 to pages
+                %>
+                    <li class="page-item <%=checkPage(Clng(i)=Clng(page),"active")%>"><a class="page-link" href="danh_sach_truyen.asp?page=<%=i%>"><%=i%></a></li>
+                <%
+                    next
+                    end if
+                %>
+            </ul>
+        </nav>
       </div>
       <div class="content-giua">
 
       </div>
       <div class="content-phai">
         <div class="tieude content-trai1-child">
-          <h4 class = "center" >THỂ LOẠI TRUYỆN</h4>
-        </div>
-        <%
-          Set conn = Server.CreateObject("ADODB.Connection")
-          conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
-          sql = "SELECT *  FROM the_loai "
-          Set rs = conn.Execute(sql)
-          ' Duyệt qua từng bản ghi trong kết quả truy vấn
-          Dim dem
-          dem = 0
-          Do While Not rs.EOF
-          If dem Mod 2 = 0 Then ' Chỉ hiển thị cho thẻ a đầu tiên của mỗi cặp
-          id_chuong = rs("id_the_loai")
-        %>
-        <ul class="list-group list-group-horizontal">
-          <a href="the_loai_truyen.asp?id_the_loai=<%=rs("id_the_loai")%>" class="list-group-item list-group-item-action"><%=rs("ten_the_loai")%></a>
-          <%
-            Else ' Cho thẻ a thứ hai của mỗi cặp
-          %>
-          <a href="the_loai_truyen.asp?id_the_loai=<%=rs("id_the_loai")%>" class="list-group-item list-group-item-action"><%=rs("ten_the_loai")%></a>
-        </ul>
-        <%
-          End If
-          dem = dem + 1
-          rs.MoveNext
-          Loop
-          rs.Close
-          conn.Close
-          Set rs = Nothing
-          Set conn = Nothing
-        %>
+            <h4 class = "center" >THỂ LOẠI TRUYỆN</h4>
+            </div>
+            <%
+            Set conn = Server.CreateObject("ADODB.Connection")
+            conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
+            sql = "SELECT *  FROM the_loai "
+            Set rs = conn.Execute(sql)
+            ' Duyệt qua từng bản ghi trong kết quả truy vấn
+            Dim dem
+            dem = 0
+            Do While Not rs.EOF
+            If dem Mod 2 = 0 Then ' Chỉ hiển thị cho thẻ a đầu tiên của mỗi cặp
+            id_chuong = rs("id_the_loai")
+            %>
+            <ul class="list-group list-group-horizontal">
+            <a href="the_loai_truyen.asp?id_the_loai=<%=rs("id_the_loai")%>" class="list-group-item list-group-item-action"><%=rs("ten_the_loai")%></a>
+            <%
+                Else ' Cho thẻ a thứ hai của mỗi cặp
+            %>
+            <a href="the_loai_truyen.asp?id_the_loai=<%=rs("id_the_loai")%>" class="list-group-item list-group-item-action"><%=rs("ten_the_loai")%></a>
+            </ul>
+            <%
+                End If
+                dem = dem + 1
+                rs.MoveNext
+                Loop
+                rs.Close
+                conn.Close
+                Set rs = Nothing
+                Set conn = Nothing
+            %>
         
+        </div>
       </div>
     </div>
-  </div>
 
   <!-- Phần footer -->
     <!-- #include file="footer.asp" -->
-
-  </div>
-
 
     <!-- Optional JavaScript; choose one of the two! -->
 
