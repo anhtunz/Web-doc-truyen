@@ -104,13 +104,10 @@ body {
               <div class="infos">
                 <p class="author"><i class="fa-user"></i> <span><a itemprop="author" href="" title="Mộc Y Y">Mộc Y Y</a>
                   </span></p>
-                <p class="story_categories"><i class="fa-folder-open"></i> <span><a href="" itemprop="genre"
+                <p class="theloai"><i class="fa-folder-open"></i> <span><a href="" itemprop="genre"
                       title="Ngôn Tình">Ngôn Tình</a></span></p>
-                <p>Dịch giả:&nbsp;<a href="">Ngôn Tình Hot Full</a></p>
-                <p><i class=""></i> Đang cập nhật</p>
-                <p><i class=""></i> 23:34:46 25/04/2023</p>
-                <p><i class=""></i> <span><a href="" title="truyện tiểu thuyết tình cảm">
-                truyện tiểu thuyết tình cảm</a></span></p>
+                <p><i class="tinhtrang"></i> Đang cập nhật</p>
+                <p><i class="ngayxuatban"></i> 23:34:46 25/04/2023</p>
               </div>
             </div>
             <div class="cot2">

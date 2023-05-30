@@ -1,12 +1,12 @@
 <%
-Dim commentText, userName
+Dim ndung_binh_luan, id_nguoi_dung
 
 ' Xử lý gửi bình luận
 If Request.ServerVariables("REQUEST_METHOD") = "POST" Then
-    commentText = Trim(Request.Form("comment"))
-    userName = Trim(Request.Form("username"))
+    ndung_binh_luan = Trim(Request.Form("ndung_binh_luan"))
+    id_nguoi_dung = Trim(Request.Form("id_nguoi_dung"))
 
-    If commentText <> "" Then
+    If ndung_binh_luan <> "" Then
         ' Kết nối đến cơ sở dữ liệu
         Dim conn
         Set conn = Server.CreateObject("ADODB.Connection")
@@ -14,7 +14,7 @@ If Request.ServerVariables("REQUEST_METHOD") = "POST" Then
 
         ' Thêm bình luận vào cơ sở dữ liệu
         Dim sql
-        sql = "INSERT INTO Comments (UserName, CommentText) VALUES ('" & userName & "', '" & commentText & "')"
+        sql = "INSERT INTO binh_luan (id_nguoi_dung, ndung_binh_luan) VALUES ('" & id_binh_luan & "', '" & ndung_binh_luan & "')"
         conn.Execute sql
 
         ' Đóng kết nối
@@ -22,7 +22,7 @@ If Request.ServerVariables("REQUEST_METHOD") = "POST" Then
         Set conn = Nothing
 
         ' Sau khi lưu, chuyển hướng trở lại trang truyện
-        Response.Redirect "trangtruyen.asp#comment-section"
+        Response.Redirect "testTrangTruyen.asp#comment-section"
     End If
 End If
 %>
