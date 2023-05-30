@@ -52,18 +52,18 @@
 <div id="comment-section">
           <h2>Bình luận</h2>
           <form id="comment-form" method="post" action="comments.asp">
-            <input type="text" name="username" placeholder="Nhập tên của bạn"><br>
+            <input type="" name="idusername" placeholder="Nhập id người dùng"><br>
             <textarea name="comment" placeholder="Nhập bình luận của bạn"></textarea><br>
             <button type="submit">Gửi</button>
           </form>
         <div id="comment-list">
-            <% Dim commentText, UserName, ID ' Xử lý gửi bình luận
+            <% Dim ndung_binh_luan, id_nguoi_dung, id_binh_luan ' Xử lý gửi bình luận
             If Request.ServerVariables("REQUEST_METHOD") = "POST" Then
-                commentText = Trim(Request.Form("CommentText"))
-                UserName = Trim(Request.Form("UserName"))
-                If commentText <> "" Then
+                ndung_binh_luan = Trim(Request.Form("ndung_binh_luan"))
+                id_nguoi_dung = Trim(Request.Form("id_nguoi_dung"))
+                If ndung_binh_luan <> "" Then
                     ' Lưu bình luận vào cơ sở dữ liệu hoặc tệp tin ' Sau khi lưu, chuyển hướng trở lại trang truyện
-                    Response.Redirect "trangtruyen.asp#comment-section"
+                    Response.Redirect "testTrangTruyen.asp#comment-section"
                 End If
             End If
             %>       
@@ -73,7 +73,10 @@
                 conn.Open "Provider=SQLOLEDB.1;Data Source=VIET\MSSQLSERVER01;Database=Web_doc_truyen;User Id=sa;Password=123456;"
 
                 ' Truy vấn dữ liệu từ CSDL
-                Set rs = conn.Execute("SELECT * FROM Comments ORDER BY CreatedAt DESC")
+                Set rs = conn.Execute("SELECT * " & _
+                                      "FROM binh_luan INNER JOIN nguoi_dung ON binh_luan.id_nguoi_dung = nguoi_dung.id_nguoi_dung " & _
+                                      "WHERE binh_luan.id_truyen = " & id_truyen & _
+                                      "ORDER BY binh_luan.ngay_binh_luan DESC")
 
                 ' Hiển thị dữ liệu
                 Do While Not rs.EOF
@@ -83,14 +86,14 @@
                 <div class="d-flex justify-content-start align-items-center">
                     <small>
                         <div class="userinfo">
-                            <strong style="font-size: 16px; color: blue"><%=rs("UserName")%></strong>
-                            <i class="fa fa-circle"></i> <%=rs("CreatedAt")%>
+                            <strong style="font-size: 16px; color: blue"><%=rs("id_nguoi_dung")%></strong>
+                            <i class="fa fa-circle"></i> <%=rs("ngay_binh_luan")%>
                         </div>
-                        <p style="font-size: 16px; color: black"><%=rs("CommentText")%></p>
+                        <p style="font-size: 16px; color: black"><%=rs("ndung_binh_luan")%></p>
                     </small>
                     <div class="acts ml-auto">
                         <a href="#comment-list" style="color: red">Thích</a>
-                        <a href="DeleteComments.asp?ID=<%=rs("ID")%>" > Xóa </a>
+                        <a href="DeleteComments.asp?id_binh_luan=<%=rs("id_binh_luan")%>" > Xóa </a>
                     </div>
                 </div>
             </div>
