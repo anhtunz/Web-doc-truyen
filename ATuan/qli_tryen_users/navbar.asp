@@ -26,7 +26,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent" style="float: right;margin-left: 600px;">                
             <form class="d-flex" role="search">
                 <span class="navbar-text" style="margin-right: 650px;">Xin chào <%= rs("nghe_danh") %>!</span>
-                <button type="button" class="btn btn-outline-primary">Đăng xuất</button>
+                 <a href="/logout.asp" class="btn btn-outline-primary">Đăng xuất</a>
             </form>
         </div>
     </div>

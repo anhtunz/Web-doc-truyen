@@ -1,5 +1,9 @@
 <%@LANGUAGE="VBSCRIPT" CODEPAGE = "65001"%>
 <%
+Response.CodePage = 65001
+Response.CharSet = "UTF-8"
+%>
+<%
     ID_COMIC = Request.Form("ID_COMIC")
     ID_USER = Request.Form("ID_USER")
     page = Request.QueryString("page")
@@ -29,7 +33,11 @@
     Set conn = Nothing
 
     ' Hiển thị thông báo thành công
-    Response.Write("Dữ liệu đã được thêm vào cơ sở dữ liệu thành công.")
-    Response.Redirect "qli_truyen.asp?id_nguoi_dung=" & ID_USER & "&page=" & page
+    Response.Write("<script>")
+    Response.Write("setTimeout(function() {")
+    Response.Write("   alert('Cập nhật dữ liệu thành công.');")
+    Response.Write("   window.location.href = 'qli_truyen.asp?id_nguoi_dung=" & ID_USER & "&page=" & page & "';")
+    Response.Write("}, 2000);")
+    Response.Write("</script>")
 
 %>

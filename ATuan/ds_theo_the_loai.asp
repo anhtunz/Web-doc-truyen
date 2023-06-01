@@ -46,6 +46,12 @@
 
     /* End content phải */
   /* End content*/
+  .center{
+        display:flex;
+        justify-content:center;
+        align-items: center;
+        margin-bottom: 20px;
+    }
 </style>
 <body>
     <div class="content">
@@ -57,10 +63,14 @@
           Set conn = Server.CreateObject("ADODB.Connection")
           conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
           ' Truy vấn dữ liệu từ CSDL
-          Set rs = conn.Execute ("SELECT truyen.ten_truyen, nguoi_dung.nghe_danh, truyen.so_chuong FROM truyen JOIN nguoi_dung ON truyen.id_nguoi_dung = nguoi_dung.id_nguoi_dung JOIN the_loai ON truyen.id_the_loai = the_loai.id_the_loai WHERE the_loai.id_the_loai ="  & id_the_loai)
-          Do While Not rs.EOF
+          Set rs = conn.Execute ("SELECT truyen.id_truyen,truyen.ten_truyen, nguoi_dung.nghe_danh, truyen.so_chuong, the_loai.ten_the_loai FROM truyen JOIN nguoi_dung ON truyen.id_nguoi_dung = nguoi_dung.id_nguoi_dung JOIN the_loai ON truyen.id_the_loai = the_loai.id_the_loai WHERE the_loai.id_the_loai ="  & id_the_loai)
+          
         %>
-        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+        <h4 class = "center">Danh sách truyện theo thể loại <%=rs("ten_the_loai") %> </h4>
+        <%
+        Do While Not rs.EOF
+        %>
+        <a href="testTrangTruyen.asp?id_truyen=<%=rs("id_truyen")%>" class="list-group-item list-group-item-action flex-column align-items-start">
             <div class="d-flex justify-content-start">
                 <h5 class="mb-1"><%=rs("ten_truyen")%></h5>
                 <span class="badge badge-primary badge-pill" style="color: blue; border-radius: 40% ">Dịch</span>
