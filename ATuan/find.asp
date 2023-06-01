@@ -110,7 +110,7 @@
                 Set conn = Server.CreateObject("ADODB.Connection")
                 conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
                 ' Tạo truy vấn để lấy danh sách truyện liên quan
-                sql = "SELECT truyen.ten_truyen, nguoi_dung.nghe_danh, truyen.so_chuong FROM truyen INNER JOIN nguoi_dung ON truyen.id_nguoi_dung = nguoi_dung.id_nguoi_dung WHERE ten_truyen LIKE N'%" & searchInput & "%' OR nghe_danh LIKE N'%" & searchInput & "%'"
+                sql = "SELECT truyen.id_truyen, truyen.ten_truyen, nguoi_dung.nghe_danh, truyen.so_chuong FROM truyen INNER JOIN nguoi_dung ON truyen.id_nguoi_dung = nguoi_dung.id_nguoi_dung WHERE ten_truyen LIKE N'%" & searchInput & "%' OR nghe_danh LIKE N'%" & searchInput & "%'"
                 ' Thực hiện truy vấn
                 Set rs = conn.Execute(sql)
             End If
@@ -125,7 +125,7 @@
             do while not rs.EOF
         %>
         
-        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+        <a href="testTrangTruyen.asp?id_truyen=<%=rs("id_truyen")%>" class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex justify-content-start">
                             <h5 class="mb-1"><%=rs("ten_truyen")%></h5>
                             <span class="badge badge-primary badge-pill" style="color: blue; border-radius: 40% ">Dịch</span>
