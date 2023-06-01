@@ -1,3 +1,8 @@
+<%@LANGUAGE="VBSCRIPT" CODEPAGE = "65001"%>
+<%
+Response.CodePage = 65001
+Response.CharSet = "UTF-8"
+%>
 <%
 'code here
 Dim connDB
