@@ -1,5 +1,7 @@
-
+<%@LANGUAGE="VBSCRIPT" CODEPAGE = "65001"%>
 <%
+    ID_COMIC = Request.Form("ID_COMIC")
+    ID_USER = Request.Form("ID_USER")
     page = Request.QueryString("page")
     TenTruyen = Request.Form("TenTruyen")
     SoChuong = Request.Form("SoChuong")
@@ -8,15 +10,6 @@
     TinhTrang = Request.Form("flexRadioDefault")
     TheLoai = Request.Form("flexRadioDefault1")
     MoTa = Request.Form("gioithieu")
-
-    ' In ra các giá trị đã nhận được
-    Response.Write("Tên truyện: " & TenTruyen & "<br>")
-    Response.Write("Số chương: " & SoChuong & "<br>")
-    Response.Write("Năm xuất bản: " & NamXuatBan & "<br>")
-    Response.Write("Ảnh truyện: " & AnhTruyen & "<br>")
-    Response.Write("Tình trạng: " & TinhTrang & "<br>")
-    Response.Write("Thể Loại: " & TheLoai & "<br>")
-    Response.Write("Mô tả: " & MoTa & "<br>")
 
     TenTruyen = Replace(Request.Form("TenTruyen"), "'", "''")
     SoChuong = Replace(Request.Form("SoChuong"), "'", "''")
@@ -28,8 +21,7 @@
     Dim strSQL
     Set conn = Server.CreateObject("ADODB.Connection")
     conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
-    strSQL = "INSERT INTO truyen (ten_truyen,id_the_loai, so_chuong, nam_xb, anh_truyen, tinh_trang, mo_ta_ndung, id_nguoi_dung) VALUES ('" & TenTruyen & "','" & TheLoai & "', '" & SoChuong & "', '" & NamXuatBan & "', '" & AnhTruyen & "', '" & TinhTrang & "', '" & MoTa & "', 1)"
-    ' conn.Open "Provider=SQLOLEDB;Data Source=ten_may_chu;Initial Catalog=ten_csdl;User ID=ten_nguoi_dung;Password=mat_khau;"
+    strSQL = "UPDATE truyen SET ten_truyen=N'" & TenTruyen & "', id_the_loai='" & TheLoai & "', so_chuong='" & SoChuong & "', nam_xb='" & NamXuatBan & "', anh_truyen='" & AnhTruyen & "', tinh_trang='" & TinhTrang & "', mo_ta_ndung=N'" & MoTa & "' WHERE id_truyen='" & ID_COMIC & "'"
     conn.Execute strSQL
 
     ' Đóng kết nối CSDL
@@ -38,5 +30,6 @@
 
     ' Hiển thị thông báo thành công
     Response.Write("Dữ liệu đã được thêm vào cơ sở dữ liệu thành công.")
-    Response.Redirect "qli_truyen.asp?page= " &page
+    Response.Redirect "qli_truyen.asp?id_nguoi_dung=" & ID_USER & "&page=" & page
+
 %>

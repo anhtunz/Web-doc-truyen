@@ -1,3 +1,4 @@
+<%@LANGUAGE="VBSCRIPT" CODEPAGE = "65001"%>
 <!-- #include file="connect.asp" -->
 <!DOCTYPE html>
 <html lang="en">
@@ -101,23 +102,6 @@
     
 </style>
 <body>
-<%
-    Dim email
-    email = Session("email")
-    Set conn = Server.CreateObject("ADODB.Connection")
-    conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
-    Dim sql
-    sql = "SELECT * FROM nguoi_dung WHERE email = '" & email & "'"
-
-    Dim rs
-    Set rs = conn.Execute(sql)
-       
-        ' Dim nghe_danh
-        ' nghe_danh = rs("nghe_danh")
-        ' Response.Write("ID nguoi dung: " & id_nguoi_dung)
-
-    
-%>
     <div class="navbar">
         <!-- #include file="navbar.asp" -->
     </div>
@@ -136,6 +120,14 @@
                     If (isnull(Session("email")) OR TRIM(Session("email")) = "") Then
                     Response.redirect("/login.asp")
                     End If
+                    Dim email
+                    email = Session("email")
+                    Set conn = Server.CreateObject("ADODB.Connection")
+                    conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
+                    Dim sql
+                    sql = "SELECT * FROM nguoi_dung WHERE email = '" & email & "'"
+                    Dim rs
+                    Set rs = conn.Execute(sql)
                     If Request.ServerVariables("REQUEST_METHOD") = "POST" Then
                         Dim TenTruyen, SoChuong, NamXuatBan, AnhTruyen, TinhTrang, MoTa, ID_Nguoi_dung
                         TenTruyen = Request.Form("TenTruyen")
@@ -154,7 +146,7 @@
                         Set xmlhttp = Server.CreateObject("MSXML2.ServerXMLHTTP")
                         Dim url, params
                         url = "add_truyen_base.asp"
-                        params = "&ID_Nguoi_dung=" & Server.URLEncode(ID_Nguoi_dung) & "&TenTruyen=" & Server.URLEncode(TenTruyen) & "&SoChuong=" & Server.URLEncode(SoChuong) & "&NamXB=" & Server.URLEncode(NamXuatBan) & "&Anhtruyen=" & Server.URLEncode(AnhTruyen) & "&flexRadioDefault=" & Server.URLEncode(TinhTrang) & "&gioithieu=" & Server.URLEncode(MoTa) & "&gioithieu=" & Server.URLEncode(TheLoai)
+                        params = "&ID_Nguoi_dung=" & Server.URLEncode(ID_Nguoi_dung) & "&TenTruyen=" & Server.URLEncode(TenTruyen) & "&SoChuong=" & Server.URLEncode(SoChuong) & "&NamXB=" & Server.URLEncode(NamXuatBan) & "&Anhtruyen=" & Server.URLEncode(AnhTruyen) & "&flexRadioDefault=" & Server.URLEncode(TinhTrang) & "&gioithieu=" & Server.URLEncode(MoTa) 
                         xmlhttp.Open "POST", url, False
                         xmlhttp.setRequestHeader "Content-Type", "application/x-www-form-urlencoded"
                         xmlhttp.send params
@@ -200,7 +192,7 @@
                                     </label>
                                 </div>
                                 <div class="form-check" >
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="NotFull" style="display: flex; margin:2px; " checked>
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="NotFull" style="display: flex; margin:2px; ">
                                     <label class="form-check-label" for="flexRadioDefault2">
                                         Chưa Full
                                     </label>
@@ -253,7 +245,7 @@
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary" value="Đăng truyện">Đăng</button>
-                            <button type="button" class="btn btn-default float-right">Hủy bỏ</button>
+                            <a type="button" class="btn btn-default float-right" href= "qli_truyen.asp?id_nguoi_dung=<%= rs("id_nguoi_dung") %>">Hủy bỏ</a>
                         </div>
                     </form>
                 </div>    

@@ -110,9 +110,16 @@
         </div>
         
         <div class="content">
-        <%
-                    Dim id_truyen
+        <% 
+                    If (isnull(Session("email")) OR TRIM(Session("email")) = "") Then
+                    Response.redirect("/login.asp")
+                    End If
+                    Dim email
+                    email = Session("email")
+                    Dim id_truyen,page,id_nguoi_dung
                     id_truyen = Request.QueryString("id_truyen") ' Lấy giá trị id_truyen từ URL
+                    page = Request.QueryString("page")
+                    id_nguoi_dung = Request.QueryString("id_nguoi_dung")
                     ' Kết nối đến cơ sở dữ liệu
                     Set conn = Server.CreateObject("ADODB.Connection")
                     conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456;"
@@ -131,6 +138,14 @@
                     <h2 class="card-title" style=" color: blue">Thêm Truyện Mới</h2>
                 </div>
                     <form id="myForm" method="post" action="sua_truyen_base.asp">
+                        <div  style="display: none;">
+                            <strong for="ID_USER">Id nguoi dung:</strong>
+                            <input type="text" class="ID_USER" name="ID_USER" value="<%= id_nguoi_dung %>" placeholder="">
+                        </div>
+                        <div  style="display: none;">
+                            <strong for="ID_COMIC">ID_COMIC:</strong>
+                            <input type="text" class="ID_COMIC" name="ID_COMIC" value="<%= id_truyen %>" placeholder="">
+                        </div>
                         <div>
                             <strong for="TenTruyen">Tên truyện:</strong>
                             <input type="text" class="TenTruyen" name="TenTruyen" value="<%= rs("ten_truyen") %>" placeholder="Nhập Tên truyện">
@@ -198,6 +213,12 @@
                                         Tiểu thuyết
                                     </label>
                                 </div>
+                                <div class="form-check">
+                                    <input <% If the_loai = 6 Then Response.Write("checked") %> class="form-check-input" type="radio" name="flexRadioDefault1" value="5" style=" margin-left:2px; ">
+                                    <label class="form-check-label" >
+                                        Truyện ma
+                                    </label>
+                                </div>
                             </div>
                         </div>
                         <div class="mb-3">
@@ -206,13 +227,13 @@
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary" value="Đăng truyện">Đăng</button>
-                            <a type="button" class="btn btn-default float-right" href= "qli_truyen.asp">Hủy bỏ</a>
+                            <a type="button" class="btn btn-default float-right" href= "qli_truyen.asp?id_nguoi_dung=<%= id_nguoi_dung %>">Hủy bỏ</a>
                         </div>
                     </form>
                     <%
                         If Request.ServerVariables("REQUEST_METHOD") = "POST" Then ' Kiểm tra phương thức của request
                             ' Lấy giá trị từ các trường input trong form
-                            Dim TenTruyen, SoChuong, NamXuatBan, AnhTruyen, TinhTrang, MoTa
+                            Dim TenTruyen, SoChuong, NamXuatBan, AnhTruyen, TinhTrang, MoTa,ID_USER
                             TenTruyen = Request.Form("TenTruyen")
                             SoChuong = Request.Form("SoChuong")
                             NamXuatBan = Request.Form("NamXB")
@@ -220,7 +241,8 @@
                             TinhTrang = Request.Form("flexRadioDefault")
                             TheLoai = Request.Form("flexRadioDefault1")
                             MoTa = Request.Form("gioithieu")
-                            
+                            ID_USER = Request.Form("ID_USER")
+                            ID_COMIC= Request.Form("ID_COMIC")
                             Response.Redirect "sua_truyen_base.asp"
                         End If
                     %>

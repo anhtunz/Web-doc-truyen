@@ -176,8 +176,8 @@
                     <button type="button" class="btn btn-primary" onclick = "redirectToTruyenDetail(<%=Result("id_truyen")%>)">Xem chương</button>
                   </td>
                   <td class="text-center">
-                    <button type="button" class="btn btn-primary" onclick = "suaTruyen(<%=Result("id_truyen")%>)">Sửa</button>
-                    <button type="button" class="btn btn-danger" onclick = "XoaTruyen(<%=Result("id_truyen")%>, <%=page%>)">Xóa</button>
+                    <button type="button" class="btn btn-primary" onclick = "suaTruyen(<%=Result("id_truyen")%>,<%=page%>,<%=id_nguoi_dung%>)"> Sửa</button>
+                    <button type="button" class="btn btn-danger" onclick = "XoaTruyen(<%=Result("id_truyen")%>, <%=page%>,<%=id_nguoi_dung%>)">Xóa</button>
                   </td> 
                 </tr>
               </tbody>
@@ -217,14 +217,14 @@
           function redirectToTruyenDetail(id) {
             window.location.href = "qli_chuong.asp?id_truyen=" + id;
           }
-          function suaTruyen(id) {
+          function suaTruyen(id,page,id_nguoi_dung) {
             // Tạo URL đích và chuyển hướng sang trang sua_truyen.asp
-            var url = "sua_truyen.asp?id_truyen=" + id;
+            var url = "sua_truyen.asp?id_truyen=" + id + "&page=" + page + "&id_nguoi_dung=" + id_nguoi_dung;
             window.location.href = url;
           }
-          function XoaTruyen(id, page) {
+          function XoaTruyen(id, page,id_nguoi_dung) {
             // Tạo URL đích và chuyển hướng sang trang sua_truyen.asp
-            var url = "xoa_truyen.asp?id_truyen=" + id + "&page=" + page;
+            var url = "xoa_truyen.asp?id_truyen=" + id + "&page=" + page + "&id_nguoi_dung=" + id_nguoi_dung;
             window.location.href = url;
           }
         </script>

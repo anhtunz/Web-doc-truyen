@@ -1,11 +1,12 @@
 <%
+    id_nguoi_dung = Request.QueryString("id_nguoi_dung")
     id_truyen = Request.QueryString("id_truyen")
     page = Request.QueryString("page")
 
     ' In ra các giá trị đã nhận được
     Response.Write("Id: " & id_truyen & "<br>")
     Response.Write("Id: " & page & "<br>")
-    
+    Response.Write("User: " & page & "<br>")
     Dim strSQL
     Set conn = Server.CreateObject("ADODB.Connection")
     conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
@@ -19,5 +20,5 @@
 
     ' Hiển thị thông báo thành công
     Response.Write("Xóa hàng thành công")
-    Response.Redirect "qli_truyen.asp?page= " &page
+    Response.Redirect "qli_truyen.asp?id_nguoi_dung=" & id_nguoi_dung & "&page=" & page
 %>

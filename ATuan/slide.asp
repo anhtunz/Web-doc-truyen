@@ -72,7 +72,7 @@
                           Do While Not rs.EOF 
                         %>
                           <div class="carousel-item <% If i = 0 Then Response.Write("active") %>">
-                           <a href="#?id_truyen=<%=rs("id_truyen")%>">
+                           <a href="testTrangTruyen.asp?id_truyen=<%=rs("id_truyen")%>">
                             <img src="<%=rs("anh_truyen")%>" class="d-block w-100 carousel-image"  alt="...">
                             <div class="carousel-caption d-none d-md-block">
                               <h5><%=rs("ten_truyen")%></h5>
