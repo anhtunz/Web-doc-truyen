@@ -27,3 +27,6 @@ Cập nhật thêm 1 số câu lệnh Script mới
  + Bổ sung tay thêm 1 thể loại nữa là Truyện ma, cái này mn vào hẳn table thêm cho nhanh
  + Cập nhật thêm truyện và chương của truyện đó ở 2 thể loại là tiểu thuyết và truyện ma, code chi tiết ở trong file SQL_SCript, copy chạy là xong.
  
+- Ngày 1/6/2023: 
+ + Tuấn hoàn thành phần thêm sửa xóa truyện có gắn id_nguoi_dung
+ 
