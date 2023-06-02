@@ -119,28 +119,36 @@
         <button>Chương sau</button>
       </div>
     </div>
-   
-    <p>Xuyên qua phía trước Diệp Phong ba mươi tám tuổi, bụng bia, lớn hói đầu, thông suốt răng cửa, bộ dáng thực sự không dám khen tặng, cũng chính bởi vì như thế, ba mươi mấy người ngay cả một cái tức phụ nhi cũng không lăn lộn đến.</p>
-    <p>Xuyên qua phía trước Diệp Phong ba mươi tám tuổi, bụng bia, lớn hói đầu, thông suốt răng cửa, bộ dáng thực sự không dám khen tặng, cũng chính bởi vì như thế, ba mươi mấy người ngay cả một cái tức phụ nhi cũng không lăn lộn đến.</p>
-    <p>Xuyên qua phía trước Diệp Phong ba mươi tám tuổi, bụng bia, lớn hói đầu, thông suốt răng cửa, bộ dáng thực sự không dám khen tặng, cũng chính bởi vì như thế, ba mươi mấy người ngay cả một cái tức phụ nhi cũng không lăn lộn đến.</p>
-    <p>Xuyên qua phía trước Diệp Phong ba mươi tám tuổi, bụng bia, lớn hói đầu, thông suốt răng cửa, bộ dáng thực sự không dám khen tặng, cũng chính bởi vì như thế, ba mươi mấy người ngay cả một cái tức phụ nhi cũng không lăn lộn đến.</p>
-    <p>Xuyên qua phía trước Diệp Phong ba mươi tám tuổi, bụng bia, lớn hói đầu, thông suốt răng cửa, bộ dáng thực sự không dám khen tặng, cũng chính bởi vì như thế, ba mươi mấy người ngay cả một cái tức phụ nhi cũng không lăn lộn đến.</p>
-    <p>Xuyên qua phía trước Diệp Phong ba mươi tám tuổi, bụng bia, lớn hói đầu, thông suốt răng cửa, bộ dáng thực sự không dám khen tặng, cũng chính bởi vì như thế, ba mươi mấy người ngay cả một cái tức phụ nhi cũng không lăn lộn đến.</p>
-    <p>Xuyên qua phía trước Diệp Phong ba mươi tám tuổi, bụng bia, lớn hói đầu, thông suốt răng cửa, bộ dáng thực sự không dám khen tặng, cũng chính bởi vì như thế, ba mươi mấy người ngay cả một cái tức phụ nhi cũng không lăn lộn đến.</p>
-    <p>Xuyên qua phía trước Diệp Phong ba mươi tám tuổi, bụng bia, lớn hói đầu, thông suốt răng cửa, bộ dáng thực sự không dám khen tặng, cũng chính bởi vì như thế, ba mươi mấy người ngay cả một cái tức phụ nhi cũng không lăn lộn đến.</p>
-    <p>Xuyên qua phía trước Diệp Phong ba mươi tám tuổi, bụng bia, lớn hói đầu, thông suốt răng cửa, bộ dáng thực sự không dám khen tặng, cũng chính bởi vì như thế, ba mươi mấy người ngay cả một cái tức phụ nhi cũng không lăn lộn đến.</p>
-    <p>Xuyên qua phía trước Diệp Phong ba mươi tám tuổi, bụng bia, lớn hói đầu, thông suốt răng cửa, bộ dáng thực sự không dám khen tặng, cũng chính bởi vì như thế, ba mươi mấy người ngay cả một cái tức phụ nhi cũng không lăn lộn đến.</p>
-    <p>Xuyên qua phía trước Diệp Phong ba mươi tám tuổi, bụng bia, lớn hói đầu, thông suốt răng cửa, bộ dáng thực sự không dám khen tặng, cũng chính bởi vì như thế, ba mươi mấy người ngay cả một cái tức phụ nhi cũng không lăn lộn đến.</p>
-    <p>Xuyên qua phía trước Diệp Phong ba mươi tám tuổi, bụng bia, lớn hói đầu, thông suốt răng cửa, bộ dáng thực sự không dám khen tặng, cũng chính bởi vì như thế, ba mươi mấy người ngay cả một cái tức phụ nhi cũng không lăn lộn đến.</p>
-    <p>Xuyên qua phía trước Diệp Phong ba mươi tám tuổi, bụng bia, lớn hói đầu, thông suốt răng cửa, bộ dáng thực sự không dám khen tặng, cũng chính bởi vì như thế, ba mươi mấy người ngay cả một cái tức phụ nhi cũng không lăn lộn đến.</p>
-    <p>Xuyên qua phía trước Diệp Phong ba mươi tám tuổi, bụng bia, lớn hói đầu, thông suốt răng cửa, bộ dáng thực sự không dám khen tặng, cũng chính bởi vì như thế, ba mươi mấy người ngay cả một cái tức phụ nhi cũng không lăn lộn đến.</p>
-    <p>Xuyên qua phía trước Diệp Phong ba mươi tám tuổi, bụng bia, lớn hói đầu, thông suốt răng cửa, bộ dáng thực sự không dám khen tặng, cũng chính bởi vì như thế, ba mươi mấy người ngay cả một cái tức phụ nhi cũng không lăn lộn đến.</p>
-    <p>Xuyên qua phía trước Diệp Phong ba mươi tám tuổi, bụng bia, lớn hói đầu, thông suốt răng cửa, bộ dáng thực sự không dám khen tặng, cũng chính bởi vì như thế, ba mươi mấy người ngay cả một cái tức phụ nhi cũng không lăn lộn đến.</p>
-    <p>Xuyên qua phía trước Diệp Phong ba mươi tám tuổi, bụng bia, lớn hói đầu, thông suốt răng cửa, bộ dáng thực sự không dám khen tặng, cũng chính bởi vì như thế, ba mươi mấy người ngay cả một cái tức phụ nhi cũng không lăn lộn đến.</p>
-    <p>Xuyên qua phía trước Diệp Phong ba mươi tám tuổi, bụng bia, lớn hói đầu, thông suốt răng cửa, bộ dáng thực sự không dám khen tặng, cũng chính bởi vì như thế, ba mươi mấy người ngay cả một cái tức phụ nhi cũng không lăn lộn đến.</p>
-    <p>Xuyên qua phía trước Diệp Phong ba mươi tám tuổi, bụng bia, lớn hói đầu, thông suốt răng cửa, bộ dáng thực sự không dám khen tặng, cũng chính bởi vì như thế, ba mươi mấy người ngay cả một cái tức phụ nhi cũng không lăn lộn đến.</p>
-    <p>Xuyên qua phía trước Diệp Phong ba mươi tám tuổi, bụng bia, lớn hói đầu, thông suốt răng cửa, bộ dáng thực sự không dám khen tặng, cũng chính bởi vì như thế, ba mươi mấy người ngay cả một cái tức phụ nhi cũng không lăn lộn đến.</p>
-    <p>Xuyên qua phía trước Diệp Phong ba mươi tám tuổi, bụng bia, lớn hói đầu, thông suốt răng cửa, bộ dáng thực sự không dám khen tặng, cũng chính bởi vì như thế, ba mươi mấy người ngay cả một cái tức phụ nhi cũng không lăn lộn đến.</p>
+   'ket noi toi csdl
+   <%
+Dim conn
+Set conn = Server.CreateObject("ADODB.Connection")
+conn.Open "Provider=SQLOLEDB;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456;"
+%>
+'truy van den csdl
+<%
+Dim rs
+Set rs = Server.CreateObject("ADODB.Recordset")
+
+Dim strSQL
+strSQL = "SELECT ndung_chuong FROM chuong WHERE chuong.id_truyen =' "
+
+rs.Open strSQL, conn
+%>
+'hien thi noi dung chuong
+<%
+If Not rs.EOF Then
+    Do While Not rs.EOF
+        Response.Write(rs("ndung_chuong") & "<br>")
+        rs.MoveNext
+    Loop
+End If
+
+rs.Close
+Set rs = Nothing
+%>
+
+
    <div id="comment-section">
   <div class="buttons">
     <button>Chương trước</button>

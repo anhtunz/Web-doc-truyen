@@ -7,11 +7,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Trang Truyện</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+  
+  
 
   <style>
     /* Chung */
@@ -39,6 +38,10 @@
       margin: 0;
       padding: 0;
       margin-top: 20px;
+    }
+
+    .main-col{
+      margin-right: 30px;
     }
 
     .main .container {
@@ -77,22 +80,23 @@
     }
 
     /* Phần content phải */
-    #content .content-phai {
-      width: 40%;
+     .content-phai {
+      width: 200px;
       height: 1000px;
       float: left;
     }
+
   </style>
 </head>
 
 <body >
   <!-- Phần navbar -->
-  <!-- #include file="navbar1.asp" -->
+  <!-- #include file="navbar.asp" -->
   <!-- Phần content -->
   <div id="main" class="main" data-type="story" role="main" itemscope="" itemprop="mainContentOfPage">
     <div class="container">
       <div class="main-col"> <span>
-          <div itemscope="" itemtype="http://schema.org/Book">
+          <div>
           <!-- Phần story -->
             <div id="story-detail" data-type="2">
               <%
@@ -103,8 +107,8 @@
                 If id_truyen <> "" Then
                     ' Tạo đối tượng kết nối ADO
                     Set conn = Server.CreateObject("ADODB.Connection")
-                    conn.Open "Provider=SQLOLEDB.1;Data Source=MAYAO\MSSQLSERVER;Database=Web_doc_truyen;User Id=sa;Password=123456;"
-
+                     conn.Open "Provider=SQLOLEDB.1;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456"
+          
                     ' Tạo câu truy vấn SQL để lấy thông tin truyện với id_truyen
                     sql = "SELECT truyen.*, nguoi_dung.ho_ten, the_loai.ten_the_loai " & _
                           "FROM truyen " & _
@@ -177,8 +181,8 @@
             <%
               ' Kết nối CSDL và thực hiện truy vấn
               Set conn = Server.CreateObject("ADODB.Connection")
-              conn.Open "Provider=SQLOLEDB.1;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456;"
-
+               conn.Open "Provider=SQLOLEDB.1;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456"
+          
               ' Lấy tên chương của 5 chương mới nhất dựa trên id_truyen
               sql = "SELECT TOP 3 ten_chuong FROM chuong WHERE chuong.id_truyen = " & id_truyen & " ORDER BY id_chuong DESC"
               Set rs = conn.Execute(sql)
@@ -212,8 +216,8 @@
 
                 ' Kết nối CSDL và thực hiện truy vấn
                 Set conn = Server.CreateObject("ADODB.Connection")
-                conn.Open "Provider=SQLOLEDB.1;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456;"
-
+                 conn.Open "Provider=SQLOLEDB.1;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456"
+          
                 ' Lấy tổng số lượng chương
                 sqlCount = "SELECT COUNT(*) AS TotalChapters FROM chuong WHERE chuong.id_truyen = " & id_truyen
                 Set rsCount = conn.Execute(sqlCount)
@@ -248,7 +252,7 @@
                 ' Hiển thị phân trang
                 For i = 1 To totalPages
                 %>
-                    <a href="?id_truyen=<%= id_truyen %>&page=<%= i %>#chapters"><%= i %></a>
+                    <a  href="?id_truyen=<%= id_truyen %>&page=<%= i %>#chapters"><%= i %></a>
                 <%
                 Next
 
@@ -260,92 +264,67 @@
                 %>
             </div>
           </div>
-    
+          
       </div>
 
       <div class="content-phai">
         <div class="tieude content-trai1-child">
-          THỂ LOẠI TRUYỆN
+          <h4 style>THỂ LOẠI TRUYỆN</h4>
         </div>
-        <div class="list" style="width: 100%; height: 80%;">
-          <ul class="list-group list-group-horizontal">
-            <li class="list-group-item w50">
-              <a class="icon-link" href="#">
-                <i class="bi bi-tags-fill"></i>
-                Kiếm hiệp
-              </a>
-            </li>
-            <li class="list-group-item w50">
-              <a class="icon-link" href="#">
-                <i class="bi bi-tags-fill"></i>
-                Truyện teen
-              </a>
-            </li>
-          </ul>
-          <ul class="list-group list-group-horizontal">
-            <li class="list-group-item w50">
-              <a class="icon-link" href="#">
-                <i class="bi bi-tags-fill"></i>
-                Ngôn tình
-            </li>
-            <li class="list-group-item w50">
-              <a class="icon-link" href="#">
-                <i class="bi bi-tags-fill"></i>
-                Truyện cười
-              </a>
-            </li>
-          </ul>
-          <ul class="list-group list-group-horizontal">
-            <li class="list-group-item w50">
-              <a class="icon-link" href="#">
-                <i class="bi bi-tags-fill"></i>
-                Quân sự
-              </a>
-            </li>
-            <li class="list-group-item w50">
-              <a class="icon-link" href="#">
-                <i class="bi bi-tags-fill"></i>
-                Lịch sử
-              </a>
-            </li>
-          </ul>
-          <ul class="list-group list-group-horizontal">
-            <li class="list-group-item w50">
-              <a class="icon-link" href="#">
-                <i class="bi bi-tags-fill"></i>
-                Tiểu thuyết
-              </a>
-            </li>
-            <li class="list-group-item w50">
-              <a class="icon-link" href="#">
-                <i class="bi bi-tags-fill"></i>
-                Trinh thám
-              </a>
-            </li>
-          </ul>
-        </div>
+        <%
+          Set conn = Server.CreateObject("ADODB.Connection")
+          conn.Open "Provider=SQLOLEDB.1;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456"
+          sql = "SELECT *  FROM the_loai "
+          Set rs = conn.Execute(sql)
+          ' Duyệt qua từng bản ghi trong kết quả truy vấn
+          Dim dem
+          dem = 0
+          Do While Not rs.EOF
+          If dem Mod 2 = 0 Then ' Chỉ hiển thị cho thẻ a đầu tiên của mỗi cặp
+          id_chuong = rs("id_the_loai")
+        %>
+        <ul class="list-group list-group-horizontal">
+          <a href="the_loai_truyen.asp?id_the_loai=<%=rs("id_the_loai")%>" class="list-group-item list-group-item-action"><%=rs("ten_the_loai")%></a>
+          <%
+            Else ' Cho thẻ a thứ hai của mỗi cặp
+          %>
+          <a href="the_loai_truyen.asp?id_the_loai=<%=rs("id_the_loai")%>" class="list-group-item list-group-item-action"><%=rs("ten_the_loai")%></a>
+        </ul>
+        <%
+          End If
+          dem = dem + 1
+          rs.MoveNext
+          Loop
+          rs.Close
+          conn.Close
+          Set rs = Nothing
+          Set conn = Nothing
+        %>
+      </div>
       </div>
     </div>
     <script>editorids = [402905];
       storytype = 2; storyname = ' Kết Hôn Nhanh Chóng - Ông Xã Yêu Hết Lòng'; storyData = {
         name: 'Kết Hôn Nhanh Chóng - Ông Xã Yêu Hết Lòng', donate: 1, type: 2, state: 'ongoing', schedule: '',
         authors: [{ "id": "402905", "name": "Ng\u00f4n T\u00ecnh Hot Full" }]
-      ;</script>
+      };</script>
 
 </div>
   <!-- #include file="footer.asp" -->
 
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
-    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
 </body>
 
 </html>

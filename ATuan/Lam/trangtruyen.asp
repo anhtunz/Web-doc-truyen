@@ -348,7 +348,7 @@ body {
       storytype = 2; storyname = ' Kết Hôn Nhanh Chóng - Ông Xã Yêu Hết Lòng'; storyData = {
         name: 'Kết Hôn Nhanh Chóng - Ông Xã Yêu Hết Lòng', donate: 1, type: 2, state: 'ongoing', schedule: '',
         authors: [{ "id": "402905", "name": "Ng\u00f4n T\u00ecnh Hot Full" }]
-      };</script>
+      ;</script>
           </div>
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
