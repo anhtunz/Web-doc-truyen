@@ -58,20 +58,7 @@
           <input class="form-control mr-sm-2" type="search" placeholder="Tìm truyện, tác giả..." aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
         </form>
-        <div>
-          <%
-              If (NOT isnull(Session("email"))) AND (TRIM(Session("email"))<>"") Then
-          %>
-            <span class="navbar-text">Xin chào <%=Session("email")%>!</span>
-            <a href="/logout.asp" class="btn btn-light ms-3">Logout</a>
-          <%                        
-              Else
-          %>                
-            <a href="/login.asp" class="btn btn-primary">Đăng nhập</a>
-          <%
-                End If
-          %>
-        </div>
+        
 
       </div>
     </div>

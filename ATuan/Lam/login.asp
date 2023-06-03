@@ -25,7 +25,7 @@ If (NOT isnull(email) AND NOT isnull(password) AND TRIM(email)<>"" AND TRIM(pass
         Session("email")=result("email")
         Session("Success")= "Login thanh cong!!!"
         
-        Response.Redirect("index.asp?email=" & email)
+        Response.Redirect("index.asp")
        
     Else
         ' dang nhap ko thanh cong

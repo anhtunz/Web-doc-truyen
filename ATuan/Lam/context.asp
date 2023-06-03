@@ -1,3 +1,4 @@
+ <!-- #include file="connect.asp" -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,7 +51,7 @@
     text-decoration: underline;
   }
    /* CSS cho phần bình luận */
-#comment-section {    
+  #comment-section {    
     border-top: 1px solid #ccc;
 
     margin-top: 20px;
@@ -85,9 +86,9 @@
     text-align: right;
     font-size: 12px;
     line-height: 20px;
-}
+  } 
 
-.buttons {
+  .buttons {
     margin-top: 20px;
   }
   
@@ -102,10 +103,23 @@
 </style>
 </div>
 <body>
+<%
+   Dim id_chuong
+   id_chuong = Request.QueryString("id_chuong")
+   
+Dim conn
+Set conn = Server.CreateObject("ADODB.Connection")
+conn.Open "Provider=SQLOLEDB;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456;"
+%>
+<%
+Dim id_truyen
+userIP = Request.QueryString("id_truyen")
+%>
+
   <div class="context">
     <div class="breadcrumb">
-      <a href="content.asp">Trang chủ</a> /
-      <a href="trangtruyen.asp">Tên truyện</a> /
+      <a href="index.asp">Trang chủ</a> /
+      <a href="testTrangTruyen.asp" %>Tên truyện</a> /
       <a href="doc.asp">Nội dung</a>
     </div>
 
@@ -119,23 +133,18 @@
         <button>Chương sau</button>
       </div>
     </div>
-   'ket noi toi csdl
-   <%
-Dim conn
-Set conn = Server.CreateObject("ADODB.Connection")
-conn.Open "Provider=SQLOLEDB;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456;"
-%>
-'truy van den csdl
+   
+   
 <%
 Dim rs
 Set rs = Server.CreateObject("ADODB.Recordset")
 
 Dim strSQL
-strSQL = "SELECT ndung_chuong FROM chuong WHERE chuong.id_truyen =' "
+strSQL = "SELECT * FROM chuong WHERE chuong.id_chuong =" &id_chuong
 
 rs.Open strSQL, conn
 %>
-'hien thi noi dung chuong
+
 <%
 If Not rs.EOF Then
     Do While Not rs.EOF

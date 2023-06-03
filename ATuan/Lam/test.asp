@@ -20,7 +20,7 @@ Dim id_truyen
     ' NoiDung = Replace(Request.Form("NoiDungChuong"), "'", "''")
     ' Dim strSQL
     ' Set conn = Server.CreateObject("ADODB.Connection")
-    ' conn.Open "Provider=SQLOLEDB.1;Data Source=VIET\MSSQLSERVER01;Database=Web_doc_truyen;User Id=sa;Password=123456;"
+    ' conn.Open "Provider=SQLOLEDB.1;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456;"
                 
     ' strSQL = "INSERT INTO chuong (ten_chuong, ndung_chuong, duyet) VALUES ('" & TenChuong & "','" & NoiDung & "',1)"
     ' ' conn.Open "Provider=SQLOLEDB;Data Source=ten_may_chu;Initial Catalog=ten_csdl;User ID=ten_nguoi_dung;Password=mat_khau;"

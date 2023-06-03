@@ -65,7 +65,7 @@
     width: 220px;
     flex-shrink: 0;
     margin-right: 20px;
-}
+    }
     .main .container .main-col #story-detail .title {
       text-transform: uppercase;
       color: #df1a0c;
@@ -91,7 +91,7 @@
 
 <body >
   <!-- Phần navbar -->
-  <!-- #include file="navbar.asp" -->
+ 
   <!-- Phần content -->
   <div id="main" class="main" data-type="story" role="main" itemscope="" itemprop="mainContentOfPage">
     <div class="container">
@@ -191,7 +191,7 @@
               Do While Not rs.EOF
               %>
               <li class="newChapters">
-                  <a href="" title="<%= rs("ten_chuong") %>"><%= rs("ten_chuong") %></a>
+                  <a href="#?id_chuong=<%= id_chuong %>" title="<%= rs("ten_chuong") %>"><%= rs("ten_chuong") %></a>
               </li>
               <%
                 rs.MoveNext
@@ -235,15 +235,15 @@
                 startIndex = (currentPage - 1) * pageSize
 
                 ' Lấy danh sách chương theo trang hiện tại
-                sql = "SELECT ten_chuong FROM chuong WHERE chuong.id_truyen = " & id_truyen & " ORDER BY id_chuong ASC " _
+                sql = "SELECT * FROM chuong WHERE chuong.id_truyen = " & id_truyen & " ORDER BY id_chuong ASC " _
                       & "OFFSET " & startIndex & " ROWS FETCH NEXT " & pageSize & " ROWS ONLY"
                 Set rs = conn.Execute(sql)
-
+                
                 ' Duyệt qua từng bản ghi trong kết quả truy vấn và hiển thị tên chương
                 Do While Not rs.EOF
                 %>
                 <li class="Chapters">
-                  <a href="" title="<%= rs("ten_chuong") %>"><%= rs("ten_chuong") %></a>
+                  <a href="doc.asp?id_chuong=<%= rs("id_chuong")%>" title="<%= rs("ten_chuong") %>"><%= rs("ten_chuong") %></a>
                 </li>
                 <%
                   rs.MoveNext
@@ -252,7 +252,7 @@
                 ' Hiển thị phân trang
                 For i = 1 To totalPages
                 %>
-                    <a  href="?id_truyen=<%= id_truyen %>&page=<%= i %>#chapters"><%= i %></a>
+                    <a  href="#?id_truyen=<%= id_truyen %>&page=<%= i %>#chapters"><%= i %></a>
                 <%
                 Next
 
