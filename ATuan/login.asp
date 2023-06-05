@@ -1,5 +1,16 @@
 <!--#include file="connect.asp"-->
 <%
+' Kiểm tra xem Cookie id_chuong có tồn tại hay không
+if Request.Cookies("id_truyen") <> "" then
+    ' Truy xuất giá trị id_chuong từ Cookie
+    id_truyen = Request.Cookies("id_chuong")
+    ' Xóa Cookie id_chuong
+     Response.Write("id_chuong: " & id_truyen)
+end if
+%>
+
+
+<%
 Dim email, password
 email = Request.Form("email")
 password = Request.Form("password")

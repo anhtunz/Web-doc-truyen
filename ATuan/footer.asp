@@ -24,22 +24,22 @@
         <!-- Section: Social media -->
         <section class="mb-4">
           <!-- Facebook -->
-          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button" style="border-radius: 50%;"
+          <a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com" role="button" style="border-radius: 50%;"
             ><i class="bi bi-facebook"></i
           ></a>
     
           <!-- Twitter -->
-          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button" style="border-radius: 50%;"
+          <a class="btn btn-outline-light btn-floating m-1" href="https://www.twitter.com" role="button" style="border-radius: 50%;"
             ><i class="bi bi-twitter"></i
           ></a>
     
           <!-- Google -->
-          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button" style="border-radius: 50%;"
+          <a class="btn btn-outline-light btn-floating m-1" href="https://www.google.com" role="button" style="border-radius: 50%;"
             ><i class="bi bi-google"></i
           ></a>
     
           <!-- Instagram -->
-          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button" style="border-radius: 50%;"
+          <a class="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com" role="button" style="border-radius: 50%;"
             ><i class="bi bi-instagram"></i
           ></a>
     
@@ -49,7 +49,7 @@
           ></a>
     
           <!-- Github -->
-          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button" style="border-radius: 50%;"
+          <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/anhtunz/web-doc-truyen" role="button" style="border-radius: 50%;"
             ><i class="bi bi-github"></i
           ></a>
         </section>
@@ -84,7 +84,7 @@
                       <a href="https://www.facebook.com/anhtuan100402" class="text-white">Facebook</a>
                   </li>
                   <li>
-                      <a href="#!" class="text-white">Email</a>
+                      <a href="anhtuanmk62@gmail.com" class="text-white">Email</a>
                   </li>
                   <li>
                       <a href="#!" class="text-white">Instagram</a>
@@ -103,7 +103,7 @@
           
               <ul class="list-unstyled mb-0">
                   <li>
-                      <a href="#!" class="text-white">Facebook</a>
+                      <a href="https://www.facebook.com/vietquoc26102" class="text-white">Facebook</a>
                   </li>
                   <li>
                       <a href="#!" class="text-white">Email</a>
@@ -124,7 +124,7 @@
           
               <ul class="list-unstyled mb-0">
                   <li>
-                      <a href="#!" class="text-white">Facebook</a>
+                      <a href="https://www.facebook.com/l4mfong" class="text-white">Facebook</a>
                   </li>
                   <li>
                       <a href="#!" class="text-white">Email</a>

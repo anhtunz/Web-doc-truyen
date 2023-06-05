@@ -79,6 +79,12 @@
         height: 100%;
         float: left;
     }
+    .content .content-phai1{
+        width: 100%;
+        height: 200px;
+        
+    }
+
 
     /* End content phải */
   /* End content*/
@@ -103,6 +109,8 @@
 
 </style>
 <body>
+    
+
     <div class="content">
       <div class="content-trai">
         <div class="content-trai1">
@@ -267,41 +275,53 @@
 
       </div>
       <div class="content-phai">
-        <div class="tieude content-trai1-child">
-          <h4>THỂ LOẠI TRUYỆN</h4>
-        </div>
-        <%
-          Set conn = Server.CreateObject("ADODB.Connection")
-          conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
-          sql = "SELECT *  FROM the_loai "
-          Set rs = conn.Execute(sql)
-          ' Duyệt qua từng bản ghi trong kết quả truy vấn
-          Dim dem
-          dem = 0
-          Do While Not rs.EOF
-          If dem Mod 2 = 0 Then ' Chỉ hiển thị cho thẻ a đầu tiên của mỗi cặp
-          id_chuong = rs("id_the_loai")
-        %>
-        <ul class="list-group list-group-horizontal">
-          <a href="the_loai_truyen.asp?id_the_loai=<%=rs("id_the_loai")%>" class="list-group-item list-group-item-action"><%=rs("ten_the_loai")%></a>
+        <div class="content-phai1">
+          <div class="tieude content-trai1-child">
+            <h4>THỂ LOẠI TRUYỆN</h4>
+          </div>
           <%
-            Else ' Cho thẻ a thứ hai của mỗi cặp
+            Set conn = Server.CreateObject("ADODB.Connection")
+            conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
+            sql = "SELECT *  FROM the_loai "
+            Set rs = conn.Execute(sql)
+            ' Duyệt qua từng bản ghi trong kết quả truy vấn
+            Dim dem
+            dem = 0
+            Do While Not rs.EOF
+            If dem Mod 2 = 0 Then ' Chỉ hiển thị cho thẻ a đầu tiên của mỗi cặp
+            id_chuong = rs("id_the_loai")
           %>
-          <a href="the_loai_truyen.asp?id_the_loai=<%=rs("id_the_loai")%>" class="list-group-item list-group-item-action"><%=rs("ten_the_loai")%></a>
-        </ul>
-        <%
-          End If
-          dem = dem + 1
-          rs.MoveNext
-          Loop
-          rs.Close
-          conn.Close
-          Set rs = Nothing
-          Set conn = Nothing
-        %>
+          <ul class="list-group list-group-horizontal">
+            <a href="the_loai_truyen.asp?id_the_loai=<%=rs("id_the_loai")%>" class="list-group-item list-group-item-action"><%=rs("ten_the_loai")%></a>
+            <%
+              Else ' Cho thẻ a thứ hai của mỗi cặp
+            %>
+            <a href="the_loai_truyen.asp?id_the_loai=<%=rs("id_the_loai")%>" class="list-group-item list-group-item-action"><%=rs("ten_the_loai")%></a>
+          </ul>
+          <%
+            End If
+            dem = dem + 1
+            rs.MoveNext
+            Loop
+            rs.Close
+            conn.Close
+            Set rs = Nothing
+            Set conn = Nothing
+          %>
+        </div>
+        <div class="content-phai2">
+          
+          
+          
+          
+
+           
+        </div>
       </div>
+      
     </div>
-  </div>
+    
+
     
 
     <!-- Optional JavaScript; choose one of the two! -->
@@ -316,4 +336,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     -->
+    
+
+
+ 
 </body>
