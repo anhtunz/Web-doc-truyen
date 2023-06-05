@@ -106,9 +106,6 @@
 <%
    Dim id_chuong
    id_chuong = Request.QueryString("id_chuong")
-  ' If id_chuong >= "18" Then
-   ' id_chuong = 1 ' Đặt giá trị ban đầu cho id_chuong là 1 nếu không có tham số trên URL
-'End If
    
 Dim conn
 Set conn = Server.CreateObject("ADODB.Connection")
@@ -117,52 +114,83 @@ conn.Open "Provider=SQLOLEDB;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truye
 
 <%
 
-
   ' Lấy id_truyen từ tham số trên URL hoặc từ cơ sở dữ liệu
   Dim id_truyen
   id_truyen = Request.QueryString("id_truyen")
 
-  ' Lấy số lượng tổng chương từ cơ sở dữ liệu
-  Dim totalChapters
-  Dim sqlCount
-  sqlCount = "SELECT COUNT(*) AS TotalChapters FROM chuong WHERE chuong.id_truyen = " & id_truyen
-  Set rsCount = conn.Execute(sqlCount)
-  totalChapters = rsCount("TotalChapters")
-  'rsCount.Close
-  
-  ' Tính chương tiếp theo
-  Dim nextChapter
-  nextChapter = CInt(id_chuong) + 1
   
 
 %>
 
   <div class="context">
     <div class="breadcrumb">
+    <a href="index.asp">Trang Chủ <a>/
   <%
-  Dim rsTitle
-Dim strSQLTitle
-   strSQLTitle = "SELECT  ten_chuong FROM chuong WHERE id_chuong =" & id_chuong
-  Set rsTitle = conn.Execute(strSQLTitle)
-   If Not rsTitle.EOF Then
-    ' Response.Write("<h2>" & rsTitle("ten_truyen") & "</h2>")
-      Response.Write("<a  class='chapter'   >" & rsTitle("ten_chuong") & "</a>")
-   End If
-
+ If id_truyen <> "" And id_chuong <> "" Then
+    Dim strSQLTitle
+    strSQLTitle = "SELECT t.ten_truyen, c.ten_chuong FROM truyen AS t INNER JOIN chuong AS c ON t.id_truyen = c.id_truyen WHERE t.id_truyen = " & id_truyen & " AND c.id_chuong = " & id_chuong
+    
+    Set conn = Server.CreateObject("ADODB.Connection")
+    conn.Open "Provider=SQLOLEDB;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456;"
+    
+    Set rs = conn.Execute(strSQLTitle)
+    
+    If Not rs.EOF Then
+        Dim ten_truyen
+        Dim ten_chuong
+        
+        ten_truyen = rs("ten_truyen")
+        ten_chuong = rs("ten_chuong")
+        
+        ' Hiển thị thông tin ten_truyen và ten_chuong
+        Response.Write "" & ten_truyen & "/"
+        Response.Write " " & ten_chuong
+    End If
+    
+    rs.Close
+    conn.Close
+    Set rs = Nothing
+    Set conn = Nothing
+End If
    %>
     </div>
 
     <div class="title">
-      <h2>Tên truyện</h2>
-       <%
-   strSQLTitle = "SELECT  ten_chuong FROM chuong WHERE id_chuong =" & id_chuong
-  Set rsTitle = conn.Execute(strSQLTitle)
-   'If Not rsTitle.EOF Then
-    '  Response.Write("<h2>" & rsTitle("ten_truyen") & "</h2>")
-      Response.Write("<a  class='chapter'   >" & rsTitle("ten_chuong") & "</a>")
-   'End If
- %>
-      <p class="author">Tác giả</p>
+    <%
+If id_truyen <> "" And id_chuong <> "" Then
+    Dim strSQLe
+    strSQLe = "SELECT t.ten_truyen, c.ten_chuong FROM truyen AS t INNER JOIN chuong AS c ON t.id_truyen = c.id_truyen WHERE t.id_truyen = " & id_truyen & " AND c.id_chuong = " & id_chuong
+    
+    Set conn = Server.CreateObject("ADODB.Connection")
+    conn.Open "Provider=SQLOLEDB;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456;"
+    
+    Set rs = conn.Execute(strSQLe)
+    
+    If Not rs.EOF Then
+      
+        ten_truyen = rs("ten_truyen")
+        ten_chuong = rs("ten_chuong")
+        
+        ' Hiển thị thông tin ten_truyen và ten_chuong
+        Response.Write "" & ten_truyen & "<br>"
+        Response.Write " " & ten_chuong
+    End If
+    
+    rs.Close
+    conn.Close
+    Set rs = Nothing
+    Set conn = Nothing
+End If
+%>
+
+        
+    '   <%
+   'strSQLTitle = "SELECT  ten_chuong FROM chuong WHERE id_chuong =" & id_chuong
+  'Set rsTitle = conn.Execute(strSQLTitle)
+   
+   '   Response.Write("<a  class='chapter'   >" & rsTitle("ten_chuong") & "</a>")
+ '%>
+     
    <div class="buttons">
 
    <%
