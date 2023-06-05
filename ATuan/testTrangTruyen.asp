@@ -65,7 +65,7 @@
     width: 220px;
     flex-shrink: 0;
     margin-right: 20px;
-}
+    }
     .main .container .main-col #story-detail .title {
       text-transform: uppercase;
       color: #df1a0c;
@@ -102,6 +102,12 @@
               <%
                 ' Lấy giá trị id_truyen từ URL
                 id_truyen = Request.QueryString("id_truyen")
+                Dim key
+                key = "id_truyen_" & id_truyen
+                ' Lưu giá trị id_chuong vào Cookie
+                Response.Cookies("id_truyen") = id_truyen
+                Response.Cookies("id_truyen").Expires = DateAdd("d", 1, Now()) ' Thiết lập thời gian tồn tại của Cookie (ở đây là 1 ngày)
+
 
                 ' Kiểm tra nếu id_truyen tồn tại
                 If id_truyen <> "" Then
@@ -303,11 +309,7 @@
       </div>
       </div>
     </div>
-    <script>editorids = [402905];
-      storytype = 2; storyname = ' Kết Hôn Nhanh Chóng - Ông Xã Yêu Hết Lòng'; storyData = {
-        name: 'Kết Hôn Nhanh Chóng - Ông Xã Yêu Hết Lòng', donate: 1, type: 2, state: 'ongoing', schedule: '',
-        authors: [{ "id": "402905", "name": "Ng\u00f4n T\u00ecnh Hot Full" }]
-      };</script>
+    
 
 </div>
   <!-- #include file="footer.asp" -->
@@ -319,12 +321,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-
+     
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     -->
+    <script>
+      var id_truyen = "<%= id_truyen %>";
+      var key = "id_truyen_" + id_truyen;
+      localStorage.setItem(key, id_truyen);
+  </script>
 </body>
 
 </html>

@@ -30,3 +30,5 @@ Cập nhật thêm 1 số câu lệnh Script mới
 - Ngày 1/6/2023: 
  + Tuấn hoàn thành phần thêm sửa xóa truyện có gắn id_nguoi_dung
  
+- Ngày 5/6/2023
+ + Tuấn làm thêm cái lưu web nhưng chưa link vào được
