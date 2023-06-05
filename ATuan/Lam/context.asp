@@ -29,10 +29,19 @@
     font-weight: bold;
   }
   
-  .chapter {
-    font-size: 16px;
+  .chapter{
+    font-size: 24px;
+    font-family: inherit;
     margin-bottom: 10px;
   }
+
+  .time{
+    font-size: 16px;
+    margin-bottom: 10px;
+      font-family: "Times New Roman", Times, serif;
+
+  }
+
   
   .author {
     font-size: 14px;
@@ -90,6 +99,7 @@
 
   .buttons {
     margin-top: 20px;
+    
   }
   
   .buttons button {
@@ -156,24 +166,31 @@ End If
     </div>
 
     <div class="title">
-    <%
+   <%
 If id_truyen <> "" And id_chuong <> "" Then
-    Dim strSQLe
-    strSQLe = "SELECT t.ten_truyen, c.ten_chuong FROM truyen AS t INNER JOIN chuong AS c ON t.id_truyen = c.id_truyen WHERE t.id_truyen = " & id_truyen & " AND c.id_chuong = " & id_chuong
+    Dim strSQLeee
+    strSQLeee = "SELECT t.ten_truyen, c.ten_chuong, c.chuong_thoi_gian " & _
+             "FROM truyen AS t " & _
+             "INNER JOIN chuong AS c ON t.id_truyen = c.id_truyen " & _
+             "WHERE t.id_truyen = " & id_truyen & " AND c.id_chuong = " & id_chuong
     
     Set conn = Server.CreateObject("ADODB.Connection")
     conn.Open "Provider=SQLOLEDB;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456;"
     
-    Set rs = conn.Execute(strSQLe)
+    Set rs = conn.Execute(strSQLeee)
     
     If Not rs.EOF Then
-      
+     
+        Dim chuong_thoi_gian
+        
         ten_truyen = rs("ten_truyen")
         ten_chuong = rs("ten_chuong")
+        chuong_thoi_gian = rs("chuong_thoi_gian")
         
-        ' Hiển thị thông tin ten_truyen và ten_chuong
-        Response.Write "<h2>" & ten_truyen & "</h2><br>"
-        Response.Write "<div class='chapter'>" & ten_chuong & "</div><br>"
+        ' Hiển thị thông tin
+        Response.Write "<h2>" & ten_truyen & "</h2>"
+        Response.Write "<div class='chapter'>" & ten_chuong & "</div>"
+        Response.Write "<div class='time'>" & chuong_thoi_gian & "</div>"
     End If
     
     rs.Close
@@ -182,6 +199,7 @@ If id_truyen <> "" And id_chuong <> "" Then
     Set conn = Nothing
 End If
 %>
+
 
    
    <%
@@ -197,7 +215,7 @@ If id_truyen <> "" Then
     If Not rs.EOF Then
         ' Nếu tồn tại chương trước đó, hiển thị nút quay lại chương
 %>
-    <button>   <a href="doc.asp?id_chuong=<%= rs("id_chuong") %>&id_truyen=<%= id_truyen %>"> < Trước </a>  </button>
+    <button class="buttons">   <a href="doc.asp?id_chuong=<%= rs("id_chuong") %>&id_truyen=<%= id_truyen %>"> < Trước </a>  </button>
 <%
     End If
 End If
@@ -218,7 +236,7 @@ If id_truyen <> "" Then
     If Not rs.EOF Then
         ' Nếu tồn tại chương tiếp theo, hiển thị nút chuyển chương tiếp
 %>
-      <button class="buttom">
+      <button class="buttons">
       <a href="doc.asp?id_chuong=<%= rs("id_chuong") %>&id_truyen=<%= id_truyen %>">  Sau > </a>    </button>
 
 <%
@@ -244,8 +262,7 @@ rs.Open strSQL, conn
 
 If Not rs.EOF Then
     Do While Not rs.EOF
-        Response.Write(rs("ndung_chuong") & "<br>")
-
+        Response.Write  (rs("ndung_chuong") & "<br>")
         rs.MoveNext
     Loop
 End If
