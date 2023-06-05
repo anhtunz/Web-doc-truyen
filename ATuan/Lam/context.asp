@@ -138,7 +138,7 @@ conn.Open "Provider=SQLOLEDB;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truye
   <%
  If id_truyen <> "" And id_chuong <> "" Then
     Dim strSQLTitle
-    strSQLTitle = "SELECT t.ten_truyen, c.ten_chuong FROM truyen AS t INNER JOIN chuong AS c ON t.id_truyen = c.id_truyen WHERE t.id_truyen = " & id_truyen & " AND c.id_chuong = " & id_chuong
+    strSQLTitle = "SELECT t.ten_truyen, c.ten_chuong, t.id_truyen FROM truyen AS t INNER JOIN chuong AS c ON t.id_truyen = c.id_truyen WHERE t.id_truyen = " & id_truyen & " AND c.id_chuong = " & id_chuong
     
     Set conn = Server.CreateObject("ADODB.Connection")
     conn.Open "Provider=SQLOLEDB;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456;"
@@ -148,12 +148,14 @@ conn.Open "Provider=SQLOLEDB;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truye
     If Not rs.EOF Then
         Dim ten_truyen
         Dim ten_chuong
-        
+        Dim trang_truyen_link
+
         ten_truyen = rs("ten_truyen")
         ten_chuong = rs("ten_chuong")
-        
+        trang_truyen_link = "testTrangTruyen.asp?id_truyen=" & rs("id_truyen")
+
         ' Hiển thị thông tin ten_truyen và ten_chuong
-        Response.Write "" & ten_truyen & "/"
+        Response.Write "<a href=""" & trang_truyen_link & """>" & ten_truyen & "</a>/"
         Response.Write " " & ten_chuong
     End If
     
