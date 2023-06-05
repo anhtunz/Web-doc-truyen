@@ -106,9 +106,9 @@
 <%
    Dim id_chuong
    id_chuong = Request.QueryString("id_chuong")
-   If id_chuong = "18" Then
-    id_chuong = 1 ' Đặt giá trị ban đầu cho id_chuong là 1 nếu không có tham số trên URL
-End If
+  ' If id_chuong >= "18" Then
+   ' id_chuong = 1 ' Đặt giá trị ban đầu cho id_chuong là 1 nếu không có tham số trên URL
+'End If
    
 Dim conn
 Set conn = Server.CreateObject("ADODB.Connection")
@@ -121,52 +121,93 @@ conn.Open "Provider=SQLOLEDB;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truye
   ' Lấy id_truyen từ tham số trên URL hoặc từ cơ sở dữ liệu
   Dim id_truyen
   id_truyen = Request.QueryString("id_truyen")
-If id_truyen = "" Then
-    id_truyen = 18 ' Đặt giá trị ban đầu cho id_truyen là 18 nếu không có tham số trên URL
-End If
+
   ' Lấy số lượng tổng chương từ cơ sở dữ liệu
   Dim totalChapters
   Dim sqlCount
   sqlCount = "SELECT COUNT(*) AS TotalChapters FROM chuong WHERE chuong.id_truyen = " & id_truyen
   Set rsCount = conn.Execute(sqlCount)
   totalChapters = rsCount("TotalChapters")
-  rsCount.Close
+  'rsCount.Close
   
   ' Tính chương tiếp theo
   Dim nextChapter
   nextChapter = CInt(id_chuong) + 1
+  
 
 %>
 
   <div class="context">
     <div class="breadcrumb">
-      <a href="index.asp">Trang chủ</a> /
-      <a href="testTrangTruyen.asp?id_truyen=<%= id_truyen %>" %> tên Truyện </a> /
-      <a href="doc.asp">Nội dung</a>
+  <%
+  Dim rsTitle
+Dim strSQLTitle
+   strSQLTitle = "SELECT  ten_chuong FROM chuong WHERE id_chuong =" & id_chuong
+  Set rsTitle = conn.Execute(strSQLTitle)
+   If Not rsTitle.EOF Then
+    ' Response.Write("<h2>" & rsTitle("ten_truyen") & "</h2>")
+      Response.Write("<a  class='chapter'   >" & rsTitle("ten_chuong") & "</a>")
+   End If
+
+   %>
     </div>
 
     <div class="title">
       <h2>Tên truyện</h2>
-      <a  class="chapter">Tên chương</a>
+       <%
+   strSQLTitle = "SELECT  ten_chuong FROM chuong WHERE id_chuong =" & id_chuong
+  Set rsTitle = conn.Execute(strSQLTitle)
+   'If Not rsTitle.EOF Then
+    '  Response.Write("<h2>" & rsTitle("ten_truyen") & "</h2>")
+      Response.Write("<a  class='chapter'   >" & rsTitle("ten_chuong") & "</a>")
+   'End If
+ %>
       <p class="author">Tác giả</p>
    <div class="buttons">
 
-    <% If CInt(id_chuong) > 1 Then %>
-<button>
-        <a class="button" href="doc.asp?id_chuong=<%= CInt(id_chuong) - 1 %>&id_truyen=<%= id_truyen %> ">Chương trước</a> 
-        </button>
+   <%
+If id_truyen <> "" Then
+    ' Kiểm tra xem chương đó có phải là chương đầu tiên hay không
+    Dim strSQLPrev
+    strSQLPrev = "SELECT TOP 1 * FROM chuong WHERE id_truyen = " & id_truyen & " AND id_chuong < " & id_chuong & " ORDER BY id_chuong DESC"
+    Set conn = Server.CreateObject("ADODB.Connection")
+    conn.Open "Provider=SQLOLEDB;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456;"
 
-    <% End If %>
+    Set rs = conn.Execute(strSQLPrev)
+
+    If Not rs.EOF Then
+        ' Nếu tồn tại chương trước đó, hiển thị nút quay lại chương
+%>
+    <button>   <a href="doc.asp?id_chuong=<%= rs("id_chuong") %>&id_truyen=<%= id_truyen %>">Chương Trước</a>  </button>
+<%
+    End If
+End If
+%>
 
     <button>
 <a href="testTrangTruyen.asp?id_truyen=<%= id_truyen %>">Mục lục</a></button>
+<%
+If id_truyen <> "" Then
+    ' Kiểm tra xem chương đó có phải là chương cuối cùng hay không
+    Dim strSQLNext
+    strSQLNext = "SELECT TOP 1 * FROM chuong WHERE id_truyen = " & id_truyen & " AND id_chuong > " & id_chuong & " ORDER BY id_chuong ASC"
+    Set conn = Server.CreateObject("ADODB.Connection")
+    conn.Open "Provider=SQLOLEDB;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456;"
 
+    Set rs = conn.Execute(strSQLNext)
 
-    <% If CInt(id_chuong) < totalChapters  Then %>
-         <button>
-   <a href="doc.asp?id_chuong=<%= CInt(id_chuong) + 1 %>&id_truyen=<%= id_truyen %>">Chương sau</a>       </button>
+    If Not rs.EOF Then
+        ' Nếu tồn tại chương tiếp theo, hiển thị nút chuyển chương tiếp
+%>
+      <button>
+      <a href="doc.asp?id_chuong=<%= rs("id_chuong") %>&id_truyen=<%= id_truyen %>"> Chương Sau  </a>    </button>
 
-    <% End If %>
+<%
+    End If
+
+  
+End If
+%>
 
 </div>
 
@@ -176,12 +217,12 @@ Dim rs
 Set rs = Server.CreateObject("ADODB.Recordset")
 
 Dim strSQL
-strSQL = "SELECT * FROM chuong WHERE chuong.id_chuong =" &id_chuong
+strSQL = "SELECT * FROM chuong WHERE chuong.id_chuong =" &id_chuong 
 
 rs.Open strSQL, conn
-%>
 
-<%
+
+
 If Not rs.EOF Then
     Do While Not rs.EOF
         Response.Write(rs("ndung_chuong") & "<br>")
@@ -190,34 +231,64 @@ If Not rs.EOF Then
     Loop
 End If
 
-rs.Close
-Set rs = Nothing
+
 %>
 
 
 %>
    <div id="comment-section">
-  <div class="buttons">
-      <% If CInt(id_chuong) > 1 Then %>
-<button>
-        <a class="button" href="doc.asp?id_chuong=<%= CInt(id_chuong) - 1 %>&id_truyen=<%= id_truyen %> ">Chương trước</a> 
-        </button>
+   <div class="button">
 
-    <% End If %>
+<%            
 
-    <button>
+If id_truyen <> "" Then
+    ' Kiểm tra xem chương đó có phải là chương đầu tiên hay không
+    Dim strSQLPrevi
+    strSQLPrevi = "SELECT TOP 1 * FROM chuong WHERE id_truyen = " & id_truyen & " AND id_chuong < " & id_chuong & " ORDER BY id_chuong DESC"
+    Set conn = Server.CreateObject("ADODB.Connection")
+    conn.Open "Provider=SQLOLEDB;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456;"
+
+    Set rs = conn.Execute(strSQLPrevi)
+
+    If Not rs.EOF Then
+        ' Nếu tồn tại chương trước đó, hiển thị nút quay lại chương
+%>
+    <button>   <a href="doc.asp?id_chuong=<%= rs("id_chuong") %>&id_truyen=<%= id_truyen %>">Chương Trước</a>  </button>
+<%
+    End If
+End If
+%>
+ <button>
 <a href="testTrangTruyen.asp?id_truyen=<%= id_truyen %>">Mục lục</a></button>
+<%
+If id_truyen <> "" Then
+    ' Kiểm tra xem chương đó có phải là chương cuối cùng hay không
+    Dim strSQLNextChapter
+    strSQLNextChapter = "SELECT TOP 1 * FROM chuong WHERE id_truyen = " & id_truyen & " AND id_chuong > " & id_chuong & " ORDER BY id_chuong ASC"
+    Set conn = Server.CreateObject("ADODB.Connection")
+    conn.Open "Provider=SQLOLEDB;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456;"
 
+    Set rs = conn.Execute(strSQLNextChapter)
 
-    <% If CInt(id_chuong) < totalChapters  Then %>
-          <button>
-  <a href="doc.asp?id_chuong=<%= CInt(id_chuong) + 1 %>&id_truyen=<%= id_truyen %>">Chương sau</a>    </button>
+    If Not rs.EOF Then
+        ' Nếu tồn tại chương tiếp theo, hiển thị nút chuyển chương tiếp
+%>
+      <button>
+      <a href="doc.asp?id_chuong=<%= rs("id_chuong") %>&id_truyen=<%= id_truyen %>"> Chương Sau  </a>    </button>
 
-    <% End If %>
+<%
+    End If
+
+  
+End If
+%>
   </div>
 </div>
   </div>
-  
+  <%
+  rs.Close
+Set rs = Nothing
+%>
 
   </body>
 </html>
