@@ -172,8 +172,8 @@ If id_truyen <> "" And id_chuong <> "" Then
         ten_chuong = rs("ten_chuong")
         
         ' Hiển thị thông tin ten_truyen và ten_chuong
-        Response.Write "" & ten_truyen & "<br>"
-        Response.Write " " & ten_chuong
+        Response.Write "<h2>" & ten_truyen & "</h2><br>"
+        Response.Write "<div class='chapter'>" & ten_chuong & "</div><br>"
     End If
     
     rs.Close
@@ -183,16 +183,7 @@ If id_truyen <> "" And id_chuong <> "" Then
 End If
 %>
 
-        
-    '   <%
-   'strSQLTitle = "SELECT  ten_chuong FROM chuong WHERE id_chuong =" & id_chuong
-  'Set rsTitle = conn.Execute(strSQLTitle)
    
-   '   Response.Write("<a  class='chapter'   >" & rsTitle("ten_chuong") & "</a>")
- '%>
-     
-   <div class="buttons">
-
    <%
 If id_truyen <> "" Then
     ' Kiểm tra xem chương đó có phải là chương đầu tiên hay không
@@ -206,7 +197,7 @@ If id_truyen <> "" Then
     If Not rs.EOF Then
         ' Nếu tồn tại chương trước đó, hiển thị nút quay lại chương
 %>
-    <button>   <a href="doc.asp?id_chuong=<%= rs("id_chuong") %>&id_truyen=<%= id_truyen %>">Chương Trước</a>  </button>
+    <button>   <a href="doc.asp?id_chuong=<%= rs("id_chuong") %>&id_truyen=<%= id_truyen %>"> < Trước </a>  </button>
 <%
     End If
 End If
@@ -227,8 +218,8 @@ If id_truyen <> "" Then
     If Not rs.EOF Then
         ' Nếu tồn tại chương tiếp theo, hiển thị nút chuyển chương tiếp
 %>
-      <button>
-      <a href="doc.asp?id_chuong=<%= rs("id_chuong") %>&id_truyen=<%= id_truyen %>"> Chương Sau  </a>    </button>
+      <button class="buttom">
+      <a href="doc.asp?id_chuong=<%= rs("id_chuong") %>&id_truyen=<%= id_truyen %>">  Sau > </a>    </button>
 
 <%
     End If
