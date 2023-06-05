@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web đọc truyện</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href=  "style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
 
@@ -106,6 +106,9 @@
 <%
    Dim id_chuong
    id_chuong = Request.QueryString("id_chuong")
+   If id_chuong = "18" Then
+    id_chuong = 1 ' Đặt giá trị ban đầu cho id_chuong là 1 nếu không có tham số trên URL
+End If
    
 Dim conn
 Set conn = Server.CreateObject("ADODB.Connection")
@@ -118,7 +121,9 @@ conn.Open "Provider=SQLOLEDB;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truye
   ' Lấy id_truyen từ tham số trên URL hoặc từ cơ sở dữ liệu
   Dim id_truyen
   id_truyen = Request.QueryString("id_truyen")
-
+If id_truyen = "" Then
+    id_truyen = 18 ' Đặt giá trị ban đầu cho id_truyen là 18 nếu không có tham số trên URL
+End If
   ' Lấy số lượng tổng chương từ cơ sở dữ liệu
   Dim totalChapters
   Dim sqlCount
@@ -136,7 +141,7 @@ conn.Open "Provider=SQLOLEDB;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truye
   <div class="context">
     <div class="breadcrumb">
       <a href="index.asp">Trang chủ</a> /
-      <a href="testTrangTruyen.asp" %>Tên truyện</a> /
+      <a href="testTrangTruyen.asp?id_truyen=<%= id_truyen %>" %> tên Truyện </a> /
       <a href="doc.asp">Nội dung</a>
     </div>
 
@@ -145,18 +150,7 @@ conn.Open "Provider=SQLOLEDB;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truye
       <a  class="chapter">Tên chương</a>
       <p class="author">Tác giả</p>
    <div class="buttons">
-   <%
-    Response.Write(totalChapters)
-  ' Dim strSQL
 
-  ' strSQL = "SELECT id_chuong FROM chuong WHERE id_truyen = " & id_truyen
- 'Dim rs
- 'Set rs = conn.Execute(strSQL) 
- 'If Not rs.EOF Then
-  '   id_chuong = rs("id_chuong")
-   'Xử lý id_chuong tương ứng với id_truyen ở đây
- 'End If
-    %>
     <% If CInt(id_chuong) > 1 Then %>
 <button>
         <a class="button" href="doc.asp?id_chuong=<%= CInt(id_chuong) - 1 %>&id_truyen=<%= id_truyen %> ">Chương trước</a> 
@@ -167,12 +161,12 @@ conn.Open "Provider=SQLOLEDB;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truye
     <button>
 <a href="testTrangTruyen.asp?id_truyen=<%= id_truyen %>">Mục lục</a></button>
 
-    <button>
 
-    <% If CInt(id_chuong) > totalChapters  Then %>
-        <a href="doc.asp?id_chuong=<%= CInt(id_chuong) + 1 %>&id_truyen=<%= id_truyen %>">Chương sau</a>
+    <% If CInt(id_chuong) < totalChapters  Then %>
+         <button>
+   <a href="doc.asp?id_chuong=<%= CInt(id_chuong) + 1 %>&id_truyen=<%= id_truyen %>">Chương sau</a>       </button>
+
     <% End If %>
-       </button>
 
 </div>
 
@@ -204,9 +198,22 @@ Set rs = Nothing
 %>
    <div id="comment-section">
   <div class="buttons">
-    <button>Chương trước</button>
-    <button>Mục lục</button>
-    <button>Chương sau</button>
+      <% If CInt(id_chuong) > 1 Then %>
+<button>
+        <a class="button" href="doc.asp?id_chuong=<%= CInt(id_chuong) - 1 %>&id_truyen=<%= id_truyen %> ">Chương trước</a> 
+        </button>
+
+    <% End If %>
+
+    <button>
+<a href="testTrangTruyen.asp?id_truyen=<%= id_truyen %>">Mục lục</a></button>
+
+
+    <% If CInt(id_chuong) < totalChapters  Then %>
+          <button>
+  <a href="doc.asp?id_chuong=<%= CInt(id_chuong) + 1 %>&id_truyen=<%= id_truyen %>">Chương sau</a>    </button>
+
+    <% End If %>
   </div>
 </div>
   </div>
@@ -214,3 +221,4 @@ Set rs = Nothing
 
   </body>
 </html>
+  
