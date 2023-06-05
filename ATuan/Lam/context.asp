@@ -111,9 +111,26 @@ Dim conn
 Set conn = Server.CreateObject("ADODB.Connection")
 conn.Open "Provider=SQLOLEDB;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456;"
 %>
+
 <%
-Dim id_truyen
-userIP = Request.QueryString("id_truyen")
+
+
+  ' Lấy id_truyen từ tham số trên URL hoặc từ cơ sở dữ liệu
+  Dim id_truyen
+  id_truyen = Request.QueryString("id_truyen")
+
+  ' Lấy số lượng tổng chương từ cơ sở dữ liệu
+  Dim totalChapters
+  Dim sqlCount
+  sqlCount = "SELECT COUNT(*) AS TotalChapters FROM chuong WHERE chuong.id_truyen = " & id_truyen
+  Set rsCount = conn.Execute(sqlCount)
+  totalChapters = rsCount("TotalChapters")
+  rsCount.Close
+  
+  ' Tính chương tiếp theo
+  Dim nextChapter
+  nextChapter = CInt(id_chuong) + 1
+
 %>
 
   <div class="context">
@@ -127,13 +144,38 @@ userIP = Request.QueryString("id_truyen")
       <h2>Tên truyện</h2>
       <a  class="chapter">Tên chương</a>
       <p class="author">Tác giả</p>
-      <div class="buttons">
-        <button >Chương trước</button>
-        <button>Mục lục</button>
-        <button>Chương sau</button>
-      </div>
-    </div>
-   
+   <div class="buttons">
+   <%
+    Response.Write(totalChapters)
+  ' Dim strSQL
+
+  ' strSQL = "SELECT id_chuong FROM chuong WHERE id_truyen = " & id_truyen
+ 'Dim rs
+ 'Set rs = conn.Execute(strSQL) 
+ 'If Not rs.EOF Then
+  '   id_chuong = rs("id_chuong")
+   'Xử lý id_chuong tương ứng với id_truyen ở đây
+ 'End If
+    %>
+    <% If CInt(id_chuong) > 1 Then %>
+<button>
+        <a class="button" href="doc.asp?id_chuong=<%= CInt(id_chuong) - 1 %>&id_truyen=<%= id_truyen %> ">Chương trước</a> 
+        </button>
+
+    <% End If %>
+
+    <button>
+<a href="testTrangTruyen.asp?id_truyen=<%= id_truyen %>">Mục lục</a></button>
+
+    <button>
+
+    <% If CInt(id_chuong) > totalChapters  Then %>
+        <a href="doc.asp?id_chuong=<%= CInt(id_chuong) + 1 %>&id_truyen=<%= id_truyen %>">Chương sau</a>
+    <% End If %>
+       </button>
+
+</div>
+
    
 <%
 Dim rs
@@ -149,6 +191,7 @@ rs.Open strSQL, conn
 If Not rs.EOF Then
     Do While Not rs.EOF
         Response.Write(rs("ndung_chuong") & "<br>")
+
         rs.MoveNext
     Loop
 End If
@@ -158,6 +201,7 @@ Set rs = Nothing
 %>
 
 
+%>
    <div id="comment-section">
   <div class="buttons">
     <button>Chương trước</button>

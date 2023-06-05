@@ -243,7 +243,7 @@
                 Do While Not rs.EOF
                 %>
                 <li class="Chapters">
-                  <a href="doc.asp?id_chuong=<%= rs("id_chuong")%>" title="<%= rs("ten_chuong") %>"><%= rs("ten_chuong") %></a>
+                  <a href="doc.asp?id_chuong=<%= rs("id_chuong")%>&id_truyen=<%= id_truyen %>"  title="<%= rs("ten_chuong") %>"><%= rs("ten_chuong") %></a>
                 </li>
                 <%
                   rs.MoveNext
