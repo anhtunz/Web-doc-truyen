@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web đọc truyện</title>
-    <link rel="stylesheet" href="style.css">
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
 
@@ -298,6 +298,8 @@
             %>
             <a href="the_loai_truyen.asp?id_the_loai=<%=rs("id_the_loai")%>" class="list-group-item list-group-item-action"><%=rs("ten_the_loai")%></a>
           </ul>
+          
+
           <%
             End If
             dem = dem + 1
@@ -310,7 +312,25 @@
           %>
         </div>
         <div class="content-phai2">
-          
+          <script>
+              var keys = Object.keys(localStorage);
+              var values = [];
+
+              for (var i = 0; i < keys.length; i++) {
+                  var key = keys[i];
+                  var value = localStorage.getItem(key);
+                  var integerValue = parseInt(value);
+                  values.push(integerValue);
+              }
+              console.log(values);
+
+              // // Tạo URL với các giá trị value
+              // var url = "nhan.asp?values=" + values.join(',');
+
+              // // Chuyển hướng trang sang process.asp
+              // window.location.href = url;
+</script>
+
           
           
           

@@ -104,10 +104,13 @@
                     ' Kiểm tra xem có bản ghi nào hay không
                     If Not rs.EOF Then
                         ' Hiển thị thông tin người dùng
-                        ngay_sinh = rs("ngay_sinh")
-    
-                        ' Định dạng lại ngày tháng năm
-                        ngay_sinh = FormatDateTime(ngay_sinh, 1) ' 1: Hiển thị ngày tháng năm
+                        If IsNull(rs("ngay_sinh")) Then
+                            ' Hiển thị "Chưa có"
+                            ngay_sinh = "Chưa có"
+                        Else
+                            ' Định dạng lại ngày tháng năm
+                            ngay_sinh = FormatDateTime(rs("ngay_sinh"), 1) ' 1: Hiển thị ngày tháng năm
+                        End If
                 %>
                     <div class="info-row">
                       <span class="field-name">Tên:</span>
@@ -149,6 +152,19 @@
                     </div>
                   </div>
             </div>
+           <div class="nutthem" style="margin-top: 40px;">
+                <form method="post" action="edit_info.asp?id_nguoi_dung=<%= id_nguoi_dung %>">
+                    <button type="submit" class="btn btn-primary btn-lg">CHỈNH SỬA THÔNG TIN</button>
+                </form>
+            </div>
+            <%
+                ' Xử lý sự kiện khi nhấn nút
+                If Request.ServerVariables("REQUEST_METHOD") = "POST" Then
+                    ' Chuyển hướng sang trang edit_info.asp
+                    Response.Redirect "edit_info.asp?id_nguoi_dung=" & id_nguoi_dung
+                End If
+            %>
+
             
     
         </div>

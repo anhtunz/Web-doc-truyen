@@ -1,8 +1,3 @@
-<!--#include file="connect.asp"-->
-<%
-%>
-<%
-%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -351,17 +346,19 @@
                                     <div class="center-wrap">
                                         <div class="section text-center">
                                             <h4 class="mb-4 pb-3">Đăng nhập</h4>
-                                           <form method="post" action="check/checklog.asp">
-                                                <div class="form-group">
-                                                    <input type="email" name="loginemail" class="form-style" placeholder="Nhập email" id="loginemail" autocomplete="off">
-                                                    <i class="input-icon uil uil-at"></i>
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="password" name="loginpass" class="form-style" placeholder="Nhập mật khẩu" id="loginpass" autocomplete="off">
-                                                    <i class="input-icon uil uil-lock-alt"></i>
-                                                </div>
-                                                <button type="submit" class="btn mt-4">Đăng nhập</button>
-                                            </form>
+                                            <div class="form-group">
+                                                <input type="email" name="logemail" class="form-style"
+                                                    placeholder="Nhập email" id="loginemail" autocomplete="on">
+                                                <i class="input-icon uil uil-at"></i>
+                                            </div>
+                                            <div class="form-group mt-2">
+                                                <input type="password" name="logpass" class="form-style"
+                                                    placeholder="Nhập mật khẩu" id="loginpass" autocomplete="off">
+                                                <i class="input-icon uil uil-lock-alt"></i>
+                                            </div>
+                                            <a href="#" class="btn mt-4">Đăng nhập</a>
+                                            <p class="mb-0 mt-4 text-center"><a href="#0" class="link">Quên mật
+                                                    khẩu?</a></p>
                                         </div>
                                     </div>
                                 </div>
@@ -369,52 +366,39 @@
                                     <div class="center-wrap">
                                         <div class="section text-center">
                                             <h4 class="mb-4 pb-3">Đăng kí</h4>
-                                            <form method="post" action="check/checksign.asp" onsubmit="return validateForm()">
-                                                <div class="form-group">
-                                                    <input type="text" name="signname" class="form-style" placeholder="Nhập họ tên" id="signname" autocomplete="off">
-                                                    <i class="input-icon uil uil-user"></i>
-                                                    <span id="signname-error" class="error-message"></span>
-                                                </div>
-
-                                                <div class="form-group mt-2">
-                                                    <input type="email" name="signemail" class="form-style" placeholder="Nhập email" id="signemail" autocomplete="off">
-                                                    <i class="input-icon uil uil-at"></i>
-                                                    <span id="signemail-error" class="error-message"></span>
-                                                </div>
-
-                                                <div class="form-group mt-2" style="display: flex; align-items: center;">
-                                                    <input style="flex: 1;" type="password" name="signpass" class="form-style" placeholder="Nhập mật khẩu" id="signpass" autocomplete="off">
-                                                    <i class="input-icon uil uil-lock-alt"></i>
-                                                    <span class="password-toggle" onclick="togglePasswordVisibility('signpass')">
-                                                        <i class="toggle-icon uil uil-eye"></i>
-                                                    </span>
-                                                    <span id="signpass-error" class="error-message"></span>
-                                                </div>
-
-                                                <div class="form-group mt-2" style="display: flex; align-items: center;">
-                                                    <input style="flex: 1;" type="password" name="confirmpass" class="form-style" placeholder="Nhập lại mật khẩu" id="confirmpass" autocomplete="off">
-                                                    <i class="input-icon uil uil-lock-alt"></i>
-                                                    <span class="password-toggle" onclick="togglePasswordVisibility('confirmpass')">
-                                                        <i class="toggle-icon uil uil-eye"></i>
-                                                    </span>
-                                                    <span id="confirmpass-error" class="error-message"></span>
-                                                </div>
-
-                                                <div class="form-group mt-2">
-                                                    <input type="text" name="signnick" class="form-style" placeholder="Nhập nghệ danh" id="signnick" autocomplete="off">
-                                                    <i class="input-icon uil uil-pen"></i>
-                                                </div>
-
-                                                <div class="form-group mt-2">
-                                                    <select class="custom-select" style="background-color: #2a2b38; color: white;" name="role">
-                                                        <option selected>Chọn vai trò</option>
-                                                        <option value="2">Tác giả</option>
-                                                        <option value="3">Người dùng</option>
-                                                    </select>
-                                                </div>
-
-                                                <button type="submit" class="btn mt-4">Đăng kí</button>
-                                            </form>
+                                            <div class="form-group">
+                                                <input type="text" name="logname" class="form-style"
+                                                    placeholder="Nhập họ tên" id="signname" autocomplete="off">
+                                                <i class="input-icon uil uil-user"></i>
+                                            </div>
+                                            <div class="form-group mt-2">
+                                                <input type="email" name="logemail" class="form-style"
+                                                    placeholder="Nhập email" id="signemail" autocomplete="off">
+                                                <i class="input-icon uil uil-at"></i>
+                                            </div>
+                                            <div class="form-group mt-2">
+                                                <input type="password" name="logpass" class="form-style"
+                                                    placeholder="Nhập mật khẩu" id="signpass" autocomplete="off">
+                                                <i class="input-icon uil uil-lock-alt"></i>
+                                            </div>
+                                            <div class="form-group mt-2">
+                                                <input type="password" name="logpass" class="form-style"
+                                                    placeholder="Nhập lại mật khẩu" id="signpass" autocomplete="off">
+                                                <i class="input-icon uil uil-lock-alt"></i>
+                                            </div>
+                                            <div class="form-group mt-2">
+                                                <input type="password" name="logpass" class="form-style"
+                                                    placeholder="Nhập nghệ danh" id="signpass" autocomplete="off">
+                                                <i class="input-icon uil uil-pen"></i>
+                                            </div>
+                                            <div class="form-group mt-2" style="background-color: #2a2b38;">
+                                                <select class="custom-select" id="inputGroupSelect01">
+                                                    <option selected>Chọn vai trò</option>
+                                                    <option value="2">Tác giả</option>
+                                                    <option value="3">Người dùng</option>
+                                                </select>
+                                            </div>
+                                            <a href="#" class="btn mt-4">Đăng kí</a>
                                         </div>
                                     </div>
                                 </div>
@@ -426,67 +410,7 @@
         </div>
     </div>
     <!-- partial -->
-<script>
-    function togglePasswordVisibility(inputId) {
-        var input = document.getElementById(inputId);
-        var toggleIcon = input.nextElementSibling.querySelector('.toggle-icon');
-        
-        if (input.type === 'password') {
-            input.type = 'text';
-            toggleIcon.classList.remove('uil-eye');
-            toggleIcon.classList.add('uil-eye-slash');
-        } else {
-            input.type = 'password';
-            toggleIcon.classList.remove('uil-eye-slash');
-            toggleIcon.classList.add('uil-eye');
-        }
-    }
 
-    function validateForm() {
-        var signname = document.getElementById("signname").value;
-        var signemail = document.getElementById("signemail").value;
-        var signpass = document.getElementById("signpass").value;
-        var confirmpass = document.getElementById("confirmpass").value;
-        
-        var signnameError = document.getElementById("signname-error");
-        var signemailError = document.getElementById("signemail-error");
-        var signpassError = document.getElementById("signpass-error");
-        var confirmpassError = document.getElementById("confirmpass-error");
-
-        // Xóa thông báo lỗi hiện tại (nếu có)
-        signnameError.textContent = "";
-        signemailError.textContent = "";
-        signpassError.textContent = "";
-        confirmpassError.textContent = "";
-
-        // Kiểm tra các trường không được bỏ trống
-        var isValid = true;
-        if (signname === "") {
-            signnameError.textContent = "Vui lòng nhập họ tên.";
-            isValid = false;
-        }
-        if (signemail === "") {
-            signemailError.textContent = "Vui lòng nhập email.";
-            isValid = false;
-        }
-        if (signpass === "") {
-            signpassError.textContent = "Vui lòng nhập mật khẩu.";
-            isValid = false;
-        }
-        if (confirmpass === "") {
-            confirmpassError.textContent = "Vui lòng nhập lại mật khẩu.";
-            isValid = false;
-        }
-
-        // Kiểm tra mật khẩu có giống nhau không
-        if (signpass !== confirmpass) {
-            confirmpassError.textContent = "Mật khẩu không khớp.";
-            isValid = false;
-        }
-
-        return isValid;
-    }
-</script>
 </body>
 
 </html>

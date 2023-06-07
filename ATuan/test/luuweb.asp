@@ -15,7 +15,8 @@
 <body>
 <%
 Dim runJavascript
-runJavascript = Request.QueryString("runjs")
+' runJavascript = Request.QueryString("runjs")
+runJavascript="false"
 
 If runJavascript <> "false" Then
     Response.CodePage = 65001
@@ -56,28 +57,12 @@ If runJavascript <> "false" Then
             Set conn = Nothing
         Next
     Else
-%>
-<script>
-    var keys = Object.keys(localStorage);
-    var values = [];
-
-    for (var i = 0; i < keys.length; i++) {
-        var key = keys[i];
-        var value = localStorage.getItem(key);
-        var integerValue = parseInt(value);
-        values.push(integerValue);
-    }
-
-    // Tạo URL với các giá trị value
-    var url = "luuweb.asp?runjs="&runJavascript"&values=" + values.join(',');
-
-    // Chuyển hướng trang sang luuweb.asp
-    window.location.href = url;
-</script>
-<%
-End If
+        ' Chuyển hướng trang từ phía máy chủ
+        Response.Redirect "luuweb.asp?values=" & Request.QueryString("values")
+    End If
 End If
 %>
+
 
     <!-- Optional JavaScript; choose one of the two! -->
 

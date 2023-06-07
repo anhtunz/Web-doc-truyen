@@ -1,4 +1,4 @@
-<%@LANGUAGE="VBSCRIPT" CODEPAGE = "65001"%>
+
 <!-- #include file="connect.asp" -->
 <!DOCTYPE html>
 <html lang="en">
@@ -115,7 +115,6 @@
                 <div class="card-header">
                     <h2 class="card-title" style=" color: blue">Thêm Truyện Mới</h2>
                 </div>
-
                 <%
                     If (isnull(Session("email")) OR TRIM(Session("email")) = "") Then
                     Response.redirect("/login.asp")

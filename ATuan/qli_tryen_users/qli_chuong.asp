@@ -131,7 +131,7 @@
             <div class="nutthem" style="margin-bottom: 40px;">
                 <button type="button" class="btn btn-primary btn-lg" >THÊM CHƯƠNG MỚI</button>
                 // onclick="redirectToTruyenDetail( )"
-                </div>
+            </div>
           <div class="dan">
             <h2>DANH SÁCH CHƯƠNG</h2>
           </div>
