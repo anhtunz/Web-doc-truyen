@@ -32,3 +32,8 @@ Cập nhật thêm 1 số câu lệnh Script mới
  
 - Ngày 5/6/2023
  + Tuấn làm thêm cái lưu web nhưng chưa link vào được
+ 
+- Ngày 7/6/2023
+ + Tuấn làm thêm chức năng đăng kí, làm lại giao diện login và phân quyền cho đăng truyện
+- Ngày 10/06/2023
+ + Tuấn làm thêm phân quyền cho quản lí truyện, nếu là admin sẽ hiển thị ra toàn bộ truyện, người dùng thì sẽ hiển thị truyện của người đó, user sẽ không xem được
