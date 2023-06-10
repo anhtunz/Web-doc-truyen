@@ -26,10 +26,6 @@
 <%
     Dim email
     email = Request.QueryString("email")
-    Response.Cookies("id_truyen") = id_truyen
-    Response.Cookies("id_truyen").Expires = DateAdd("d", 1, Now()) ' Thiết lập thời gian tồn tại của Cookie (ở đây là 1 ngày)
-    Response.Cookies("id_nguoi_dung") = id_nguoi_dung
-    Response.Cookies("id_nguoi_dung").Expires = DateAdd("d", 1, Now()) ' Thiết lập thời gian tồn tại của Cookie (ở đây là 1 ngày)
 %>
 
 <body>

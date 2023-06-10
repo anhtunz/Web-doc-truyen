@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,73 +8,90 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     
 </head>
-<style>
-    
+<style>   
+.card-header {
+  position: relative;
+  padding-right: 25px; /* Để tạo khoảng trống cho nút X */
+}
+
+.close-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  padding-right: 10px;
+}  
 </style>
 <body>
 <%
-Dim runJavascript
-' runJavascript = Request.QueryString("runjs")
-runJavascript="false"
+Response.ContentType = "text/html"
+Response.AddHeader "Content-Type", "text/html;charset=UTF-8"
+Response.CodePage = 65001
+Response.CharSet = "UTF-8"
+dim x,y
+for each x in Request.Cookies
+  response.write("<p>")
+  if Request.Cookies(x).HasKeys then
+    for each y in Request.Cookies(x)
+      Set conn = Server.CreateObject("ADODB.Connection")
+        conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
+        sql = "SELECT * FROM truyen WHERE id_truyen = " & y
+        Set rs = conn.Execute(sql)
+        Response.Write(y)
+        %>
+        
+        <div class="card text-center">
+          <div class="card-header">
+            Bạn đang đọc dở
+            <button class="close-btn" onclick="deleteCookie('<%= y %>')">X</button>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><%= rs("ten_truyen")%></h5>
+            <p class="card-text">Chương này</p>
+            <a href="/testTrangTruyen.asp?id_truyen=<%=rs("id_truyen")%>" class="btn btn-primary">Đọc tiếp</a>
+          </div>
+        </div>
+        <%
+        rs.Close
+        Set rs = Nothing
 
-If runJavascript <> "false" Then
-    Response.CodePage = 65001
-    Response.CharSet = "UTF-8"
-
-    If Request.QueryString("values") <> "" Then
-        Dim values
-        values = Split(Request.QueryString("values"), ",")
-
-        ' Xử lý giá trị values
-        For i = 0 To UBound(values)
-            value = values(i)
-            ' Thực hiện xử lý dữ liệu theo yêu cầu của bạn
-            Dim strSQL
-            Set conn = Server.CreateObject("ADODB.Connection")
-            conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
-            strSQL = "SELECT * FROM truyen WHERE id_truyen = " & value
-
-            Set rs = conn.Execute(strSQL)
-
-            ' In ra thẻ div tương ứng với dữ liệu từ database
-            If Not rs.EOF Then
-%>
-            <div class="card text-dark bg-light mb-3 center" style="max-width: 18rem;">
-                <div class="card-header">Bạn đang đọc dở</div>
-                <div class="card-body">
-                    <h5 class="card-title"><%=rs("ten_truyen")%></h5>
-                    <p class="card-text">Chương 1: Sâu Trong Rừng Rậm 1</p>
-                </div>
-            </div>
-<%
-            End If
-
-            rs.Close
-            Set rs = Nothing
-
-            conn.Close
-            Set conn = Nothing
-        Next
-    Else
-        ' Chuyển hướng trang từ phía máy chủ
-        Response.Redirect "luuweb.asp?values=" & Request.QueryString("values")
-    End If
-End If
+        conn.Close
+        Set conn = Nothing
+        next
+        else
+        Response.Write(x & "=" & Request.Cookies(x) & "<br>")
+        end if
+        response.write "</p>"
+    next
 %>
 
+<script>
+function deleteCookie(cookieName) {
+  // var xhr = new XMLHttpRequest();
+  // var url = '/deleteCookie.asp?cookieName=' + encodeURIComponentencodeURIComponent(cookieName);
+  // xhr.open('GET', url, true);
+  // xhr.onload = function() {
+  //   if (xhr.status === 200) {
+  //     // Xóa cookie thành công, chuyển hướng trang
+  //     window.location.href = "luuweb.asp"; // Thay "/newPage.asp" bằng URL của trang mới
+      
+  //   } else {
+  //     // Xử lý lỗi nếu có
+  //   }
+  // };
+  // xhr.send();
+  var url = "/test/deleteCookie.asp?cookieName=" + encodeURIComponent(cookieName);
 
-    <!-- Optional JavaScript; choose one of the two! -->
+  // Chuyển hướng trang sang process.asp  
+  window.location.href = url;
+}
+</script>
 
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    -->
 </body>
 </html>

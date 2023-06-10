@@ -125,46 +125,28 @@
                     conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
                     Dim sql
                     sql = "SELECT * FROM nguoi_dung WHERE email = '" & email & "'"
-                    Dim rs
+                    Dim rs, vai_tro,id_nguoi_dung
                     Set rs = conn.Execute(sql)
-                    If Request.ServerVariables("REQUEST_METHOD") = "POST" Then
-                        Dim TenTruyen, SoChuong, NamXuatBan, AnhTruyen, TinhTrang, MoTa, ID_Nguoi_dung
-                        TenTruyen = Request.Form("TenTruyen")
-                        SoChuong = Request.Form("SoChuong")
-                        NamXuatBan = Request.Form("NamXB")
-                        AnhTruyen = Request.Form("Anhtruyen")
-                        TinhTrang = Request.Form("flexRadioDefault")
-                        TheLoai = Request.Form("flexRadioDefault1")
-                        MoTa = Request.Form("gioithieu")
-                        ID_Nguoi_dung = Request.Form("ID_Nguoi_dung")
-                        ' Dim id_nguoi_dung
-                        ' id_nguoi_dung = rs("id_nguoi_dung")
-                        ' Response.Write("ID nguoi dung: " & id_nguoi_dung)
-                        ' Gửi dữ liệu đến trang add_truyen_base.asp
-                        Dim xmlhttp
-                        Set xmlhttp = Server.CreateObject("MSXML2.ServerXMLHTTP")
-                        Dim url, params
-                        url = "add_truyen_base.asp"
-                        params = "&ID_Nguoi_dung=" & Server.URLEncode(ID_Nguoi_dung) & "&TenTruyen=" & Server.URLEncode(TenTruyen) & "&SoChuong=" & Server.URLEncode(SoChuong) & "&NamXB=" & Server.URLEncode(NamXuatBan) & "&Anhtruyen=" & Server.URLEncode(AnhTruyen) & "&flexRadioDefault=" & Server.URLEncode(TinhTrang) & "&gioithieu=" & Server.URLEncode(MoTa) 
-                        xmlhttp.Open "POST", url, False
-                        xmlhttp.setRequestHeader "Content-Type", "application/x-www-form-urlencoded"
-                        xmlhttp.send params
-                        ' Kiểm tra phản hồi từ trang add_truyen_base.asp
-                        If xmlhttp.Status = 200 Then
-                            Response.Write("Dữ liệu đã được gửi thành công.")
-                        Else
-                            Response.Write("Có lỗi xảy ra khi gửi dữ liệu.")
-                        End If
+                    If Not rs.EOF Then
+                        vai_tro = rs("vai_tro")
+                        id_nguoi_dung = rs("id_nguoi_dung")
                     End If
-
+                    If vai_tro = "1" Or vai_tro = "2" Then
                 %>
-                
                 <div class="card-body">
                     <form id="myForm" method="post" action="add_truyen_base.asp">
-                        <div  style="display: none;">
+                        <div id="divIdNguoiDung" style="display: none;">
                             <strong for="ID_Nguoi_dung">Id nguoi dung:</strong>
-                            <input type="text" class="ID_Nguoi_dung" name="ID_Nguoi_dung" value="<%= rs("id_nguoi_dung") %>" placeholder="">
+                            <input type="text" class="ID_Nguoi_dung" name="ID_Nguoi_dung" value="" placeholder="">
                         </div>
+
+                        <script>
+                            var idNguoiDung = "<%= CStr(rs("id_nguoi_dung")) %>"; // Giá trị id_nguoi_dung từ ASP
+                            var divIdNguoiDung = document.getElementById("divIdNguoiDung");
+                            var inputIdNguoiDung = divIdNguoiDung.querySelector(".ID_Nguoi_dung");
+                            inputIdNguoiDung.value = idNguoiDung;
+                            divIdNguoiDung.style.display = "none";
+                        </script>
                         <div>
                             <strong for="TenTruyen">Tên truyện:</strong>
                             <input type="text" class="TenTruyen" name="TenTruyen" placeholder="Nhập Tên truyện">
@@ -244,16 +226,27 @@
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary" value="Đăng truyện">Đăng</button>
-                            <a type="button" class="btn btn-default float-right" href= "qli_truyen.asp?id_nguoi_dung=<%= rs("id_nguoi_dung") %>">Hủy bỏ</a>
+                            <a type="button" class="btn btn-default float-right" href= "qli_truyen.asp?id_nguoi_dung="&id_nguoi_dung>Hủy bỏ</a>
                         </div>
                     </form>
-                </div>    
+                </div>
                 <%
-                    rs.Close
-                    conn.Close
-                    Set rs = Nothing
-                    Set conn = Nothing
-                %> 
+                    End If
+                %>
+                    
+                    <%    
+                        If vai_tro = "3" Then
+                        %>
+                            <div>Bạn không có quyền đăng truyện. </div>
+                            
+                            <%
+                        Else
+                            Response.Write("Vai trò không hợp lệ.")
+                            ' Hoặc chuyển hướng tới trang thông báo lỗi
+                        End If
+                    %>
+                
+                
             </div>
         </div>
     </div>

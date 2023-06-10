@@ -1,4 +1,4 @@
-<%@LANGUAGE="VBSCRIPT" CODEPAGE = "65001"%>
+
 <%
 Response.CodePage = 65001
 Response.CharSet = "UTF-8"
@@ -16,7 +16,6 @@ Response.CharSet = "UTF-8"
     TheLoai = Request.Form("flexRadioDefault1")
     MoTa = Request.Form("gioithieu")
     ID_Nguoi_dung = Request.Form("ID_Nguoi_dung")
-
     TenTruyen = Replace(Request.Form("TenTruyen"), "'", "''")
     SoChuong = Replace(Request.Form("SoChuong"), "'", "''")
     NamXuatBan = Replace(Request.Form("NamXB"), "'", "''")

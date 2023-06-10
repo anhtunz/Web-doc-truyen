@@ -93,38 +93,32 @@
 </style>
 <body>
     <%
+
       Dim id_nguoi_dung
       id_nguoi_dung = Request.QueryString("id_nguoi_dung")
-    function Ceil(Number)
-        Ceil = Int(Number)
-        if Ceil<>Number Then
-            Ceil = Ceil + 1
-        end if
-    end function
-    function checkPage(cond, ret) 
-        if cond=true then
-            Response.write ret
-        else
-            Response.write ""
-        end if
-    end function
-    page = Request.QueryString("page")
-    limit = 10
+      function Ceil(Number)
+                  Ceil = Int(Number)
+                  if Ceil<>Number Then
+                      Ceil = Ceil + 1
+                  end if
+              end function
+              function checkPage(cond, ret) 
+                  if cond=true then
+                      Response.write ret
+                  else
+                      Response.write ""
+                  end if
+              end function
+              page = Request.QueryString("page")
+              limit = 10
 
-    if (trim(page) = "") or (isnull(page)) then
-        page = 1
-    end if
+              if (trim(page) = "") or (isnull(page)) then
+                  page = 1
+              end if
+              offset = (Clng(page) * Clng(limit)) - Clng(limit)
 
-    offset = (Clng(page) * Clng(limit)) - Clng(limit)
-
-    strSQL = "SELECT COUNT(id_truyen) AS count FROM truyen where id_nguoi_dung= " &id_nguoi_dung
-    connDB.Open()
-    Set CountResult = connDB.execute(strSQL)
-    totalRows = CLng(CountResult("count"))
-    Set CountResult = Nothing
-    ' lay ve tong so trang
-    pages = Ceil(totalRows/limit)
-%>
+                connDB.Open()
+    %>
     <div class="navbar">
        <!-- #include file="navbar.asp" -->
     </div>
@@ -134,81 +128,127 @@
         </div>
         
         <div class="content">
-                <div class="dan">
-            <h2>DANH SÁCH TRUYỆN</h2>
-          </div>
-          <div class="dsach-truyen" style="width: 90%;">
-            <table class="table table-striped">
-              <thead class="thead-dark">
-                <tr >
-                  <th scope="col" class="text-center">STT</th>
-                  <th scope="col" class="text-center">Tên truyện</th>
-                  <th scope="col" class="text-center">Năm xuất bản</th>
-                  <th scope="col" class="text-center">Mô tả nội dung</th>
-                  <th scope="col" class="text-center">Số chương</th>
-                  <th scope="col" class="text-center">Xem</th>
-                  <th scope="col" class="text-center">Thao tác</th>
-                </tr>
-              </thead>
-              <tbody>
-              <%
-                  
-                  Set cmdPrep = Server.CreateObject("ADODB.Command")
-                  cmdPrep.ActiveConnection = connDB
-                  cmdPrep.CommandType = 1
-                  cmdPrep.Prepared = True
-                  cmdPrep.CommandText = "SELECT * FROM truyen WHERE id_nguoi_dung = " & id_nguoi_dung & " ORDER BY id_truyen OFFSET ? ROWS FETCH NEXT ? ROWS ONLY"
-                  cmdPrep.parameters.Append cmdPrep.createParameter("offset",3,1, ,offset)
-                  cmdPrep.parameters.Append cmdPrep.createParameter("limit",3,1, , limit)
-                  Set Result = cmdPrep.execute
-                  do while not Result.EOF
-                  ' đây là thẻ tr khi nhấn vào hàng sẽ ra danh sách chương
-                  ' <tr onclick="redirectToTruyenDetail(< %= Result("id_ tr uyen")% >)">
-                %>
+            <%
                 
-                <tr>
-                  <th scope="row" class="text-center"><%=Result("id_truyen")%></th>
-                  <td class="text-center"><%=Result("ten_truyen")%></td>
-                  <td class="text-center"><%=Result("nam_xb")%></td>
-                  <td class="text-center"><%=Result("mo_ta_ndung")%></td>
-                  <td class="text-center"><%=Result("so_chuong")%></td>
-                  <td class="text-center">
-                    <button type="button" class="btn btn-primary" onclick = "redirectToTruyenDetail(<%=Result("id_truyen")%>)">Xem chương</button>
-                  </td>
-                  <td class="text-center">
-                    <button type="button" class="btn btn-primary" onclick = "suaTruyen(<%=Result("id_truyen")%>,<%=page%>,<%=id_nguoi_dung%>)"> Sửa</button>
-                    <button type="button" class="btn btn-danger" onclick = "XoaTruyen(<%=Result("id_truyen")%>, <%=page%>,<%=id_nguoi_dung%>)">Xóa</button>
-                  </td> 
-                </tr>
-              </tbody>
-              <%
-                        Result.MoveNext
-                            loop
-                        ' Đóng kết nối CSDL 
-                        Result.Close
-                        
-                        Set Result = Nothing
-                        Set conn = Nothing
-                %>
-            </table>
-          </div>
-          <nav aria-label="Page Navigation">
-                <ul class="pagination pagination-sm">
-                    <% if (pages>1) then 
-                        for i= 1 to pages
-                    %>
-                        <li class="page-item <%=checkPage(Clng(i)=Clng(page),"active")%>"><a class="page-link" href="qli_truyen.asp?id_nguoi_dung=<%=id_nguoi_dung%>&page=<%=i%>"><%=i%></a></li>
-                    <%
-                        next
-                        end if
-                    %>
-                </ul>
-            </nav>
-    
-        </div>
-    
-        </div>
+                ' Lấy thông tin vai trò từ cơ sở dữ liệu
+                Dim strSQLVaiTro
+                strSQLVaiTro = "SELECT vai_tro FROM nguoi_dung WHERE id_nguoi_dung = " & id_nguoi_dung
+                Set rsVaiTro = connDB.Execute(strSQLVaiTro)
+                vai_tro = rsVaiTro("vai_tro")
+                rsVaiTro.Close
+                Dim strSQL
+                If vai_tro = 1 Then
+                    strSQL = "SELECT * FROM truyen"
+                ElseIf vai_tro = 2 Then
+                    strSQL = "SELECT * FROM truyen WHERE id_nguoi_dung = " & id_nguoi_dung
+                End If
+                ' Kiểm tra vai trò người dùng
+                If vai_tro = 1 Or vai_tro = 2 Then
+                ' Thực hiện câu truy vấn SQL với phân trang
+                strSQL = strSQL & " ORDER BY id_truyen OFFSET ? ROWS FETCH NEXT ? ROWS ONLY"
+                Set cmdPrep = Server.CreateObject("ADODB.Command")
+                cmdPrep.ActiveConnection = connDB
+                cmdPrep.CommandType = 1
+                cmdPrep.Prepared = True
+                cmdPrep.CommandText = strSQL
+                cmdPrep.Parameters.Append cmdPrep.CreateParameter("offset", 3, 1, , offset)
+                cmdPrep.Parameters.Append cmdPrep.CreateParameter("limit", 3, 1, , limit)
+                Set Result = cmdPrep.Execute
+
+                ' Đếm số truyện
+                Dim totalRows
+                Dim strSQLCount
+                If vai_tro = 1 Then
+                    strSQLCount = "SELECT COUNT(id_truyen) AS count FROM truyen"
+                ElseIf vai_tro = 2 Or vai_tro = 3 Then
+                    strSQLCount = "SELECT COUNT(id_truyen) AS count FROM truyen WHERE id_nguoi_dung = " & id_nguoi_dung
+                End If
+                Set rsCount = connDB.Execute(strSQLCount)
+                totalRows = rsCount("count")
+                rsCount.Close
+
+                ' Tính số trang
+                Dim pages
+                pages = Ceil(totalRows / limit)
+            %>
+
+            <div class="dan">
+            <h2>DANH SÁCH TRUYỆN</h2>
+            </div>
+            <div class="dsach-truyen" style="width: 90%;">
+            <table class="table table-striped">
+                                <thead class="thead-dark">
+                                    <tr >
+                                    <th scope="col" class="text-center">STT</th>
+                                    <th scope="col" class="text-center">Tên truyện</th>
+                                    <th scope="col" class="text-center">Năm xuất bản</th>
+                                    <th scope="col" class="text-center">Mô tả nội dung</th>
+                                    <th scope="col" class="text-center">Số chương</th>
+                                    <th scope="col" class="text-center">Xem</th>
+                                    <th scope="col" class="text-center">Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                
+                                    <%
+                                    ' If Result.EOF Then
+                                    '     Response.Write "Không có kết quả truy vấn."
+                                    ' Else
+                                    do while not Result.EOF
+                                    %>
+                                    
+                                    <tr>
+                                    <th scope="row" class="text-center"><%=Result("id_truyen")%></th>
+                                    <td class="text-center"><%=Result("ten_truyen")%></td>
+                                    <td class="text-center"><%=Result("nam_xb")%></td>
+                                    <td class="text-center"><%=Result("mo_ta_ndung")%></td>
+                                    <td class="text-center"><%=Result("so_chuong")%></td>
+                                    <td class="text-center">
+                                        <button type="button" class="btn btn-primary" onclick = "redirectToTruyenDetail(<%=Result("id_truyen")%>)">Xem chương</button>
+                                    </td>
+                                    <td class="text-center">
+                                        <button type="button" class="btn btn-primary" onclick = "suaTruyen(<%=Result("id_truyen")%>,<%=page%>,<%=id_nguoi_dung%>)"> Sửa</button>
+                                        <button type="button" class="btn btn-danger" onclick = "XoaTruyen(<%=Result("id_truyen")%>, <%=page%>,<%=id_nguoi_dung%>)">Xóa</button>
+                                    </td> 
+                                    </tr>
+                                </tbody>
+                                <%
+                                    Result.MoveNext
+                                        loop
+                                    ' Đóng kết nối CSDL 
+                                    Result.Close
+                                    Set Result = Nothing
+                                    Set conn = Nothing
+                                %>
+                                </table>
+
+            </div>
+    <nav aria-label="Page Navigation">
+    <ul class="pagination pagination-sm">
+        <% If (vai_tro = 1 Or vai_tro = 2) And pages > 1 Then 
+        For i = 1 To pages
+        %>
+        <li class="page-item <%=checkPage(CLng(i) = CLng(page), "active")%>">
+            <a class="page-link" href="qli_truyen.asp?id_nguoi_dung=<%=id_nguoi_dung%>&page=<%=i%>"><%=i%></a>
+        </li>
+        <% 
+        Next
+        End If 
+        End If
+        %>
+    </ul>
+    </nav>
+    <%
+    If vai_tro = 3 Then
+    %>
+        <div>Bạn không có quyền xem </div>
+    <%
+    End If
+    %>
     </div>
+    
+    </div>
+  
     <div class="footer">
       <!-- #include file="footer.asp" -->
     </div>

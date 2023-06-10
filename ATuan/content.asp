@@ -118,7 +118,7 @@
         </div>
         <div class="content-trai2">
           <div class="container mt-4 truyen-tong">
-              <h4>TRUYỆN DỊCH CHỌN LỌC</h4>
+              <h4 >TRUYỆN DỊCH CHỌN LỌC</h4>
               <div class="row mt-4">
               <%
                 Set conn = Server.CreateObject("ADODB.Connection")

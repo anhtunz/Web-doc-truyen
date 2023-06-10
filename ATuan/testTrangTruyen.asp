@@ -102,12 +102,8 @@
               <%
                 ' Lấy giá trị id_truyen từ URL
                 id_truyen = Request.QueryString("id_truyen")
-                Dim key
-                key = "id_truyen_" & id_truyen
-                ' Lưu giá trị id_chuong vào Cookie
-                Response.Cookies("id_truyen") = id_truyen
-                Response.Cookies("id_truyen").Expires = DateAdd("d", 1, Now()) ' Thiết lập thời gian tồn tại của Cookie (ở đây là 1 ngày)
-
+                  Response.Cookies("truyen")(id_truyen) = id_truyen
+                  Response.Cookies("truyen").Expires = DateAdd("d", 2, Now)
 
                 ' Kiểm tra nếu id_truyen tồn tại
                 If id_truyen <> "" Then
