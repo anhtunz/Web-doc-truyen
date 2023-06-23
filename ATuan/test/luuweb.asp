@@ -18,10 +18,13 @@
   position: absolute;
   top: 0;
   right: 0;
-  padding: 5px;
+  padding: 7px;
   cursor: pointer;
   font-weight: bold;
   padding-right: 10px;
+  border: none; /* Loại bỏ viền */
+  background: none; /* Loại bỏ nền nút */
+  font-size: inherit; /* Sử dụng kích thước chữ mặc định */
 }  
 </style>
 <body>
@@ -30,63 +33,44 @@ Response.ContentType = "text/html"
 Response.AddHeader "Content-Type", "text/html;charset=UTF-8"
 Response.CodePage = 65001
 Response.CharSet = "UTF-8"
-dim x,y
-for each x in Request.Cookies
-  response.write("<p>")
-  if Request.Cookies(x).HasKeys then
-    for each y in Request.Cookies(x)
-      Set conn = Server.CreateObject("ADODB.Connection")
-        conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
-        sql = "SELECT * FROM truyen WHERE id_truyen = " & y
-        Set rs = conn.Execute(sql)
-        Response.Write(y)
-        %>
-        
-        <div class="card text-center">
-          <div class="card-header">
-            Bạn đang đọc dở
-            <button class="close-btn" onclick="deleteCookie('<%= y %>')">X</button>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title"><%= rs("ten_truyen")%></h5>
-            <p class="card-text">Chương này</p>
-            <a href="/testTrangTruyen.asp?id_truyen=<%=rs("id_truyen")%>" class="btn btn-primary">Đọc tiếp</a>
-          </div>
-        </div>
-        <%
-        rs.Close
-        Set rs = Nothing
-
-        conn.Close
-        Set conn = Nothing
-        next
-        else
-        Response.Write(x & "=" & Request.Cookies(x) & "<br>")
-        end if
-        response.write "</p>"
-    next
+Dim id_truyen
+id_truyen = Request.Cookies("truyen")
+If id_truyen <> "" Then
+    Set conn = Server.CreateObject("ADODB.Connection")
+    conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
+    sql = "SELECT * FROM truyen WHERE id_truyen = " & id_truyen
+    Set rs = conn.Execute(sql)
 %>
 
-<script>
-function deleteCookie(cookieName) {
-  // var xhr = new XMLHttpRequest();
-  // var url = '/deleteCookie.asp?cookieName=' + encodeURIComponentencodeURIComponent(cookieName);
-  // xhr.open('GET', url, true);
-  // xhr.onload = function() {
-  //   if (xhr.status === 200) {
-  //     // Xóa cookie thành công, chuyển hướng trang
-  //     window.location.href = "luuweb.asp"; // Thay "/newPage.asp" bằng URL của trang mới
-      
-  //   } else {
-  //     // Xử lý lỗi nếu có
-  //   }
-  // };
-  // xhr.send();
-  var url = "/test/deleteCookie.asp?cookieName=" + encodeURIComponent(cookieName);
+<div class="card text-center" id="div_id_chuong">
+  <div class="card-header">
+    Bạn đang đọc dở
+    <button class="close-btn" onclick="deleteCookie('truyen')">X</button>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"><%= rs("ten_truyen") %></h5>
+    <p class="card-text">Chương này</p>
+    <a href="/testTrangTruyen.asp?id_truyen=<%= rs("id_truyen") %>" class="btn btn-primary">Đọc tiếp</a>
+  </div>
+</div>
 
-  // Chuyển hướng trang sang process.asp  
-  window.location.href = url;
+<%
+    rs.Close
+    Set rs = Nothing
+
+    conn.Close
+    Set conn = Nothing
+End If
+%>
+
+
+<script>
+  function deleteCookie(cookieName) {
+  document.cookie = cookieName + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  var divIdChuong = document.getElementById('div_id_chuong');
+  divIdChuong.remove();
 }
+
 </script>
 
 

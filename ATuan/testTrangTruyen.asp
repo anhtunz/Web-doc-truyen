@@ -100,10 +100,10 @@
           <!-- Phần story -->
             <div id="story-detail" data-type="2">
               <%
-                ' Lấy giá trị id_truyen từ URL
                 id_truyen = Request.QueryString("id_truyen")
-                  Response.Cookies("truyen")(id_truyen) = id_truyen
-                  Response.Cookies("truyen").Expires = DateAdd("d", 2, Now)
+Response.Cookies("truyen") = id_truyen
+Response.Cookies("truyen").Expires = DateAdd("d", 2, Now)
+
 
                 ' Kiểm tra nếu id_truyen tồn tại
                 If id_truyen <> "" Then
@@ -323,11 +323,14 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     -->
-    <script>
-      var id_truyen = "<%= id_truyen %>";
-      var key = "id_truyen_" + id_truyen;
-      localStorage.setItem(key, id_truyen);
-  </script>
+  
+  <script>
+    window.addEventListener('beforeunload', function(event) {
+    var urlParams = new URLSearchParams(window.location.search);
+    var id_truyen = urlParams.get('id_truyen');
+    localStorage.setItem('id_truyen', id_truyen);
+});
+</script>
 </body>
 
 </html>

@@ -12,7 +12,15 @@
     
 </style>
 <body>
-    
+    <div class="form-group">
+                <label for="exampleInputEmail1">Mô tả</label>
+                <textarea name="MoTa" id="mota" rows="10" cols="80">
+                This is my textarea to be replaced with CKEditor 4.
+                </textarea>
+                <script>
+                    CKEDITOR.replace( 'mota' );
+                </script>
+            </div>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

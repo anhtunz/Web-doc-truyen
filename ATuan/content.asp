@@ -312,25 +312,8 @@
           %>
         </div>
         <div class="content-phai2">
-          <script>
-              var keys = Object.keys(localStorage);
-              var values = [];
-
-              for (var i = 0; i < keys.length; i++) {
-                  var key = keys[i];
-                  var value = localStorage.getItem(key);
-                  var integerValue = parseInt(value);
-                  values.push(integerValue);
-              }
-              console.log(values);
-
-              // // Tạo URL với các giá trị value
-              // var url = "nhan.asp?values=" + values.join(',');
-
-              // // Chuyển hướng trang sang process.asp
-              // window.location.href = url;
-</script>
-
+          <!-- #include file="test/luuweb.asp" -->
+          
           
           
           
@@ -343,7 +326,12 @@
     
 
     
-
+  <script>  
+        window.addEventListener('DOMContentLoaded', function (event) {
+        var id_truyen = localStorage.getItem('id_truyen');
+        document.getElementById('id_truyen_value').textContent = 'Giá trị id_truyen: ' + id_truyen;
+      });
+</script>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

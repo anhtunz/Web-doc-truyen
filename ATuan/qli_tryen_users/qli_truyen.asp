@@ -32,9 +32,6 @@
         
     }
     /* End phần navbar */
-    .noidung{
-      margin-top: 15px;
-    }
     /* Phần sidebar */
     .sidebar{
         width: 20%;
@@ -68,7 +65,7 @@
         text-align: center;
         height: 700px;
         width: 80%;
-
+        margin-top: 8px;
         
     }
         .eooo{

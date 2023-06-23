@@ -1,4 +1,3 @@
-
 <!-- #include file="connect.asp" -->
 
 <%
@@ -28,19 +27,20 @@
         Session("email")=result("email")
         Session("Success")= "Login thanh cong!!!"
         
-        Response.Redirect("/index.asp?email=" & email)
-       
+        Response.Redirect("/index.asp")
+        
     Else
         ' dang nhap ko thanh cong
         Session("Error") = "Sai email hoặc mật khẩu"
+        Response.Redirect("/login.asp")
     End if
     result.Close()
     connDB.Close()
 Else
     ' false
     Session("Error")="Hãy nhập email hoặc mật khẩu."
+    Response.Redirect("/login.asp")
 End if
 %>
-    <p>Email: <%=email%></p>
-    <p>Password: <%=password%></p>
+    
 

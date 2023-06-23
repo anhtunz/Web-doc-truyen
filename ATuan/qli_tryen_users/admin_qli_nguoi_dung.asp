@@ -74,7 +74,9 @@
     .field-value{
         font-size: 20px;
     }
-    
+    .m5{
+        margin-top: 15px;
+    }
 </style>
 <body>
     <div class="navbar">
@@ -121,17 +123,45 @@
                       <span class="field-value"><%=rs("email")%></span>
                     </div>
                     <div class="info-row">
-                      <span class="field-name">Ngày sinh:</span>
-                      <span class="field-value"><%=ngay_sinh%></span>
+                      <span class="field-name">Mật khẩu:</span>
+                      <span class="field-value"><%=rs("mat_khau")%></span>
                     </div>
+                    <div class="info-row">
+                      <span class="field-name">Vai trò:</span>
+                      <span class="field-value">
+                      <%
+                            Dim vaitro
+                            vaitro = rs("vai_tro")
+                            If vaitro = 1 Then
+                        %>
+                            <td class="text-center">Admin</td>
+                        <%
+                            ElseIf vaitro = 2 Then
+                        %>
+                            <td class="text-center">Tác giả</td>
+                        <%
+                            ElseIf vaitro = 3 Then
+                        %>
+                            <td class="text-center">Người đọc</td>
+                        <%
+                            end If
+                        %>     
+                      </span>
+                    </div>
+
                     <div class="info-row">
                       <span class="field-name">Nghệ danh:</span>
                       <span class="field-value fw-bold"><%=rs("nghe_danh")%></span>
                     </div>
                     <div class="info-row">
-                      <span class="field-name">Giới tính:</span>
-                      <span class="field-value">
-                      <%
+                      <span class="field-name">Ngày sinh:</span>
+                      <span class="field-value"><%=ngay_sinh%></span>
+                    </div>
+                    
+                    <div class="info-row">
+                        <span class="field-name">Giới tính:</span>
+                        <span class="field-value">
+                        <%
                             Dim gioitinh
                             gioitinh = rs("gioi_tinh")
                         %>
@@ -146,6 +176,7 @@
                         <%
                             End If
                         %>
+                    
                       </span>
                     </div>
                     <div class="info-row m40">
@@ -155,11 +186,8 @@
                       </span>
                       <%
                         Else
-                            ' Không tìm thấy người dùng
                             Response.Write "Không tìm thấy thông tin người dùng."
                         End If
-
-                        ' Đóng kết nối và giải phóng tài nguyên
                         rs.Close
                         Set rs = Nothing
                         conn.Close
@@ -169,20 +197,19 @@
                   </div>
             </div>
            <div class="nutthem" style="margin-top: 40px;">
-                <form method="post" action="edit_info.asp?id_nguoi_dung=<%= id_nguoi_dung %>">
-                    <button type="submit" class="btn btn-primary btn-lg">CHỈNH SỬA THÔNG TIN</button>
+                <form method="post" action="admin_sua_nguoi_dung.asp?id_nguoi_dung=<%= id_nguoi_dung %>">
+                    <button type="submit" class="btn btn-success btn-lg">Sửa thông tin người dùng</button>
                 </form>
+                <a type="button" href="qli_nguoi_dung.asp?id_nguoi_dung=5" class="btn btn-primary btn-lg m5">Quay lại</a>
             </div>
             <%
                 ' Xử lý sự kiện khi nhấn nút
                 If Request.ServerVariables("REQUEST_METHOD") = "POST" Then
                     ' Chuyển hướng sang trang edit_info.asp
-                    Response.Redirect "edit_info.asp?id_nguoi_dung=" & id_nguoi_dung
+                    Response.Redirect "admin_sua_nguoi_dung.asp?id_nguoi_dung=" & id_nguoi_dung
                 End If
             %>
 
-            
-    
         </div>
     </div>
     <div class="footer">

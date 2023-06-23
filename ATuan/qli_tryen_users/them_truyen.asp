@@ -62,7 +62,7 @@
         display: flex;
         height: 700px;
         width: 80%;
-        margin-top: 10px;
+        margin-top: 8px;
         
     }
     .field-name,
@@ -139,7 +139,6 @@
                             <strong for="ID_Nguoi_dung">Id nguoi dung:</strong>
                             <input type="text" class="ID_Nguoi_dung" name="ID_Nguoi_dung" value="" placeholder="">
                         </div>
-
                         <script>
                             var idNguoiDung = "<%= CStr(rs("id_nguoi_dung")) %>"; // Giá trị id_nguoi_dung từ ASP
                             var divIdNguoiDung = document.getElementById("divIdNguoiDung");
@@ -233,12 +232,10 @@
                 <%
                     End If
                 %>
-                    
                     <%    
                         If vai_tro = "3" Then
                         %>
                             <div>Bạn không có quyền đăng truyện. </div>
-                            
                             <%
                         Else
                             Response.Write("Vai trò không hợp lệ.")

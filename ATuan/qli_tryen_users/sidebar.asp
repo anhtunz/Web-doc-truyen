@@ -41,6 +41,31 @@
                         Thêm truyện mới
                     </a>
                   </li>
+                  <%
+                    If rs("vai_tro") = 1 Then
+                  %>
+                      <li>
+                          <a href="qli_nguoi_dung.asp?id_nguoi_dung=<%= rs("id_nguoi_dung") %>" class="nav-link link-dark">
+                              <span class="material-symbols-outlined">
+                                account_circle
+                              </span>
+                              Quản lí người dùng
+                          </a>
+                      </li>
+                      
+                      <li>
+                          <a href="#" class="nav-link link-dark">
+                              <span class="material-symbols-outlined">
+                                check
+                              </span>
+                              Duyệt truyện
+                          </a>
+                      </li>
+                  <%
+                  End If
+                  %>
+
+
                   
                 </ul>
                 <hr>
