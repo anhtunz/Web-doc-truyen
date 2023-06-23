@@ -1,10 +1,17 @@
+
 <%
+Response.ContentType = "text/html"
+Response.AddHeader "Content-Type", "text/html;charset=UTF-8"
+Response.CodePage = 65001
+Response.CharSet = "UTF-8"
+Dim id_truyen
 Dim ndung_binh_luan, id_nguoi_dung
 
 ' Xử lý gửi bình luận
 If Request.ServerVariables("REQUEST_METHOD") = "POST" Then
-    ndung_binh_luan = Trim(Request.Form("ndung_binh_luan"))
-    id_nguoi_dung = Trim(Request.Form("id_nguoi_dung"))
+    ndung_binh_luan = Trim(Request.Form("comment"))
+    id_nguoi_dung = Trim(Request.Form("idusername"))
+    id_truyen = Trim(Request.Form("id_truyen"))
 
     If ndung_binh_luan <> "" Then
         ' Kết nối đến cơ sở dữ liệu
@@ -14,7 +21,7 @@ If Request.ServerVariables("REQUEST_METHOD") = "POST" Then
 
         ' Thêm bình luận vào cơ sở dữ liệu
         Dim sql
-        sql = "INSERT INTO binh_luan (id_nguoi_dung, ndung_binh_luan) VALUES ('" & id_binh_luan & "', '" & ndung_binh_luan & "')"
+        sql = "INSERT INTO binh_luan (id_truyen, id_nguoi_dung, ndung_binh_luan) VALUES ('" & id_truyen & "','" & id_nguoi_dung & "', N'" & ndung_binh_luan & "')"
         conn.Execute sql
 
         ' Đóng kết nối
@@ -22,7 +29,7 @@ If Request.ServerVariables("REQUEST_METHOD") = "POST" Then
         Set conn = Nothing
 
         ' Sau khi lưu, chuyển hướng trở lại trang truyện
-        Response.Redirect "testTrangTruyen.asp#comment-section"
+        Response.Redirect "testTrangTruyen.asp?id_truyen=" & id_truyen
     End If
 End If
 %>

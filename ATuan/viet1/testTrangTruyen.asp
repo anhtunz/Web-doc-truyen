@@ -260,9 +260,8 @@
                 %>
             </div>
           </div>
-           <!-- #include file="ViewComments.asp" -->
+          <!-- #include file="ViewComments.asp" -->
       </div>
-
       <div class="content-phai">
         <div class="tieude content-trai1-child">
           THỂ LOẠI TRUYỆN

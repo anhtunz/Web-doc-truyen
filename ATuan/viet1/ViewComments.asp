@@ -51,22 +51,32 @@
 <body>
 <div id="comment-section">
           <h2>Bình luận</h2>
-          <form id="comment-form" method="post" action="comments.asp">
-            <input type="" name="idusername" placeholder="Nhập id người dùng"><br>
+          <%
+          Dim email
+              email = Session("email")
+              Set conn = Server.CreateObject("ADODB.Connection")
+              conn.Open "Provider=SQLOLEDB.1;Data Source=VIET\MSSQLSERVER01;Database=Web_doc_truyen;User Id=sa;Password=123456;"
+
+              sql = "SELECT * FROM nguoi_dung WHERE email = '" & email & "'"
+
+              Set rs = conn.Execute(sql)
+              Dim id_nguoi_bl, ten_nguoi_bl
+              id_nguoi_bl= rs("id_nguoi_dung")
+              ten_nguoi_bl= rs("nghe_danh")
+              Set conn = Nothing
+              Set rs = Nothing
+          %>
+          <form id="comment-form" method="post" action="comments.asp?id_truyen="&id_truyen>
+            <div id="divIdNguoiDung" style="display: none;">
+                <input type="text" class="ID_Nguoi_dung" name="id_truyen" value="<%= id_truyen %>" placeholder="">
+            </div>
+            <div id="divIdNguoiDung" style="display: none;">
+                  <input type="" name="idusername" placeholder="" value="<%= id_nguoi_bl %>"><br>
+            </div>
             <textarea name="comment" placeholder="Nhập bình luận của bạn"></textarea><br>
             <button type="submit">Gửi</button>
           </form>
-        <div id="comment-list">
-            <% Dim ndung_binh_luan, id_nguoi_dung, id_binh_luan ' Xử lý gửi bình luận
-            If Request.ServerVariables("REQUEST_METHOD") = "POST" Then
-                ndung_binh_luan = Trim(Request.Form("ndung_binh_luan"))
-                id_nguoi_dung = Trim(Request.Form("id_nguoi_dung"))
-                If ndung_binh_luan <> "" Then
-                    ' Lưu bình luận vào cơ sở dữ liệu hoặc tệp tin ' Sau khi lưu, chuyển hướng trở lại trang truyện
-                    Response.Redirect "testTrangTruyen.asp#comment-section"
-                End If
-            End If
-            %>       
+        <div id="comment-list">   
             <%
                 ' Kết nối đến CSDL
                 Set conn = Server.CreateObject("ADODB.Connection")
@@ -86,7 +96,7 @@
                 <div class="d-flex justify-content-start align-items-center">
                     <small>
                         <div class="userinfo">
-                            <strong style="font-size: 16px; color: blue"><%=rs("id_nguoi_dung")%></strong>
+                            <strong style="font-size: 16px; color: blue"><%= ten_nguoi_bl%></strong>
                             <i class="fa fa-circle"></i> <%=rs("ngay_binh_luan")%>
                         </div>
                         <p style="font-size: 16px; color: black"><%=rs("ndung_binh_luan")%></p>

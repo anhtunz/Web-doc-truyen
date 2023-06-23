@@ -28,7 +28,7 @@
 <body>
   <div class="nav-bar">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Web đọc truyện</a>
+      <a class="navbar-brand" href="/viet1/index.asp">Web đọc truyện</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -62,12 +62,12 @@
           <%
               If (NOT isnull(Session("email"))) AND (TRIM(Session("email"))<>"") Then
           %>
-            <span class="navbar-text">Xin chào <%=Session("email")%>!</span>
-            <a href="/logout.asp" class="btn btn-light ms-3">Logout</a>
+            <a href = "#" class="">Xin chào <%=Session("email")%>!</a>
+            <a href="/viet1/logout.asp" class="btn btn-light ms-3">Logout</a>
           <%                        
               Else
           %>                
-            <a href="/login.asp" class="btn btn-primary">Đăng nhập</a>
+            <a href="/viet1/login.asp" class="btn btn-primary">Đăng nhập</a>
           <%
                 End If
           %>
