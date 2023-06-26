@@ -6,6 +6,7 @@ Response.CodePage = 65001
 Response.CharSet = "UTF-8"
 Dim id_truyen
 Dim ndung_binh_luan, id_nguoi_dung
+Dim id_chuong
 
 ' Xử lý gửi bình luận
 If Request.ServerVariables("REQUEST_METHOD") = "POST" Then

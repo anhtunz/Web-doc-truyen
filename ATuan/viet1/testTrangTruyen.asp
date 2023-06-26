@@ -92,7 +92,7 @@
   <div id="main" class="main" data-type="story" role="main" itemscope="" itemprop="mainContentOfPage">
     <div class="container">
       <div class="main-col"> <span>
-          <div itemscope="" itemtype="http://schema.org/Book">
+          <div>
           <!-- Phần story -->
             <div id="story-detail" data-type="2">
               <%
@@ -129,16 +129,16 @@
                         ' Hiển thị thông tin trong HTML
                 %>
                         <div class="cot1">
-                                <div class="anhtruyen">
-                                    <img src="<%= anh_truyen %>" itemprop="image" class="cover" width="220" alt="<%= ten_truyen %>">
-                                </div>                            
-                                <div class="infos">
-                                Tác giả: <h6 class="tacgia" style=" color: #016eb2"><%= ho_ten %></h6>
-                                <h6 class="theloai" style=" color: #016eb2"><%= the_loai %></h6>
-                                <h7 class="tinhtrang"> Trạng thái hiện tại: <%= tinh_trang %></h7><br>
-                                <h7 class="nxb"> Ngày cập nhật: <%= formattednam_xb %></h7>
-                                <!-- Các thông tin khác về truyện -->
-                            </div>
+                          <div class="anhtruyen">
+                            <img src="<%= anh_truyen %>" itemprop="image" class="cover" width="220" alt="<%= ten_truyen %>">
+                          </div>                            
+                          <div class="infos">
+                            <br>
+                            <p class="tacgia" style="color: #016eb2">Tác giả: <%= ho_ten %></p>
+                            <p class="theloai" style="color: #016eb2">Thể loại: <%= the_loai %></p>
+                            <p class="tinhtrang">Trạng thái hiện tại: <%= tinh_trang %></p>
+                            <p class="nxb">Ngày cập nhật: <%= formattednam_xb %></p>
+                          </div>
                         </div>
                 <%
                     Else
@@ -180,15 +180,14 @@
               conn.Open "Provider=SQLOLEDB.1;Data Source=VIET\MSSQLSERVER01;Database=Web_doc_truyen;User Id=sa;Password=123456;"
 
               ' Lấy tên chương của 5 chương mới nhất dựa trên id_truyen
-              sql = "SELECT TOP 3 ten_chuong FROM chuong WHERE chuong.id_truyen = " & id_truyen & " ORDER BY id_chuong DESC"
+              sql = "SELECT TOP 3 * FROM chuong WHERE chuong.id_truyen = " & id_truyen & " ORDER BY id_chuong DESC"
               Set rs = conn.Execute(sql)
-
+              
               ' Duyệt qua từng bản ghi trong kết quả truy vấn và hiển thị tên chương
               Do While Not rs.EOF
               %>
               <li class="newChapters">
-                  <a href="" title="<%= rs("ten_chuong") %>"><%= rs("ten_chuong") %></a>
-              </li>
+                  <a href="doc.asp?id_truyen=<%= id_truyen %>&id_chuong=<%= rs("id_chuong")%>"  title="<%= rs("ten_chuong") %>"><%= rs("ten_chuong") %></a>              </li>
               <%
                 rs.MoveNext
               Loop
@@ -213,7 +212,7 @@
                 ' Kết nối CSDL và thực hiện truy vấn
                 Set conn = Server.CreateObject("ADODB.Connection")
                 conn.Open "Provider=SQLOLEDB.1;Data Source=VIET\MSSQLSERVER01;Database=Web_doc_truyen;User Id=sa;Password=123456;"
-
+          
                 ' Lấy tổng số lượng chương
                 sqlCount = "SELECT COUNT(*) AS TotalChapters FROM chuong WHERE chuong.id_truyen = " & id_truyen
                 Set rsCount = conn.Execute(sqlCount)
@@ -231,15 +230,15 @@
                 startIndex = (currentPage - 1) * pageSize
 
                 ' Lấy danh sách chương theo trang hiện tại
-                sql = "SELECT ten_chuong FROM chuong WHERE chuong.id_truyen = " & id_truyen & " ORDER BY id_chuong ASC " _
+                sql = "SELECT * FROM chuong WHERE chuong.id_truyen = " & id_truyen & " ORDER BY id_chuong ASC " _
                       & "OFFSET " & startIndex & " ROWS FETCH NEXT " & pageSize & " ROWS ONLY"
                 Set rs = conn.Execute(sql)
-
+                
                 ' Duyệt qua từng bản ghi trong kết quả truy vấn và hiển thị tên chương
                 Do While Not rs.EOF
                 %>
                 <li class="Chapters">
-                  <a href="" title="<%= rs("ten_chuong") %>"><%= rs("ten_chuong") %></a>
+                  <a href="doc.asp?id_truyen=<%= id_truyen %>&id_chuong=<%= rs("id_chuong")%>"  title="<%= rs("ten_chuong") %>"><%= rs("ten_chuong") %></a>              </li>
                 </li>
                 <%
                   rs.MoveNext
@@ -248,7 +247,7 @@
                 ' Hiển thị phân trang
                 For i = 1 To totalPages
                 %>
-                    <a href="?id_truyen=<%= id_truyen %>&page=<%= i %>#chapters"><%= i %></a>
+                    <a  href="#?id_truyen=<%= id_truyen %>&page=<%= i %>#chapters"><%= i %></a>
                 <%
                 Next
 
