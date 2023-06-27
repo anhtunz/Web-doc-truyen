@@ -1,0 +1,22 @@
+Đồ án
+-Đã làm được:
+ + Gdien chính
+ + Gdien đăng nhập đăng kí
+ + Phân  truyện theo thể loại
+ + Thêm sửa xóa truyện
+ + Profile user ( xem sửa)
+ + Quản lí người dùng, truyện cho admin + tác giả (xem sửa xóa)
+ + Truyện đang đọc dở
+ + Giao diện Trang truyện
+ + Comments user
+ + Giao diện chương truyện
+ + Tìm kiếm truyện
+ 
+-Chưa làm được:
++ Cập nhật thêm truyện, chương truyện vào DB
++ Chỉnh lại phần sửa,xóa Comments 
++ Duyệt truyện, chương
++ chỉnh dark mode chương truyện
++ CSS lại all GDien
++ Thêm sửa xóa Chương
++ Review Truyện
