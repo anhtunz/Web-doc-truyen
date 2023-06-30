@@ -12,7 +12,7 @@ commentId = Request.Form("comment_id")
 updatedComment = Request.Form("updated_comment")
 
 ' Cập nhật bình luận trong cơ sở dữ liệu
-conn.Execute("UPDATE binh_luan SET ndung_binh_luan = '" & updatedComment & "' WHERE id_binh_luan = " & commentId)
+conn.Execute("UPDATE binh_luan SET ndung_binh_luan = N'" & updatedComment & "' WHERE id_binh_luan = " & commentId)
 
 ' Đóng kết nối CSDL
 conn.Close

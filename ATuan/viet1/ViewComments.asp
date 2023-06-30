@@ -49,7 +49,7 @@
 }
 </style>
 <body>
-<div id="comment-section">
+<div id="comment-section" name= "binh-luan">
   <h5>Nhận xét của độc giả về truyện </h5>
   <%
   Dim email
@@ -87,6 +87,9 @@
       <div id="" style="display: none;">
         <input type="" name="idusername" placeholder="" value="<%= id_nguoi_bl %>"><br>
       </div>
+      <div id="" style="display: none;">
+        <input type="" name="id_chuong" placeholder="" value="<%= id_chuong %>"><br>
+      </div>
       <textarea name="comment" placeholder="Nhập bình luận của bạn"></textarea><br>
       <button type="submit">Gửi</button>
     </form>
@@ -99,6 +102,9 @@
       </div>
       <div id="" style="display: none;">
         <input type="" name="idusername" placeholder="" value="<%= id_nguoi_bl %>"><br>
+      </div>
+      <div id="" style="display: none;">
+        <input type="" name="id_chuong" placeholder="" value="<%= id_chuong %>"><br>
       </div>
       <textarea name="comment" placeholder="Nhập bình luận của bạn"></textarea><br>
           <b id="login-message" style="display: none; color: red;">Bạn cần đăng nhập để có thể gửi bình luận!</b>
@@ -151,7 +157,10 @@
           </small>
           <div class="acts ml-auto">
             <% If isLoggedIn And rs("id_nguoi_dung") = id_nguoi_bl Then %>
-              <a href="DeleteComments.asp?id_binh_luan=<%= rs("id_binh_luan") %>&id_truyen=<%= id_truyen %>" style="color: red;">Xóa</a>
+              <div id="" style="display: none;">
+                <input type="" name="id_chuong" placeholder="" value="<%= id_chuong %>"><br>
+              </div>
+              <a href="DeleteComments.asp?id_binh_luan=<%= rs("id_binh_luan") %>&id_truyen=<%= id_truyen %>&id_chuong=<%= id_chuong %>" style="color: red;">Xóa</a>
             <% End If %>
           </div>
         </div>

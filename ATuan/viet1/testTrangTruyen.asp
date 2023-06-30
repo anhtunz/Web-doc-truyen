@@ -91,7 +91,41 @@
   <!-- Phần content -->
   <div id="main" class="main" data-type="story" role="main" itemscope="" itemprop="mainContentOfPage">
     <div class="container">
-      <div class="main-col"> <span>
+      <div class="main-col"> 
+      <div class="breadcrumb">
+          <a href="index.asp">Trang Chủ</a> /
+          <%
+          ' Lấy giá trị id_truyen từ URL
+          id_truyen = Request.QueryString("id_truyen")
+          
+          ' Kết nối đến cơ sở dữ liệu
+          Dim conn
+          Set conn = Server.CreateObject("ADODB.Connection")
+          conn.Open "Provider=SQLOLEDB.1;Data Source=VIET\MSSQLSERVER01;Database=Web_doc_truyen;User Id=sa;Password=123456;"
+          
+          ' Truy vấn thông tin truyện từ cơ sở dữ liệu
+          Dim sql
+          sql = "SELECT * FROM truyen WHERE id_truyen = '" & id_truyen & "'"
+          Dim rs
+          Set rs = conn.Execute(sql)
+          
+          If Not rs.EOF Then
+              Dim ten_truyen
+              ten_truyen = rs("ten_truyen")
+              
+              ' Hiển thị nút "Tên truyện"
+              Response.Write "<a href='testTrangTruyen.asp?id_truyen=" & id_truyen & "'>" & ten_truyen & "</a>"
+          End If
+          
+          rs.Close
+          Set rs = Nothing
+          
+          ' Đóng kết nối
+          conn.Close
+          Set conn = Nothing
+          %>
+      </div>
+      <span>
           <div>
           <!-- Phần story -->
             <div id="story-detail" data-type="2">
