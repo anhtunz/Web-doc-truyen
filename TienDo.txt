@@ -20,3 +20,6 @@
 + Thêm sửa xóa Chương                                         Tuấn làm
 + Cập nhật thêm truyện, chương truyện vào DB
 + Review Truyện
+
+
+Đang lỗi là phải xóa hết chương truyện mới xóa được truyện đấy
