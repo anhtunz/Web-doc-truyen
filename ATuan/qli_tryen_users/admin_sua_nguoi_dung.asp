@@ -95,23 +95,36 @@
  <%
                     Response.CodePage = 65001
                     Response.CharSet = "UTF-8"
-                    Dim id_nguoi_dung
-                    id_nguoi_dung = Request.QueryString("id_nguoi_dung")
-                    ' Kết nối đến cơ sở dữ liệu
+                    Dim id_nguoi_sua
+                    id_nguoi_sua = Request.QueryString("id_nguoi_sua") 
+                    
                     Set conn = Server.CreateObject("ADODB.Connection")
                     conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456;"
                     ' Truy vấn dữ liệu từ bảng nguoi_dung với id_nguoi_dung = 1
-                    sql = "SELECT * FROM nguoi_dung WHERE id_nguoi_dung = "&id_nguoi_dung
+                    sql = "SELECT * FROM nguoi_dung WHERE id_nguoi_dung = "&id_nguoi_sua
+                    
                     Set rs = conn.Execute(sql)
+                    Dim idnguoidung,hoten,email,matkhau,vaitro,nghedanh,ngaysinh,gioitinh,gioithieu
+                    idnguoidung = rs("id_nguoi_dung")
+                    ho_ten = rs("ho_ten")
+                    email_sua = rs("email")
+                    
+                    matkhau = rs("mat_khau")
+                    vaitro = rs("vai_tro")
+                    nghedanh = rs("nghe_danh")
+                    ngaysinh = rs("ngay_sinh")
+                    gioitinh = rs("gioi_tinh")
+                    gioithieu = rs("gioi_thieu")
+
                     ' Kiểm tra xem có bản ghi nào hay không
                     If Not rs.EOF Then
                         ' Hiển thị thông tin người dùng
-                        If IsNull(rs("ngay_sinh")) Then
+                        If IsNull(ngaysinh) Then
                             ' Hiển thị "Chưa có"
                             ngay_sinh = "Chưa có"
                         Else
                             ' Định dạng lại ngày tháng năm
-                            ngay_sinh = FormatDateTime(rs("ngay_sinh"), 1) 
+                            ngay_sinh = FormatDateTime(ngaysinh, 1) 
                         End If
                     %>
 <body>
@@ -124,53 +137,52 @@
         </div>
         <div class="content">
             <div class="thongtin">
-            <h2>Chỉnh sửa người dùng <%= rs("ho_ten") %></h2>
+            <h2>Chỉnh sửa người dùng <%= ho_ten %></h2>
                 <div class="personal-info">
-                   
                     <div class="card-body">
                         <form method="post" action="/check/admin_checkupdateinfo.asp">
                             <div class="mb5" style="display: none;">
                                 <strong for="ID_Nguoi_dung">Id nguoi dung:</strong>
-                                <input type="text" class="ID_Nguoi_dung" name="ID_Nguoi_dung" value="<%= rs("id_nguoi_dung") %>" placeholder="">
+                                <input type="text" class="ID_Nguoi_dung" name="ID_Nguoi_dung" value="<%= idnguoidung %>" placeholder="">
                             </div>
                             <div class="mb5">
                                 <strong for="hoten">Họ tên:</strong>
-                                <input type="text" class="hoten" name="hoten" placeholder="Nhập họ tên" value="<%=rs("ho_ten")%>">
+                                <input type="text" class="hoten" name="hoten" placeholder="Nhập họ tên" value="<%=ho_ten%>">
                             </div>
                             <div class="mb5">
                                 <strong for="email">Email:</strong>
-                                <input class="text" type="text" name="email" value="<%=rs("email")%>" aria-label="readonly input example">
+                                <input class="text" type="text" name="email" value="<%=email_sua%>" aria-label="readonly input example">
                             </div>
                             <div class="mb5">
                                 <strong for="matkhau">Mật khẩu:</strong>
-                                <input type="text" class="text" name="matkhau" value="<%=rs("mat_khau")%>" placeholder="Định dạng yy-mm-dd">
+                                <input type="text" class="text" name="matkhau" value="<%=matkhau%>" placeholder="Định dạng yy-mm-dd">
                             </div>
                             <div class="mb5" style="float:left;">
                                 <strong for="vaitro" style="float:left;">Vai trò:</strong>
                                 <select style="float:left;" class="form-select" name="vaitro" aria-label="Default select example">
-                                    <option <% If rs("vai_tro") = "1" Then Response.Write("selected") %> value="1">Admin</option>
-                                    <option <% If rs("vai_tro") = "2" Then Response.Write("selected") %> value="2">Tác giả</option>
-                                    <option <% If rs("vai_tro") = "3" Then Response.Write("selected") %> value="3">Người dùng</option>
+                                    <option <% If vaitro = "1" Then Response.Write("selected") %> value="1">Admin</option>
+                                    <option <% If vaitro = "2" Then Response.Write("selected") %> value="2">Tác giả</option>
+                                    <option <% If vaitro = "3" Then Response.Write("selected") %> value="3">Người dùng</option>
                                 </select>
                             </div>
                             <div class="mb5">
                                 <strong for="nghedanh">Nghệ danh:</strong>
-                                <input type="text" class="text" name="nghedanh" value="<%=rs("nghe_danh")%>" placeholder="Nhập nghệ danh">
+                                <input type="text" class="text" name="nghedanh" value="<%=nghedanh%>" placeholder="Nhập nghệ danh">
                             </div>
                             <div class="mb5">
                                 <strong for="ngaysinh">Ngày sinh:</strong>
-                                <input type="date" class="text" name="ngaysinh" value="<%=rs("ngay_sinh")%>" placeholder="Định dạng yy-mm-dd">
+                                <input type="date" class="text" name="ngaysinh" value="<%=ngaysinh%>" placeholder="Định dạng yy-mm-dd">
                             </div>
                             <div class="form-group mt-2 mb5">
                                 <strong for="nghedanh">Giới tính:</strong>
                                 <select class="custom-select" name="gioitinh"> 
-                                    <option <% If rs("gioi_tinh") = "Nam" Then Response.Write("selected") %> value="Nam">Nam</option>
-                                    <option <% If rs("gioi_tinh") = "Nu" Then Response.Write("selected") %> value="Nu">Nữ</option>
+                                    <option <% If gioitinh = "Nam" Then Response.Write("selected") %> value="Nam">Nam</option>
+                                    <option <% If gioitinh = "Nu" Then Response.Write("selected") %> value="Nu">Nữ</option>
                                 </select>
                             </div>
                             <div class="mb-3 mb5 text-center" style="display:contents;">
                                 <strong for="gioithieu" class="form-label" >Giới thiệu:</strong>
-                                <textarea class="text" id="gioithieu" name="gioithieu" rows="5" placeholder="Giới thiệu bản thân bạn" style="width: 200px;"><%=rs("gioi_thieu")%></textarea></div>  
+                                <textarea class="text" id="gioithieu" name="gioithieu" rows="5" placeholder="Giới thiệu bản thân bạn" style="width: 200px;"><%=gioithieu%></textarea></div>  
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary" value="Sửa thông tin">Lưu thông tin</button>
                                 <a type="button" class="btn btn-default float-right" href="admin_qli_nguoi_dung.asp?id_nguoi_dung=<%= id_nguoi_dung %>">Hủy bỏ</a>
@@ -182,7 +194,6 @@
                         ' Không tìm thấy người dùng
                         Response.Write "Không tìm thấy thông tin người dùng."
                     End If
-
                     rs.Close
                     Set rs = Nothing
                     conn.Close

@@ -105,7 +105,7 @@
             cmdPrep.ActiveConnection = connDB
             cmdPrep.CommandType = 1
             cmdPrep.Prepared = True
-            cmdPrep.CommandText = "SELECT truyen.id_truyen, truyen.ten_truyen, nguoi_dung.nghe_danh, truyen.so_chuong FROM truyen INNER JOIN nguoi_dung ON truyen.id_nguoi_dung = nguoi_dung.id_nguoi_dung ORDER BY truyen.id_truyen OFFSET ? ROWS FETCH NEXT ? ROWS ONLY"
+            cmdPrep.CommandText = "SELECT truyen.id_truyen, truyen.ten_truyen, nguoi_dung.nghe_danh, truyen.so_chuong FROM truyen INNER JOIN nguoi_dung ON truyen.id_nguoi_dung = nguoi_dung.id_nguoi_dung WHERE truyen.duyet = 1 ORDER BY truyen.id_truyen OFFSET ? ROWS FETCH NEXT ? ROWS ONLY"
             cmdPrep.parameters.Append cmdPrep.createParameter("offset",3,1, ,offset)
             cmdPrep.parameters.Append cmdPrep.createParameter("limit",3,1, , limit)
             Set Result = cmdPrep.execute

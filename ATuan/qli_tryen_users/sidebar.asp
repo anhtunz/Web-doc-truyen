@@ -54,7 +54,7 @@
                       </li>
                       
                       <li>
-                          <a href="#" class="nav-link link-dark">
+                          <a href="admin_duyet_truyen.asp?id_nguoi_dung=<%= rs("id_nguoi_dung") %>" class="nav-link link-dark">
                               <span class="material-symbols-outlined">
                                 check
                               </span>
@@ -62,11 +62,8 @@
                           </a>
                       </li>
                   <%
-                  End If
+                    End If
                   %>
-
-
-                  
                 </ul>
                 <hr>
                 <div class="dropdown">

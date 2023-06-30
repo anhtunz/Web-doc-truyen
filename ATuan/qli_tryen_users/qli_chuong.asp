@@ -129,8 +129,8 @@
         
         <div class="content">
             <div class="nutthem" style="margin-bottom: 40px;">
-                <button type="button" class="btn btn-primary btn-lg" >THÊM CHƯƠNG MỚI</button>
-                // onclick="redirectToTruyenDetail( )"
+                <a href="them_chuong.asp?id_truyen=<%= id_truyen %>" type="button" class="btn btn-primary btn-lg" >THÊM CHƯƠNG MỚI</a>
+                
             </div>
           <div class="dan">
             <h2>DANH SÁCH CHƯƠNG</h2>
@@ -152,7 +152,7 @@
                   cmdPrep.ActiveConnection = connDB
                   cmdPrep.CommandType = 1
                   cmdPrep.Prepared = True
-                  cmdPrep.CommandText = "SELECT ten_chuong, ndung_chuong, duyet " & _
+                  cmdPrep.CommandText = "SELECT id_chuong, ten_chuong, ndung_chuong, duyet " & _
                                         "FROM chuong " & _
                                         "WHERE id_truyen = " & id_truyen
                   cmdPrep.parameters.Append cmdPrep.createParameter("offset",3,1, ,offset)
@@ -171,8 +171,8 @@
                     <% end if %>
                   </td>
                   <td class="text-center">
-                    <button type="button" class="btn btn-primary">Chỉnh sửa</button>
-                    <button type="button" class="btn btn-danger">Xóa</button>
+                    <a type="button" href="sua_chuong.asp?id_chuong=<%= Result("id_chuong") %>&id_truyen=<%= id_truyen %>" class="btn btn-primary">Chỉnh sửa</a>
+                    <a type="button" href="xoa_chuong_base.asp?id_chuong=<%= Result("id_chuong") %>&id_truyen=<%= id_truyen %>" class="btn btn-danger">Xóa</a>
                   </td>
                 </tr>
               </tbody>

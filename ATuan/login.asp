@@ -373,7 +373,7 @@
                                     <div class="center-wrap">
                                         <div class="section text-center">
                                             <h4 class="mb-4 pb-3">Đăng nhập</h4>
-                                           <form method="post" action="check/checklog.asp">
+                                            <form method="post" action="check/checklog.asp">
                                                 <div class="form-group">
                                                     <input type="email" name="loginemail" class="form-style" placeholder="Nhập email" id="loginemail" autocomplete="off">
                                                     <i class="input-icon uil uil-at"></i>
@@ -463,7 +463,6 @@
             toggleIcon.classList.add('uil-eye');
         }
     }
-
     function validateForm() {
         var signname = document.getElementById("signname").value;
         var signemail = document.getElementById("signemail").value;

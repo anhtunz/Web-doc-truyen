@@ -22,7 +22,7 @@
 
     offset = (Clng(page) * Clng(limit)) - Clng(limit)
 
-    strSQL = "SELECT COUNT(id_truyen) AS count FROM truyen"
+    strSQL = "SELECT COUNT(id_truyen) AS count FROM truyen where duyet =1"
     connDB.Open()
     Set CountResult = connDB.execute(strSQL)
 
