@@ -13,10 +13,10 @@
  + Tìm kiếm truyện
  
 -Chưa làm được:
-+ Cập nhật thêm truyện, chương truyện vào DB
 + Chỉnh lại phần sửa,xóa Comments 
-+ Duyệt truyện, chương
++ Duyệt truyện, chương                                        Tuấn làm
 + chỉnh dark mode chương truyện
 + CSS lại all GDien
-+ Thêm sửa xóa Chương
++ Thêm sửa xóa Chương                                         Tuấn làm
++ Cập nhật thêm truyện, chương truyện vào DB
 + Review Truyện
