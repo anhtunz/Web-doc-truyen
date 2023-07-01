@@ -19,7 +19,7 @@
 + CSS lại all GDien
 + Thêm sửa xóa Chương                                         Tuấn làm    DONE
 + Cập nhật thêm truyện, chương truyện vào DB
-+ Review Truyện  
++ Review Truyện                                               Việt DONE
 + Các thông báo khi thêm sửa xóa các phần xong                Bổ sung
 + Cập nhật thêm chức năng đổi mật khẩu		       Tuấn làm	Đang hoàn thiện
 
