@@ -13,7 +13,7 @@
  + Tìm kiếm truyện
  
 -Chưa làm được:
-+ Chỉnh lại phần sửa,xóa Comments 
++ Chỉnh lại phần sửa,xóa Comments                             Việt        DOING
 + Duyệt truyện, chương                                        Tuấn làm    DONE
 + chỉnh dark mode chương truyện
 + CSS lại all GDien
