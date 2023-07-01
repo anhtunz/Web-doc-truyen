@@ -15,8 +15,8 @@
 -Chưa làm được:
 + Chỉnh lại phần sửa,xóa Comments                             Việt        DOING
 + Duyệt truyện, chương                                        Tuấn làm    DONE
-+ chỉnh dark mode chương truyện
-+ CSS lại all GDien
++ chỉnh dark mode chương truyện                               Làm sau cùng
++ CSS lại all GDien                                           Làm sau cùng
 + Thêm sửa xóa Chương                                         Tuấn làm    DONE
 + Cập nhật thêm truyện, chương truyện vào DB
 + Review Truyện                                               Việt DONE
