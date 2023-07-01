@@ -39,6 +39,6 @@ Response.CharSet = "UTF-8"
         Response.Write("setTimeout(function() {")
         Response.Write("alert('Sửa thông tin người dùng thành công.');")
         Response.Write("window.location.href = '/qli_tryen_users/info.asp?id_nguoi_dung=" & ID_Nguoi_dung & "';")  ' Thêm dấu nháy đơn đóng vào cuối dòng này
-        Response.Write("}, 1500);")
+        Response.Write("}, 1000);")
     Response.Write("</script>")
 %>

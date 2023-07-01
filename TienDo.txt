@@ -21,6 +21,6 @@
 + Cập nhật thêm truyện, chương truyện vào DB
 + Review Truyện  
 + Các thông báo khi thêm sửa xóa các phần xong                Bổ sung
-
++ Cập nhật thêm chức năng đổi mật khẩu		       Tuấn làm	Đang hoàn thiện
 
 Đang lỗi là phải xóa hết chương truyện mới xóa được truyện đấy

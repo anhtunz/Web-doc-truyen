@@ -189,7 +189,22 @@
                                     <td class="text-center"><%=Result("ten_chuong")%></td>
                                     <td class="text-center"><%=Result("ndung_chuong")%></td>
                                     <td class="text-center">
-                                        <a type="button" href="admin_duyet_chuong.asp?id_truyen=<%=Result("id_truyen")%>&id_nguoi_dung=<%= id_nguoi_dung%>&id_chuong=<%=Result("id_chuong")%>" class="btn btn-primary" >Xem chi tiết</a>
+                                    <form method="post" action="admin_xem_chi_tiet_chuong.asp">
+                                        <div  style="display: none;">
+                                            <input type="text" class="idchuong" name="idchuong" value="<%=Result("id_chuong")%>" placeholder="">
+                                        </div>
+                                        <div  style="display: none;">
+                                            <input type="text" class="idtruyen" name="idtruyen" value="<%=Result("id_truyen")%>" placeholder="">
+                                        </div>
+                                        <div  style="display: none;">
+                                            <input type="text" class="idnguoidung" name="idnguoidung" value="<%= id_nguoi_dung%>" placeholder="">
+                                        </div>
+                                         <div  style="display: none;">
+                                            <input type="text" class="page" name="page" value="<%= page %>" placeholder="">
+                                        </div>
+                                        <button type="submit"  class="btn btn-primary" >Xem chi tiết</button>
+                                    </form>
+                                        
                                     </td>
                                     <td class="text-center">
                                         <a type="button" href="admin_duyet_chuong_base.asp?id_truyen=<%=id_truyen%>&id_nguoi_dung=<%= id_nguoi_dung%>&page=<%= page %>&id_chuong=<%=Result("id_chuong")%>" class="btn btn-primary"> Duyệt</a>

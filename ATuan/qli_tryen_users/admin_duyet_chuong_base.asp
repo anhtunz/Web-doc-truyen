@@ -9,7 +9,13 @@ id_nguoi_dung = Request.QueryString("id_nguoi_dung")
 id_truyen = Request.QueryString("id_truyen")
 id_chuong = Request.QueryString("id_chuong")
 
-
+If Request.ServerVariables("REQUEST_METHOD") = "POST" Then
+    ' Dữ liệu được gửi từ form
+    id_nguoi_dung = Request.Form("id_nguoi_dung")
+    id_truyen = Request.Form("id_truyen")
+    id_chuong = Request.Form("id_chuong")
+    page = Request.Form("page")
+End If
 
 Dim strSQL
     Set conn = Server.CreateObject("ADODB.Connection")
