@@ -45,7 +45,7 @@
                   <div class="slider">
                   <%
                     Set conn = Server.CreateObject("ADODB.Connection")
-                    conn.Open "Provider=SQLOLEDB.1;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456;"
+                    conn.Open "Provider=SQLOLEDB.1;Data Source=DESKTOP-4N36RC0;Database=Web_doc_truyen;User Id=lam1;Password=123456789;"
                     sql = "SELECT TOP 5 * FROM truyen"
                     Set rs = conn.Execute(sql)
                   %>

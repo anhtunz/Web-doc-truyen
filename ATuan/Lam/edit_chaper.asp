@@ -6,6 +6,10 @@
 Dim chapterID
 chapterID = Request.QueryString("id_chuong")
 
+' Lấy giá trị id_truyen từ URL hoặc biểu mẫu
+Dim storyID
+storyID = Request.QueryString("id_truyen")
+
 ' Kiểm tra xem có yêu cầu chỉnh sửa hay không
 Dim isEditMode
 isEditMode = (Request.Form("edit_chapter") = "1")
@@ -24,7 +28,7 @@ If isEditMode Then
         conn.Execute(strSQL)
 
         ' Chuyển hướng người dùng đến trang hiển thị chương đã chỉnh sửa
-        Response.Redirect "view_chapter.asp?id_chuong=" & chapterID
+        Response.Redirect "doc.asp?id_chuong=" & chapterID & "&id_truyen=" & storyID
     Else
         Response.Write "Id chương không hợp lệ."
     End If
@@ -53,7 +57,7 @@ Else
         <!-- Phần chỉnh sửa chương -->
         <div class="edit-section">
             <h2>Chỉnh sửa chương</h2>
-            <form action="view_chapter.asp?id_chuong=<%= chapterID %>" method="post">
+            <form action="doc.asp?id_chuong=<%= chapterID %>&id_truyen=<%= storyID %>" method="post">
                 <!-- Các trường form để chỉnh sửa chương -->
                 <input type="hidden" name="id_chuong" value="<%= chapterID %>" />
                 <input type="text" name="ten_chuong" value="<%= chapterTitle %>" placeholder="Tiêu đề chương" />

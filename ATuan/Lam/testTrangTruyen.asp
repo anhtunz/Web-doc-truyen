@@ -107,7 +107,7 @@
                 If id_truyen <> "" Then
                     ' Tạo đối tượng kết nối ADO
                     Set conn = Server.CreateObject("ADODB.Connection")
-                     conn.Open "Provider=SQLOLEDB.1;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456"
+                     conn.Open "Provider=SQLOLEDB.1;Data Source=DESKTOP-4N36RC0;Database=Web_doc_truyen;User Id=lam1;Password=123456789;"
           
                     ' Tạo câu truy vấn SQL để lấy thông tin truyện với id_truyen
                     sql = "SELECT truyen.*, nguoi_dung.ho_ten, the_loai.ten_the_loai " & _
@@ -181,7 +181,7 @@
             <%
               ' Kết nối CSDL và thực hiện truy vấn
               Set conn = Server.CreateObject("ADODB.Connection")
-               conn.Open "Provider=SQLOLEDB.1;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456"
+               conn.Open "Provider=SQLOLEDB.1;Data Source=DESKTOP-4N36RC0;Database=Web_doc_truyen;User Id=lam1;Password=123456789;"
           
               ' Lấy tên chương của 5 chương mới nhất dựa trên id_truyen
               sql = "SELECT TOP 3 ten_chuong FROM chuong WHERE chuong.id_truyen = " & id_truyen & " ORDER BY id_chuong DESC"
@@ -216,7 +216,7 @@
 
                 ' Kết nối CSDL và thực hiện truy vấn
                 Set conn = Server.CreateObject("ADODB.Connection")
-                 conn.Open "Provider=SQLOLEDB.1;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456"
+                 conn.Open "Provider=SQLOLEDB.1;Data Source=DESKTOP-4N36RC0;Database=Web_doc_truyen;User Id=lam1;Password=123456789;"
           
                 ' Lấy tổng số lượng chương
                 sqlCount = "SELECT COUNT(*) AS TotalChapters FROM chuong WHERE chuong.id_truyen = " & id_truyen
@@ -273,7 +273,7 @@
         </div>
         <%
           Set conn = Server.CreateObject("ADODB.Connection")
-          conn.Open "Provider=SQLOLEDB.1;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456"
+          conn.Open "Provider=SQLOLEDB.1;Data Source=DESKTOP-4N36RC0;Database=Web_doc_truyen;User Id=lam1;Password=123456789;"
           sql = "SELECT *  FROM the_loai "
           Set rs = conn.Execute(sql)
           ' Duyệt qua từng bản ghi trong kết quả truy vấn

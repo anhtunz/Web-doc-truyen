@@ -9,7 +9,7 @@
     <link rel="stylesheet" href=  "style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
-
+ 
     </head>
 <style>
    .context {
@@ -109,6 +109,20 @@
     margin-right: 10px;
     cursor: pointer;
 }
+.dark-mode {
+    background-color: #222;
+    color: #fff;
+}
+
+.dark-mode button {
+    background-color: #444;
+    color: #fff;
+}
+#dark-mode-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
 
 </style>
 </div>
@@ -119,7 +133,7 @@
    
 Dim conn
 Set conn = Server.CreateObject("ADODB.Connection")
-conn.Open "Provider=SQLOLEDB;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456;"
+conn.Open "Provider=SQLOLEDB.1;Data Source=DESKTOP-4N36RC0;Database=Web_doc_truyen;User Id=lam1;Password=123456789;"
 %>
 
 <%
@@ -141,7 +155,7 @@ conn.Open "Provider=SQLOLEDB;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truye
     strSQLTitle = "SELECT t.ten_truyen, c.ten_chuong, t.id_truyen FROM truyen AS t INNER JOIN chuong AS c ON t.id_truyen = c.id_truyen WHERE t.id_truyen = " & id_truyen & " AND c.id_chuong = " & id_chuong
     
     Set conn = Server.CreateObject("ADODB.Connection")
-    conn.Open "Provider=SQLOLEDB;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456;"
+    conn.Open "Provider=SQLOLEDB.1;Data Source=DESKTOP-4N36RC0;Database=Web_doc_truyen;User Id=lam1;Password=123456789;"
     
     Set rs = conn.Execute(strSQLTitle)
     
@@ -158,13 +172,50 @@ conn.Open "Provider=SQLOLEDB;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truye
         Response.Write "<a href=""" & trang_truyen_link & """>" & ten_truyen & "</a>/"
         Response.Write " " & ten_chuong
     End If
-    
+
     rs.Close
     conn.Close
     Set rs = Nothing
     Set conn = Nothing
 End If
    %>
+<button id="dark-mode-toggle" onclick="toggleDarkMode()">Chế độ sáng/tối</button>
+<script>
+    // Hàm kiểm tra chế độ sáng/tối và cập nhật giao diện
+    function setTheme() {
+        var isDarkMode = localStorage.getItem("darkMode") === "true";
+        var body = document.body;
+        body.classList.toggle("dark-mode", isDarkMode);
+    }
+
+    // Hàm chuyển đổi chế độ sáng/tối và lưu trạng thái vào localStorage
+    function toggleDarkMode() {
+        var body = document.body;
+        var isDarkMode = body.classList.toggle("dark-mode");
+        localStorage.setItem("darkMode", isDarkMode);
+    }
+
+    // Gọi hàm setTheme() khi trang được tải
+    setTheme();
+
+    // Xử lý sự kiện cuộn trang
+    window.addEventListener("scroll", function() {
+        var darkModeToggle = document.getElementById("dark-mode-toggle");
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        darkModeToggle.style.transform = "translateY(" + scrollTop + "px)";
+    });
+<input type="color" id="background-color-input" onchange="changeBackgroundColor()">
+
+function changeBackgroundColor() {
+  var colorInput = document.getElementById("background-color-input");
+  var selectedColor = colorInput.value;
+
+  // Áp dụng màu nền được chọn vào trang web
+  document.body.style.backgroundColor = selectedColor;
+}
+</script>
+
+
     </div>
 
     <div class="title">
@@ -177,7 +228,7 @@ If id_truyen <> "" And id_chuong <> "" Then
              "WHERE t.id_truyen = " & id_truyen & " AND c.id_chuong = " & id_chuong
     
     Set conn = Server.CreateObject("ADODB.Connection")
-    conn.Open "Provider=SQLOLEDB;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456;"
+    conn.Open "Provider=SQLOLEDB.1;Data Source=DESKTOP-4N36RC0;Database=Web_doc_truyen;User Id=lam1;Password=123456789;"
     
     Set rs = conn.Execute(strSQLeee)
     
@@ -210,7 +261,7 @@ If id_truyen <> "" Then
     Dim strSQLPrev
     strSQLPrev = "SELECT TOP 1 * FROM chuong WHERE id_truyen = " & id_truyen & " AND id_chuong < " & id_chuong & " ORDER BY id_chuong DESC"
     Set conn = Server.CreateObject("ADODB.Connection")
-    conn.Open "Provider=SQLOLEDB;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456;"
+    conn.Open "Provider=SQLOLEDB.1;Data Source=DESKTOP-4N36RC0;Database=Web_doc_truyen;User Id=lam1;Password=123456789;"
 
     Set rs = conn.Execute(strSQLPrev)
 
@@ -231,7 +282,7 @@ If id_truyen <> "" Then
     Dim strSQLNext
     strSQLNext = "SELECT TOP 1 * FROM chuong WHERE id_truyen = " & id_truyen & " AND id_chuong > " & id_chuong & " ORDER BY id_chuong ASC"
     Set conn = Server.CreateObject("ADODB.Connection")
-    conn.Open "Provider=SQLOLEDB;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456;"
+    conn.Open "Provider=SQLOLEDB.1;Data Source=DESKTOP-4N36RC0;Database=Web_doc_truyen;User Id=lam1;Password=123456789;"
 
     Set rs = conn.Execute(strSQLNext)
 
@@ -284,7 +335,7 @@ If id_truyen <> "" Then
     Dim strSQLPrevi
     strSQLPrevi = "SELECT TOP 1 * FROM chuong WHERE id_truyen = " & id_truyen & " AND id_chuong < " & id_chuong & " ORDER BY id_chuong DESC"
     Set conn = Server.CreateObject("ADODB.Connection")
-    conn.Open "Provider=SQLOLEDB;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456;"
+    conn.Open "Provider=SQLOLEDB.1;Data Source=DESKTOP-4N36RC0;Database=Web_doc_truyen;User Id=lam1;Password=123456789;"
 
     Set rs = conn.Execute(strSQLPrevi)
 
@@ -304,7 +355,7 @@ If id_truyen <> "" Then
     Dim strSQLNextChapter
     strSQLNextChapter = "SELECT TOP 1 * FROM chuong WHERE id_truyen = " & id_truyen & " AND id_chuong > " & id_chuong & " ORDER BY id_chuong ASC"
     Set conn = Server.CreateObject("ADODB.Connection")
-    conn.Open "Provider=SQLOLEDB;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456;"
+    conn.Open "Provider=SQLOLEDB.1;Data Source=DESKTOP-4N36RC0;Database=Web_doc_truyen;User Id=lam1;Password=123456789;"
 
     Set rs = conn.Execute(strSQLNextChapter)
 

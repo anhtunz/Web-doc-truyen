@@ -114,7 +114,7 @@
             <div class="row mt-4">
               <%
                 Set conn = Server.CreateObject("ADODB.Connection")
-                conn.Open "Provider=SQLOLEDB.1;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456;"
+                conn.Open "Provider=SQLOLEDB.1;Data Source=DESKTOP-4N36RC0;Database=Web_doc_truyen;User Id=lam1;Password=123456789;"
                 sql = "SELECT * FROM truyen WHERE id_truyen BETWEEN 4 AND 7"
                 Set rs = conn.Execute(sql)
                 ' Duyệt qua từng bản ghi trong kết quả truy vấn
@@ -142,7 +142,7 @@
             <div class="row mt-4">
               <%         
                 Set conn = Server.CreateObject("ADODB.Connection")
-                conn.Open "Provider=SQLOLEDB.1;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456;"
+                conn.Open "Provider=SQLOLEDB.1;Data Source=DESKTOP-4N36RC0;Database=Web_doc_truyen;User Id=lam1;Password=123456789;"
                 sql = "SELECT * FROM truyen WHERE id_truyen BETWEEN 8 AND 11"
                 Set rs = conn.Execute(sql)
                 ' Duyệt qua từng bản ghi trong kết quả truy vấn
@@ -174,7 +174,7 @@
             <h4>TRUYỆN MỚI CẬP NHẬT</h4>
             <%
               Set conn = Server.CreateObject("ADODB.Connection")
-              conn.Open "Provider=SQLOLEDB.1;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456;"
+              conn.Open "Provider=SQLOLEDB.1;Data Source=DESKTOP-4N36RC0;Database=Web_doc_truyen;User Id=lam1;Password=123456789;"
               sql = "SELECT TOP 15 chuong.id_chuong, chuong.ten_chuong, truyen.ten_truyen FROM chuong INNER JOIN truyen ON chuong.id_truyen = truyen.id_truyen ORDER BY chuong.id_chuong DESC"
               Set rs = conn.Execute(sql)
               ' Duyệt qua từng bản ghi trong kết quả truy vấn
@@ -207,7 +207,7 @@
               <div class="row mt-4">
                 <%
                   Set conn = Server.CreateObject("ADODB.Connection")
-                  conn.Open "Provider=SQLOLEDB.1;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456;"
+                  conn.Open "Provider=SQLOLEDB.1;Data Source=DESKTOP-4N36RC0;Database=Web_doc_truyen;User Id=lam1;Password=123456789;"
                   sql = "SELECT TOP 4 * FROM truyen WHERE tinh_trang = 'Full' ORDER BY id_truyen"
                   Set rs = conn.Execute(sql)
                   ' Duyệt qua từng bản ghi trong kết quả truy vấn
@@ -235,7 +235,7 @@
               <div class="row mt-4">
                 <%
                   Set conn = Server.CreateObject("ADODB.Connection")
-                  conn.Open "Provider=SQLOLEDB.1;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456;"
+                  conn.Open "Provider=SQLOLEDB.1;Data Source=DESKTOP-4N36RC0;Database=Web_doc_truyen;User Id=lam1;Password=123456789;"
                   sql = "SELECT TOP 4 * FROM truyen WHERE tinh_trang = 'Full' AND id_truyen > 18"
                   Set rs = conn.Execute(sql)
                   ' Duyệt qua từng bản ghi trong kết quả truy vấn
@@ -272,7 +272,7 @@
         </div>
         <%
           Set conn = Server.CreateObject("ADODB.Connection")
-          conn.Open "Provider=SQLOLEDB.1;Data Source=LAPTOP-LAM\MAYAO;Database=Web_doc_truyen;User Id=sa;Password=123456;"
+          conn.Open "Provider=SQLOLEDB.1;Data Source=DESKTOP-4N36RC0;Database=Web_doc_truyen;User Id=lam1;Password=123456789;"
           sql = "SELECT *  FROM the_loai "
           Set rs = conn.Execute(sql)
           ' Duyệt qua từng bản ghi trong kết quả truy vấn
