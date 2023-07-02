@@ -9,7 +9,8 @@
     <link rel="stylesheet" href=  "style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
- 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     </head>
 <style>
    .context {
@@ -123,6 +124,24 @@
     bottom: 20px;
     right: 20px;
 }
+.line-icon-btn {
+  font-family: 'Material Symbols Outlined', sans-serif;
+  font-size: 24px;
+  vertical-align: middle;
+}
+
+.line-icon {
+  font-size: 48px; 
+  fill: currentColor;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
 
 </style>
 </div>
@@ -180,41 +199,31 @@ conn.Open "Provider=SQLOLEDB.1;Data Source=DESKTOP-4N36RC0;Database=Web_doc_truy
     Set conn = Nothing
 End If
    %>
-<button id="dark-mode-toggle" onclick="toggleDarkMode()">Chế độ sáng/tối</button>
+   <span id="dark-mode-toggle" class="material-symbols-outlined line-icon-btn" onclick="toggleDarkMode()">dark_mode</span>
+
 <script>
-    // Hàm kiểm tra chế độ sáng/tối và cập nhật giao diện
-    function setTheme() {
-        var isDarkMode = localStorage.getItem("darkMode") === "true";
-        var body = document.body;
-        body.classList.toggle("dark-mode", isDarkMode);
-    }
-
-    // Hàm chuyển đổi chế độ sáng/tối và lưu trạng thái vào localStorage
-    function toggleDarkMode() {
-        var body = document.body;
-        var isDarkMode = body.classList.toggle("dark-mode");
-        localStorage.setItem("darkMode", isDarkMode);
-    }
-
-    // Gọi hàm setTheme() khi trang được tải
-    setTheme();
-
-    // Xử lý sự kiện cuộn trang
-    window.addEventListener("scroll", function() {
-        var darkModeToggle = document.getElementById("dark-mode-toggle");
-        var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        darkModeToggle.style.transform = "translateY(" + scrollTop + "px)";
-    });
-<input type="color" id="background-color-input" onchange="changeBackgroundColor()">
-
-function changeBackgroundColor() {
-  var colorInput = document.getElementById("background-color-input");
-  var selectedColor = colorInput.value;
-
-  // Áp dụng màu nền được chọn vào trang web
-  document.body.style.backgroundColor = selectedColor;
+   // Hàm kiểm tra chế độ sáng/tối và cập nhật giao diện
+function setTheme() {
+    var isDarkMode = localStorage.getItem("darkMode") === "true";
+    var body = document.body;
+    body.classList.toggle("dark-mode", isDarkMode);
 }
-</script>
+
+// Hàm chuyển đổi chế độ sáng/tối và lưu trạng thái vào localStorage
+function toggleDarkMode() {
+    var body = document.body;
+    var isDarkMode = body.classList.toggle("dark-mode");
+    localStorage.setItem("darkMode", isDarkMode);
+    var darkModeToggle = document.getElementById("dark-mode-toggle");
+    darkModeToggle.textContent = isDarkMode ? "light_mode" : "dark_mode";
+}
+
+// Gọi hàm setTheme() khi trang được tải
+setTheme();
+
+
+
+    </script>
 
 
     </div>
@@ -373,10 +382,11 @@ If id_truyen <> "" Then
 End If
 %>
   </div>
+   <div id="comment-section">
+ <!-- #include file="ViewComments.asp" -->
 </div>
   </div>
   <%
-  rs.Close
 Set rs = Nothing
 %>
 
