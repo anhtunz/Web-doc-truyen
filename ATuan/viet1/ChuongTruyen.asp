@@ -1,7 +1,6 @@
 <!-- #include file="connect.asp" -->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,10 +10,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
-
-</head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <style>
-    .context {
+.context {
         margin-top: 50px;
         border: 1px solid #a5a2a2d1;
         padding: 20px;
@@ -36,11 +34,45 @@
         font-family: inherit;
         margin-bottom: 10px;
     }
-</style>
-</div>
+    .dark-mode {
+    background-color: #222;
+    color: #fff;
+    }
 
+    .dark-mode button {
+        background-color: #444;
+        color: #fff;
+    }
+    #dark-mode-toggle {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+    }
+    .line-icon-btn {
+    font-family: 'Material Symbols Outlined', sans-serif;
+    font-size: 24px;
+    vertical-align: middle;
+    }
+
+    .line-icon {
+    font-size: 48px; 
+    fill: currentColor;
+    }
+
+    .material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
+    }
+</style>
+</head>
 <body>
-    <% Dim id_chuong 
+  <!-- Phần navbar -->
+    <!-- #include file="navbar1.asp" -->
+    
+  <% Dim id_chuong 
     id_chuong=Request.QueryString("id_chuong") 
     Dim conn 
     Set conn=Server.CreateObject("ADODB.Connection")
@@ -56,6 +88,28 @@
  %>
  
    <div class="context">
+    <span id="dark-mode-toggle" class="material-symbols-outlined line-icon-btn" onclick="toggleDarkMode()">dark_mode</span>
+
+    <script>
+    // Hàm kiểm tra chế độ sáng/tối và cập nhật giao diện
+        function setTheme() {
+            var isDarkMode = localStorage.getItem("darkMode") === "true";
+            var body = document.body;
+            body.classList.toggle("dark-mode", isDarkMode);
+        }
+
+        // Hàm chuyển đổi chế độ sáng/tối và lưu trạng thái vào localStorage
+        function toggleDarkMode() {
+            var body = document.body;
+            var isDarkMode = body.classList.toggle("dark-mode");
+            localStorage.setItem("darkMode", isDarkMode);
+            var darkModeToggle = document.getElementById("dark-mode-toggle");
+            darkModeToggle.textContent = isDarkMode ? "light_mode" : "dark_mode";
+        }
+
+        // Gọi hàm setTheme() khi trang được tải
+        setTheme();
+    </script>
      <div class="breadcrumb">
      <a href="index.asp"><b> Trang chủ </b> <a>/
    <%
@@ -75,7 +129,7 @@
  
          ten_truyen = rs("ten_truyen")
          ten_chuong = rs("ten_chuong")
-         trang_truyen_link = "testTrangTruyen.asp?id_truyen=" & rs("id_truyen")
+         trang_truyen_link = "TrangTruyen.asp?id_truyen=" & rs("id_truyen")
  
          ' Hiển thị thông tin ten_truyen và ten_chuong 
             Response.Write "<a href=""" & trang_truyen_link & """>" &ten_truyen & "</a>/" 
@@ -132,14 +186,14 @@
                         If Not rs.EOF Then 
                         ' Nếu tồn tại chương trước đó, hiển thị nút quay lại chương
               %>
-                  <button class="buttons">   <a href="doc.asp?id_chuong=<%= rs("id_chuong") %>&id_truyen=<%= id_truyen %>"> <b>< Trước </b> </a>  </button>
+                  <button class="buttons">   <a href="ChuongTruyen.asp?id_chuong=<%= rs("id_chuong") %>&id_truyen=<%= id_truyen %>"> <b>< Trước </b> </a>  </button>
               <%
                   End If
               End If
               %>
               
                   <button>
-              <a href="testTrangTruyen.asp?id_truyen=<%= id_truyen %>"><b> Mục lục </b></a></button>
+              <a href="TrangTruyen.asp?id_truyen=<%= id_truyen %>"><b> Mục lục </b></a></button>
               <%
               If id_truyen <> "" Then
                   ' Kiểm tra xem chương đó có phải là chương cuối cùng hay không Dim strSQLNext
@@ -151,7 +205,7 @@
                                       ' Nếu tồn tại chương tiếp theo, hiển thị nút chuyển chương tiếp
               %>
                     <button class="buttons">
-                    <a href="doc.asp?id_chuong=<%= rs("id_chuong") %>&id_truyen=<%= id_truyen %>"> <b> Sau ></b> </a>    
+                    <a href="ChuongTruyen.asp?id_chuong=<%= rs("id_chuong") %>&id_truyen=<%= id_truyen %>"> <b> Sau ></b> </a>    
                     </button>
               
               <%
@@ -199,13 +253,13 @@
       If Not rs.EOF Then 
       ' Nếu tồn tại chương trước đó, hiển thị nút quay lại chương
  %>
-     <button>   <a href="doc.asp?id_chuong=<%= rs("id_chuong") %>&id_truyen=<%= id_truyen %>"><b> Chương Trước </b></a>  </button>
+     <button>   <a href="ChuongTruyen.asp?id_chuong=<%= rs("id_chuong") %>&id_truyen=<%= id_truyen %>"><b> Chương Trước </b></a>  </button>
  <%
      End If
  End If
  %>
   <button>
- <a href="testTrangTruyen.asp?id_truyen=<%= id_truyen %>"><b> Mục lục </b></a></button>
+ <a href="TrangTruyen.asp?id_truyen=<%= id_truyen %>"><b> Mục lục </b></a></button>
  <%
  If id_truyen <> "" Then
      ' Kiểm tra xem chương đó có phải là chương cuối cùng hay không Dim strSQLNextChapter
@@ -217,7 +271,7 @@
       ' Nếu tồn tại chương tiếp theo, hiển thị nút chuyển chương tiếp
  %>
        <button>
-       <a href="doc.asp?id_chuong=<%= rs("id_chuong") %>&id_truyen=<%= id_truyen %>"><b> Chương Sau </b> </a>    </button>
+       <a href="ChuongTruyen.asp?id_chuong=<%= rs("id_chuong") %>&id_truyen=<%= id_truyen %>"><b> Chương Sau </b> </a>    </button>
  
  <%
      End If
@@ -228,12 +282,21 @@
  
 </div>
       <div id="comment-section">
- <!-- #include file="ViewComments.asp" -->
+ <!-- #include file="XemBinhLuan.asp" -->
    </div>
  </div>
    <%
      Set rs = Nothing
      %>
-   </body>
- </html>
+  
+  </div>
+<!-- Phần footer -->
+    <!-- #include file="footer.asp" -->
+
+</body>
+</html>
+    
+ 
+
+
    

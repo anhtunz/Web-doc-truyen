@@ -1,69 +1,53 @@
 <!-- #include file="connect.asp" -->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trang Truyện</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web đọc truyện</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
 
-  <style>
-    /* Chung */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
+    
+</head>
+<style>
+  /* Phần content */
+    .content{
+        height: 2000px;
+        width: 70%;
+        margin: 0 auto;
+        box-sizing: border-box;
+
+        
+    } 
+    /* Phần content trái */ 
+    .content .content-trai{
+        border: 0.5px solid #a5a2a2d1;
+        width: 70%;
+        height: fit-content;
+        float: left;
+        display: flex;
+        flex-direction: column;
     }
-
-    body {
-
-      display: block;
-    }
-
-    /* End Chung */
-
-    /* Phần content */
-    .main {
-      color: #000;
-      font-family: "Segoe UI", Arial, sans-serif;
-      font-size: 14px;
-      box-sizing: border-box;
-      outline: 0;
-      margin: 0;
-      padding: 0;
-      margin-top: 20px;
-    }
-
-    .main .container {
-      max-width: 1000px;
+    .content .content-trai .main-col #story-detail {
       display: flex;
-      height: fit-content;
-      width: 60%;
-      margin: 0 auto;
-      box-sizing: border-box;
-    }
-
-    .main .container .main-col #story-detail {
-      display: flex;
-      width: 850px;
+      width: 70%px;
       background: #fff;
       padding: 10px;
       border: 1px solid #ddd;
       margin-bottom: 15px;
     }
-    .main .container .main-col #story-detail .cot1 {
-    width: 220px;
+    .content .content-trai .main-col #story-detail .cot1 {
+    width: 25%;
     flex-shrink: 0;
     margin-right: 20px;
 }
-    .main .container .main-col #story-detail .title {
+        .content .content-trai .main-col #story-detail .cot2 {
+    width: 75%;
+}
+    .content .content-trai .main-col #story-detail .title {
       text-transform: uppercase;
       color: #df1a0c;
       font-size: 22px;
@@ -71,26 +55,51 @@
       text-align: center;
     }
 
-    .main .container .main-col #story-detail .mota {
+    .content .content-trai .main-col #story-detail .mota {
       text-align: center;
       margin-bottom: 15px;
     }
 
-    /* Phần content phải */
-    #content .content-phai {
-      width: 40%;
-      height: 1000px;
-      float: left;
-    }
-  </style>
-</head>
+    /* End content trái */
 
-<body >
+    /* Phần content giữa */
+    .content .content-giua{
+        float: left;
+        width: 5%;
+        height: 100%;
+    }
+    /* Phần content phải */
+    .content .content-phai{
+        width: 25%;
+        height: 100%;
+        float: left;
+    }
+    .content .content-phai .tieude-content-trai1-child{
+      background: #fff;
+      margin-bottom: 12px;
+      border-top: 1px solid #e5e6e9;
+      border-bottom: 1px solid #e5e6e9;
+    }
+    .content .content-phai .tieude-content-trai1-child .header{
+      padding: 8px 10px;
+      border-bottom: 1px solid #e5e6e9;
+      color: #2F52B2;
+      font-size: 18px;
+      line-height: 18px;
+      font-weight: 600;
+      letter-spacing: -2px;
+      text-transform: uppercase;
+    }
+
+    /* End content phải */
+</style>
+<body>
   <!-- Phần navbar -->
   <!-- #include file="navbar1.asp" -->
   <!-- Phần content -->
-  <div id="main" class="main" data-type="story" role="main" itemscope="" itemprop="mainContentOfPage">
-    <div class="container">
+
+    <div class="content">
+      <div class="content-trai">
       <div class="main-col"> 
       <div class="breadcrumb">
           <a href="index.asp">Trang Chủ</a> /
@@ -114,7 +123,7 @@
               ten_truyen = rs("ten_truyen")
               
               ' Hiển thị nút "Tên truyện"
-              Response.Write "<a href='testTrangTruyen.asp?id_truyen=" & id_truyen & "'>" & ten_truyen & "</a>"
+              Response.Write "<a href='TrangTruyen.asp?id_truyen=" & id_truyen & "'>" & ten_truyen & "</a>"
           End If
           
           rs.Close
@@ -164,7 +173,7 @@
                 %>
                         <div class="cot1">
                           <div class="anhtruyen">
-                            <img src="<%= anh_truyen %>" itemprop="image" class="cover" width="220" alt="<%= ten_truyen %>">
+                            <img src="<%= anh_truyen %>" itemprop="image" class="cover" width="180px" alt="<%= ten_truyen %>">
                           </div>                            
                           <div class="infos">
                             <br>
@@ -188,7 +197,7 @@
                     Response.Write "Không nhận được id_truyen từ URL"
                 End If
                 %>
-
+              <div class="mid" ></div>
               <div class="cot2" style="width: 610px;">
                 <h1 itemprop="name" class="title"><%= ten_truyen %></h1>
                 <div class="mota">
@@ -198,7 +207,7 @@
                     <button type="button" class="btn btn-danger">Đọc truyện</button></a>
                   <hr>
                 </div>
-                <div class="description" itemprop="description">
+                <div class="description" itemprop="description" style="text-align: justify;">
                 <%= mo_ta_ndung %>
                 </div>
               </div>
@@ -221,7 +230,7 @@
               Do While Not rs.EOF
               %>
               <li class="newChapters">
-                  <a href="doc.asp?id_truyen=<%= id_truyen %>&id_chuong=<%= rs("id_chuong")%>"  title="<%= rs("ten_chuong") %>"><%= rs("ten_chuong") %></a>              </li>
+                  <a href="ChuongTruyen.asp?id_truyen=<%= id_truyen %>&id_chuong=<%= rs("id_chuong")%>"  title="<%= rs("ten_chuong") %>"><%= rs("ten_chuong") %></a>              </li>
               <%
                 rs.MoveNext
               Loop
@@ -272,7 +281,7 @@
                 Do While Not rs.EOF
                 %>
                 <li class="Chapters">
-                  <a href="doc.asp?id_truyen=<%= id_truyen %>&id_chuong=<%= rs("id_chuong")%>"  title="<%= rs("ten_chuong") %>"><%= rs("ten_chuong") %></a>              </li>
+                  <a href="ChuongTruyen.asp?id_truyen=<%= id_truyen %>&id_chuong=<%= rs("id_chuong")%>"  title="<%= rs("ten_chuong") %>"><%= rs("ten_chuong") %></a>              </li>
                 </li>
                 <%
                   rs.MoveNext
@@ -293,91 +302,87 @@
                 %>
             </div>
           </div>
-          <!-- #include file="ViewComments.asp" -->
+          <!-- #include file="XemBinhLuan.asp" -->
       </div>
-      <div class="content-phai">
-        <div class="tieude content-trai1-child">
-          THỂ LOẠI TRUYỆN
-        </div>
-        <div class="list" style="width: 100%; height: 80%;">
-          <ul class="list-group list-group-horizontal">
-            <li class="list-group-item w50">
-              <a class="icon-link" href="#">
-                <i class="bi bi-tags-fill"></i>
-                Kiếm hiệp
-              </a>
-            </li>
-            <li class="list-group-item w50">
-              <a class="icon-link" href="#">
-                <i class="bi bi-tags-fill"></i>
-                Truyện teen
-              </a>
-            </li>
-          </ul>
-          <ul class="list-group list-group-horizontal">
-            <li class="list-group-item w50">
-              <a class="icon-link" href="#">
-                <i class="bi bi-tags-fill"></i>
-                Ngôn tình
-            </li>
-            <li class="list-group-item w50">
-              <a class="icon-link" href="#">
-                <i class="bi bi-tags-fill"></i>
-                Truyện cười
-              </a>
-            </li>
-          </ul>
-          <ul class="list-group list-group-horizontal">
-            <li class="list-group-item w50">
-              <a class="icon-link" href="#">
-                <i class="bi bi-tags-fill"></i>
-                Quân sự
-              </a>
-            </li>
-            <li class="list-group-item w50">
-              <a class="icon-link" href="#">
-                <i class="bi bi-tags-fill"></i>
-                Lịch sử
-              </a>
-            </li>
-          </ul>
-          <ul class="list-group list-group-horizontal">
-            <li class="list-group-item w50">
-              <a class="icon-link" href="#">
-                <i class="bi bi-tags-fill"></i>
-                Tiểu thuyết
-              </a>
-            </li>
-            <li class="list-group-item w50">
-              <a class="icon-link" href="#">
-                <i class="bi bi-tags-fill"></i>
-                Trinh thám
-              </a>
-            </li>
-          </ul>
-        </div>
       </div>
     </div>
-    <script>editorids = [402905];
-      storytype = 2; storyname = ' Kết Hôn Nhanh Chóng - Ông Xã Yêu Hết Lòng'; storyData = {
-        name: 'Kết Hôn Nhanh Chóng - Ông Xã Yêu Hết Lòng', donate: 1, type: 2, state: 'ongoing', schedule: '',
-        authors: [{ "id": "402905", "name": "Ng\u00f4n T\u00ecnh Hot Full" }]
-      };</script>
 
-</div>
-  <!-- #include file="footer.asp" -->
+      <div class="content-giua">
+
+      </div>
+      <div class="content-phai">
+        <div class="tieude-content-trai1-child">
+          <header>THỂ LOẠI TRUYỆN</header>
+            <div class="categories clearfix">
+              <%
+                Set conn = Server.CreateObject("ADODB.Connection")
+                conn.Open "Provider=SQLOLEDB.1;Data Source=VIET\MSSQLSERVER01;Database=Web_doc_truyen;User Id=sa;Password=123456;"
+                sql = "SELECT *  FROM the_loai "
+                Set rs = conn.Execute(sql)
+                ' Duyệt qua từng bản ghi trong kết quả truy vấn
+                Dim dem
+                dem = 0
+                Do While Not rs.EOF
+                If dem Mod 2 = 0 Then ' Chỉ hiển thị cho thẻ a đầu tiên của mỗi cặp
+                id_chuong = rs("id_the_loai")
+              %>
+              <ul class="list-group list-group-horizontal">
+                <a href="the_loai_truyen.asp?id_the_loai=<%=rs("id_the_loai")%>" class="list-group-item list-group-item-action"><%=rs("ten_the_loai")%></a>
+                <%
+                  Else ' Cho thẻ a thứ hai của mỗi cặp
+                %>
+                <a href="the_loai_truyen.asp?id_the_loai=<%=rs("id_the_loai")%>" class="list-group-item list-group-item-action"><%=rs("ten_the_loai")%></a>
+              </ul>
+              <%
+                End If
+                dem = dem + 1
+                rs.MoveNext
+                Loop
+                rs.Close
+                conn.Close
+                Set rs = Nothing
+                Set conn = Nothing
+              %>
+            </div>
+        </div><br>
+        <div class="tieude-content-trai1-child">
+          <header>REVIEW TRUYỆN</header>
+            <div class="categories clearfix" name="ListReview">
+              <ul class="list-group">
+                  <% 
+                  Dim connStr
+                  connStr = "Provider=SQLOLEDB.1;Data Source=VIET\MSSQLSERVER01;Database=Web_doc_truyen;User Id=sa;Password=123456"
+
+                  Set conn = Server.CreateObject("ADODB.Connection")
+                  conn.Open connStr
+
+                  Set rs = Server.CreateObject("ADODB.Recordset")
+                  rs.Open "SELECT * FROM reviewtruyen", conn
+
+                  While Not rs.EOF
+                  %>
+                   <a href="ReviewTruyen.asp?id_the_loai=<%=rs("id_the_loai")%>" class="list-group-item list-group-item-action"><%= rs("tieude") %></a>
+                  <%
+                  rs.MoveNext
+                  Wend
+
+                  rs.Close
+                  Set rs = Nothing
+
+                  conn.Close
+                  Set conn = Nothing
+                  %>
+              </ul>
+          </div>
+        </div>
+    </div>
+  </div>
+<!-- #include file="footer.asp" -->
 
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
-    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
 </body>
-
-</html>

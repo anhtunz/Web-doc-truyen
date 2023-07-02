@@ -16,7 +16,6 @@
     .nav-bar{
         justify-content:center;
         height: 50px;
-        background-color: rgb(87, 234, 87);
         margin-bottom: 30px;
     }
     .m20{

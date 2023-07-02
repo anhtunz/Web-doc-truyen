@@ -22,8 +22,8 @@ Set conn = Nothing
 
 ' Kiểm tra giá trị id_chuong và thực hiện chuyển hướng
 If id_chuong <> "" Then
-    Response.Redirect "doc.asp?id_chuong=" & id_chuong & "&id_truyen=" & id_truyen 
+    Response.Redirect "ChuongTruyen.asp?id_chuong=" & id_chuong & "&id_truyen=" & id_truyen 
 Else
-    Response.Redirect "testTrangTruyen.asp?id_truyen=" & id_truyen
+    Response.Redirect "TrangTruyen.asp?id_truyen=" & id_truyen
 End If
 %>

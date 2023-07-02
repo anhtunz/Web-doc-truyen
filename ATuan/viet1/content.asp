@@ -23,6 +23,7 @@
     } 
     /* Phần content trái */ 
     .content .content-trai{
+        border: 1px solid #a5a2a2d1;
         width: 70%;
         height: 100%;
         float: left;
@@ -142,7 +143,7 @@
                   <div class="card-body">
                     <h5 class="card-title"><%=rs("ten_truyen")%></h5>
                     <p class="card-text"><%=rs("mo_ta_ndung")%></p>
-                    <a href="testTrangTruyen.asp?id_truyen=<%=rs("id_truyen")%>" class="btn btn-primary">Đọc truyện</a>
+                    <a href="TrangTruyen.asp?id_truyen=<%=rs("id_truyen")%>" class="btn btn-primary">Đọc truyện</a>
                   </div>
                 </div>
               </div>
@@ -170,7 +171,7 @@
                   <div class="card-body">
                     <h5 class="card-title"><%=rs("ten_truyen")%></h5>
                     <p class="card-text"><%=rs("mo_ta_ndung")%></p>
-                    <a href="testTrangTruyen.asp?id_truyen=<%=rs("id_truyen")%>" class="btn btn-primary">Đọc truyện</a>
+                    <a href="TrangTruyen.asp?id_truyen=<%=rs("id_truyen")%>" class="btn btn-primary">Đọc truyện</a>
                   </div>
                 </div>
               </div>
@@ -235,7 +236,7 @@
                   <div class="card-body">
                     <h5 class="card-title"><%=rs("ten_truyen")%></h5>
                     <p class="card-text"><%=rs("mo_ta_ndung")%></p>
-                      <a href="testTrangTruyen.asp?id_truyen=<%=rs("id_truyen")%>" class="btn btn-primary">Đọc truyện</a>
+                      <a href="TrangTruyen.asp?id_truyen=<%=rs("id_truyen")%>" class="btn btn-primary">Đọc truyện</a>
                   </div>
                   </div>
                 </div>
@@ -263,7 +264,7 @@
                     <div class="card-body">
                       <h5 class="card-title"><%=rs("ten_truyen")%></h5>
                       <p class="card-text"><%=rs("mo_ta_ndung")%></p>
-                      <a href="testTrangTruyen.asp?id_truyen=<%=rs("id_truyen")%>" class="btn btn-primary">Đọc truyện</a>
+                      <a href="TrangTruyen.asp?id_truyen=<%=rs("id_truyen")%>" class="btn btn-primary">Đọc truyện</a>
                     </div>
                   </div>
                 </div>

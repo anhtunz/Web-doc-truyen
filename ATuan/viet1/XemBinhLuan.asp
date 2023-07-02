@@ -34,18 +34,14 @@
   #comment-section .comment {
     margin-bottom: 10px;
   }
-  #comment-section .comment .author {
-    font-weight: bold;
-  }
-  #comment-section .comment .date {
-    font-size: 12px;
-    color: gray;
-  }
  #comment-section .comment .acts {
     float: right;
     text-align: right;
     font-size: 12px;
     line-height: 20px;
+}
+.dropdown-center:hover .dropdown-menu {
+  display: block; / Hiển thị menu khi di chuột vào phần tử cha */
 }
 </style>
 <body>
@@ -80,7 +76,7 @@
   <%
   If isLoggedIn Then
   %>
-    <form id="comment-form" method="post" action="comments.asp?id_truyen=<%= id_truyen %>">
+    <form id="comment-form" method="post" action="BinhLuan.asp?id_truyen=<%= id_truyen %>">
       <div id="" style="display: none;">
         <input type="text" class="ID_Nguoi_dung" name="id_truyen" value="<%= id_truyen %>" placeholder="">
       </div>
@@ -96,7 +92,7 @@
   <%
   Else
   %>
-    <form id="comment-form" method="post" action="comments.asp?id_truyen=<%= id_truyen %>" onsubmit="return checkForm()">
+    <form id="comment-form" method="post" action="BinhLuan.asp?id_truyen=<%= id_truyen %>" onsubmit="return checkForm()">
   <div id="" style="display: none;">
     <input type="text" class="ID_Nguoi_dung" name="id_truyen" value="<%= id_truyen %>" placeholder="">
   </div>
@@ -180,7 +176,7 @@
                     </li>
                     <div class="dropdown-divider"></div>
                     <li>
-                        <button type="button" class="dropdown-item text-danger" onclick="window.location.href='DeleteComments.asp?id_binh_luan=<%= rs("id_binh_luan") %>&id_truyen=<%= id_truyen %>&id_chuong=<%= id_chuong %>'">
+                        <button type="button" class="dropdown-item text-danger" onclick="window.location.href='XoaBinhLuan.asp?id_binh_luan=<%= rs("id_binh_luan") %>&id_truyen=<%= id_truyen %>&id_chuong=<%= id_chuong %>'">
                             <i class="bi bi-trash"></i> Xóa
                         </button>
                         <div id="" style="display: none;">
@@ -223,7 +219,7 @@
                 var commentText = editTextArea.value;
 
                 var xhr = new XMLHttpRequest();
-                xhr.open('POST', 'update_comment.asp', true);
+                xhr.open('POST', 'CapNhatBinhLuan.asp', true);
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -245,7 +241,6 @@
                 xhr.send('commentId=' + commentId + '&commentText=' + encodeURIComponent(commentText));
             }
         </script>
-
 
         <%
         rs.MoveNext
