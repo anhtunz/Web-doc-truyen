@@ -167,6 +167,7 @@ conn.Open "Provider=SQLOLEDB.1;Data Source=DESKTOP-4N36RC0;Database=Web_doc_truy
         ten_truyen = rs("ten_truyen")
         ten_chuong = rs("ten_chuong")
         trang_truyen_link = "testTrangTruyen.asp?id_truyen=" & rs("id_truyen")
+        
 
         ' Hiển thị thông tin ten_truyen và ten_chuong
         Response.Write "<a href=""" & trang_truyen_link & """>" & ten_truyen & "</a>/"
