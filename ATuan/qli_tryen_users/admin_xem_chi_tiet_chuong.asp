@@ -1,10 +1,12 @@
-<%
-    Dim id_truyen
-    id_truyen = Request.QueryString("id_truyen")
-%>
-
-
 <!-- #include file="connect.asp" -->
+<%
+Dim id_nguoi_dung, id_truyen,id_chuong, page
+
+page = Request.Form("page")
+id_nguoi_dung = Request.Form("idnguoidung")
+id_truyen = Request.Form("idtruyen")
+id_chuong = Request.Form("idchuong")
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +14,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web đọc truyện</title>
-    <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-QzvsveSek0EUpu+K/ggG1B+UXpZcpvj3GvNiwuAQR6E79JQFZrQ4yaS5GfvsF8wz53nm2vUP0QGNEAI3SvlDhA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -67,7 +68,7 @@
         display: flex;
         height: 700px;
         width: 80%;
-        margin-top: 8px;
+        margin-top: 10px;
         
     }
     .field-name,
@@ -108,71 +109,64 @@
 </style>
 <body>
     <div class="navbar">
-        <!-- #include file="navbar.asp" -->
+       <!-- #include file="navbar.asp" -->
     </div>
     <div class="noidung">
         <div class="sidebar">
             <!-- #include file="sidebar.asp" -->
         </div>
-        
         <div class="content">
-            <div class="card card-primary" style="width: 100%;">
-                <div class="card-header">
-                    <h2 class="card-title" style=" color: blue">Thêm Chương mới</h2>
-                </div>
-                <%
+        <% 
                     If (isnull(Session("email")) OR TRIM(Session("email")) = "") Then
                     Response.redirect("/login.asp")
                     End If
                     Dim email
                     email = Session("email")
+                    ' Kết nối đến cơ sở dữ liệu
                     Set conn = Server.CreateObject("ADODB.Connection")
-                    conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456"
-                    Dim sql
-                    sql = "SELECT * FROM nguoi_dung WHERE email = '" & email & "'"
-                    Dim rs, vai_tro,id_nguoi_dung
+                    conn.Open "Provider=SQLOLEDB.1;Data Source=TUNZTUNZ\SQLEXPRESS;Database=Web_doc_truyen;User Id=sa;Password=123456;"
+                    ' Truy vấn dữ liệu từ bảng nguoi_dung với id_nguoi_dung = 1
+                    sql = "SELECT * FROM chuong WHERE id_chuong= " & id_chuong
                     Set rs = conn.Execute(sql)
-                    If Not rs.EOF Then
-                        vai_tro = rs("vai_tro")
-                        id_nguoi_dung = rs("id_nguoi_dung")
-                    End If
-                    If vai_tro = "1" Or vai_tro = "2" Then
                 %>
+            <div class="card card-primary" style="width: 100%;">
+                <div class="card-header">
+                    <h2 class="card-title" style=" color: blue">Chi tiết <%= rs("ten_chuong") %> </h2>
+                </div>
                 <div class="card-body">
-                    <form id="myForm" method="post" action="add_chuong_base.asp">
-                        <div id="idtruyen" style="display: none;">
-                            <strong for="id_truyen">Id truyen:</strong>
-                            <input type="text" class="id_truyen" name="id_truyen" value="<%= id_truyen%>" placeholder="">
+                    <form id="myForm" method="post" action="admin_duyet_chuong_base.asp">
+                        <div  style="display: none;">
+                            <strong for="page">Page:</strong>
+                            <input type="text" class="page" name="page" value="<%= page %>" placeholder="">
+                        </div>
+                        <div  style="display: none;">
+                            <strong for="id_nguoi_dung">Id chuong:</strong>
+                            <input type="text" class="id_nguoi_dung" name="id_nguoi_dung" value="<%= id_nguoi_dung %>" placeholder="">
+                        </div>
+                        <div  style="display: none;">
+                            <strong for="id_chuong">Id chuong:</strong>
+                            <input type="text" class="id_chuong" name="id_chuong" value="<%= id_chuong %>" placeholder="">
+                        </div>
+                        <div  style="display: none;">
+                            <strong for="id_truyen">id_truyen:</strong>
+                            <input type="text" class="id_truyen" name="id_truyen" value="<%= id_truyen %>" placeholder="">
                         </div>
                         <div>
                             <strong for="tenchuong">Tên chương:</strong>
-                            <input type="text" class="tenchuong" name="tenchuong" placeholder="Nhập tên chương">
+                            <input type="text" class="tenchuong" name="tenchuong" value="<%= rs("ten_chuong") %>" placeholder="Nhập Tên truyện" readonly>
                         </div>
                         <div class="mb-3">
                             <strong for="noidungchuong" class="form-label">Nội dung chương</strong>
-                            <textarea class="form-control" id="noidungchuong" name="noidungchuong" placeholder="Nhập nội dung chương" rows="15"></textarea>
+                            <textarea class="form-control" id="noidungchuong" name="noidungchuong" rows="15" readonly><%= rs("ndung_chuong") %></textarea>
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-primary" value="Đăng chương">Thêm chương</button>
-                            <a type="button" class="btn btn-default float-right" href= "qli_chuong.asp?id_truyen=<%=id_truyen%>">Quay lại</a>
+                            <button type="submit" class="btn btn-primary" value="Sửa chương">Duyệt chương</button>
+                            <a type="button" class="btn btn-default float-right" href= "admin_duyet_chuong.asp?id_truyen=<%= id_truyen%>&id_nguoi_dung=<%= id_nguoi_dung%>">Quay lại</a>
                         </div>
                     </form>
                 </div>
-                <%
-                    End If
-                %>
-                    <%    
-                        If vai_tro = "3" Then
-                        %>
-                            <div>Bạn không có quyền đăng chương. </div>
-                            <%
-                        Else
-                            
-                        End If
-                    %>
-                
-                
-            </div>
+            </div>     
+            
         </div>
     </div>
     <div class="footer">
@@ -182,3 +176,4 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 </body>
+

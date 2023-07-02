@@ -238,8 +238,7 @@
                             <div>Bạn không có quyền đăng truyện. </div>
                             <%
                         Else
-                            Response.Write("Vai trò không hợp lệ.")
-                            ' Hoặc chuyển hướng tới trang thông báo lỗi
+                            
                         End If
                     %>
                 

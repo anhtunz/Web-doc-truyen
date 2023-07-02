@@ -1,4 +1,3 @@
-
 <%
 Response.ContentType = "text/html"
 Response.AddHeader "Content-Type", "text/html;charset=UTF-8"
@@ -13,6 +12,7 @@ If Request.ServerVariables("REQUEST_METHOD") = "POST" Then
     ndung_binh_luan = Trim(Request.Form("comment"))
     id_nguoi_dung = Trim(Request.Form("idusername"))
     id_truyen = Trim(Request.Form("id_truyen"))
+    id_chuong = Trim(Request.Form("id_chuong"))
 
     If ndung_binh_luan <> "" Then
         ' Kết nối đến cơ sở dữ liệu
@@ -29,8 +29,13 @@ If Request.ServerVariables("REQUEST_METHOD") = "POST" Then
         conn.Close
         Set conn = Nothing
 
-        ' Sau khi lưu, chuyển hướng trở lại trang truyện
-        Response.Redirect "testTrangTruyen.asp?id_truyen=" & id_truyen
+        ' Kiểm tra giá trị id_chuong và thực hiện chuyển hướng
+        If id_chuong <> "" Then
+            Response.Redirect "doc.asp?id_chuong=" & id_chuong & "&id_truyen=" & id_truyen 
+        Else
+            Response.Redirect "testTrangTruyen.asp?id_truyen=" & id_truyen
+        End If
+
     End If
 End If
 %>

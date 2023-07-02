@@ -1,92 +1,285 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
-  integrity="sha512-CvHmYr12VAbNk7F4/X+mbbwtweCC37rIyzzHtAfgDAc9Aa9yGgVNBT5tm7MPTSKKo7UJK6mz/OaaVyp2SSp63Q=="
-  crossorigin="anonymous" />
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-  integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-
-</head>
-<body>
-  <div id="div_id_chuong" class="card text-dark bg-light mb-3 center" style="max-width: 18rem;">
-    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
-      <div style="text-align: center; flex: 1;">
-        Bạn đang đọc dở
-      </div>
-      <button type="button" class="btn btn-link float-right">
-        <i class="material-icons center" style="border: none;" onclick="deleteIdChuong()">close</i>
-      </button>
-    </div>
-    <div class="card-body">
-      <h5 id="id_chuong_value" class="card-title"></h5>
-      <p class="card-text">Chương 1: Sâu Trong Rừng Rậm 1</p>
-    </div>
-  </div>
-
-  
-  <script>
-    function deleteIdChuong() {
-      // Xóa key 'id_chuong' trong localStorage
-      localStorage.removeItem('id_chuong');
-      // alert('Đã xóa id_chuong khỏi localStorage.');
-      var divIdChuong = document.getElementById('div_id_chuong');
-      divIdChuong.remove();
-    }
-  </script>
-  <script>
-    window.addEventListener('beforeunload', function (event) {
-      // Lưu giá trị 'id_chuong' vào localStorage
-      localStorage.setItem('id_chuong', "hahahaha");
-    });
-
-    window.addEventListener('DOMContentLoaded', function (event) {
-      // Lấy giá trị 'id_chuong' từ localStorage
-      var id_chuong = localStorage.getItem('id_chuong');
-
-      // Hiển thị giá trị 'id_chuong' lên màn hình
-      document.getElementById('id_chuong_value').textContent = 'Giá trị id_chuong: ' + id_chuong;
-    }
-    );
-  </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-
-</body>
-
-</html> -->
-
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Truy cập không hợp lệ</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700&subset=vietnamese');
+
+    body {
+      background: #e8f8f9;
+      color: #fff;
+      font-family: 'Quicksand', sans-serif;
+      max-height: 700px;
+      overflow: hidden;
+    }
+
+    .c {
+      text-align: center;
+      display: block;
+      position: relative;
+      width: 80%;
+      margin: 0px auto;
+      color: #006cdb;
+    }
+
+    ._404 {
+      font-size: 220px;
+      position: relative;
+      display: inline-block;
+      z-index: 2;
+      height: 250px;
+      letter-spacing: 15px;
+    }
+
+    ._1 {
+      text-align: center;
+      display: block;
+      position: relative;
+      /* letter-spacing: 12px; */
+      font-size: 30PX;
+      font-weight: 500;
+      /* line-height: 80%; */
+    }
+
+    ._2 {
+      text-align: center;
+      display: block;
+      position: relative;
+      font-size: 20px;
+    }
+
+    .text {
+      font-size: 70px;
+      text-align: center;
+      position: relative;
+      margin: 19px 0px 0px 0px;
+      z-index: 3;
+      width: 100%;
+      line-height: 1.2em;
+      display: inline-block;
+    }
+
+    .btn_404:hover {
+      background: #f3b304;
+      color: #006cdb
+    }
+
+    .btn_404 {
+      background-color: rgb(0, 108, 219);
+      position: relative;
+      BORDER-RADIUS: 4PX;
+      TOP: 30PX;
+      display: inline-block;
+      width: 260px;
+      padding: 8px;
+      z-index: 5;
+      font-weight: 500;
+      font-size: 16px;
+      margin: 0 auto;
+      color: #fff;
+      text-decoration: none;
+      margin-right: 10px;
+    }
+
+    .right {
+      float: right;
+      width: 60%;
+    }
+
+    hr {
+      padding: 0;
+      border: none;
+      border-top: 1px solid #006cdb;
+      /* color: #006cdb; */
+      text-align: center;
+      margin: 0px auto;
+      width: 420px;
+      height: 10px;
+      z-index: -10;
+    }
+
+    hr:after {
+      /* content: "\2022"; */
+      display: inline-block;
+      position: relative;
+      top: -0.75em;
+      font-size: 2em;
+      padding: 0 0.2em;
+      /* background: #33cc99; */
+    }
+
+    .cloud {
+      width: 350px;
+      height: 120px;
+      background: #FFF;
+      background: linear-gradient(top, #FFF 100%);
+      background: -webkit-linear-gradient(top, #FFF 100%);
+      background: -moz-linear-gradient(top, #FFF 100%);
+      background: -ms-linear-gradient(top, #FFF 100%);
+      background: -o-linear-gradient(top, #FFF 100%);
+      border-radius: 100px;
+      -webkit-border-radius: 100px;
+      -moz-border-radius: 100px;
+      position: absolute;
+      margin: 120px auto 20px;
+      z-index: -1;
+      transition: ease 1s;
+    }
+
+    .cloud:after,
+    .cloud:before {
+      content: '';
+      position: absolute;
+      background: #FFF;
+      z-index: -1
+    }
+
+    .cloud:after {
+      width: 100px;
+      height: 100px;
+      top: -50px;
+      left: 50px;
+      border-radius: 100px;
+      -webkit-border-radius: 100px;
+      -moz-border-radius: 100px;
+    }
+
+    .cloud:before {
+      width: 180px;
+      height: 180px;
+      top: -90px;
+      right: 50px;
+      border-radius: 200px;
+      -webkit-border-radius: 200px;
+      -moz-border-radius: 200px;
+    }
+
+    .x1 {
+      top: -50px;
+      left: 100px;
+      -webkit-transform: scale(0.3);
+      -moz-transform: scale(0.3);
+      transform: scale(0.3);
+      opacity: 0.9;
+      animation: moveclouds 15s linear infinite;
+      -moz-animation: moveclouds 15s linear infinite;
+      -o-animation: moveclouds 15s linear infinite;
+    }
+
+    .x1_5 {
+      top: -80px;
+      left: 250px;
+      -webkit-transform: scale(0.3);
+      -moz-transform: scale(0.3);
+      transform: scale(0.3);
+      animation: moveclouds 17s linear infinite;
+      -moz-animation: moveclouds 17s linear infinite;
+      -o-animation: moveclouds 17s linear infinite;
+    }
+
+    .x2 {
+      left: 250px;
+      top: 30px;
+      -webkit-transform: scale(0.6);
+      -moz-transform: scale(0.6);
+      transform: scale(0.6);
+      opacity: 0.6;
+      animation: moveclouds 25s linear infinite;
+      -moz-animation: moveclouds 25s linear infinite;
+      -o-animation: moveclouds 25s linear infinite;
+    }
+
+    .x3 {
+      left: 250px;
+      bottom: -70px;
+      -webkit-transform: scale(0.6);
+      -moz-transform: scale(0.6);
+      transform: scale(0.6);
+      opacity: 0.8;
+      -webkit-animation: moveclouds 25s linear infinite;
+      -moz-animation: moveclouds 25s linear infinite;
+      -o-animation: moveclouds 25s linear infinite;
+    }
+
+    .x4 {
+      left: 470px;
+      botttom: 20px;
+      -webkit-transform: scale(0.75);
+      -moz-transform: scale(0.75);
+      transform: scale(0.75);
+      opacity: 0.75;
+      -webkit-animation: moveclouds 18s linear infinite;
+      -moz-animation: moveclouds 18s linear infinite;
+      -o-animation: moveclouds 18s linear infinite;
+    }
+
+    .x5 {
+      left: 200px;
+      top: 300px;
+      -webkit-transform: scale(0.5);
+      -moz-transform: scale(0.5);
+      transform: scale(0.5);
+      opacity: 0.8;
+      -webkit-animation: moveclouds 20s linear infinite;
+      -moz-animation: moveclouds 20s linear infinite;
+      -o-animation: moveclouds 20s linear infinite;
+    }
+
+    @-webkit-keyframes moveclouds {
+      0% {
+        margin-left: 1000px;
+      }
+
+      100% {
+        margin-left: -1000px;
+      }
+    }
+
+    @-moz-keyframes moveclouds {
+      0% {
+        margin-left: 1000px;
+      }
+
+      100% {
+        margin-left: -1000px;
+      }
+    }
+
+    @-o-keyframes moveclouds {
+      0% {
+        margin-left: 1000px;
+      }
+
+      100% {
+        margin-left: -1000px;
+      }
+    }
+  </style>
+</head>
 
 <body>
 
-  <div class="content-phai2">
-    <p id="id_chuong_value"></p>
+  <div id="clouds">
+    <div class="cloud x1"></div>
+    <div class="cloud x1_5"></div>
+    <div class="cloud x2"></div>
+    <div class="cloud x3"></div>
+    <div class="cloud x4"></div>
+    <div class="cloud x5"></div>
+  </div>
+  <div class="c">
+    <div class="_404">
+      <img src="/Anh/meme camdao.jpg" />
+    </div>
+    <hr>
+    <div class="_1">TRANG TRUY CẬP KHÔNG HỢP LỆ</div>
+    <div class="_2">Trạng thái của bạn không thể thực hiện chức năng này!</div>
+    <a class="btn_404" href="">VỀ TRANG CHỦ</a>
   </div>
 
-  <script>
-    var id_chuong_global; // Biến toàn cục để lưu trữ giá trị id_chuong
 
-    window.addEventListener('DOMContentLoaded', function (event) {
-      // Lấy giá trị 'id_chuong' từ localStorage
-      var id_chuong = localStorage.getItem('id_chuong');
-
-      // Lưu giá trị vào biến toàn cục
-      id_chuong_global = id_chuong;
-
-      // Hiển thị giá trị 'id_chuong' lên màn hình
-      document.getElementById('id_chuong_value').textContent = 'Giá trị id_chuong: ' + id_chuong;
-    });
-
-    // Sử dụng biến toàn cục ở ngoài thẻ body
-    console.log('Giá trị id_chuong ở ngoài thẻ body:', id_chuong_global);
-  </script>
 
 </body>
 

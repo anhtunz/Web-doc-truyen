@@ -54,7 +54,7 @@
                       </li>
                       
                       <li>
-                          <a href="#" class="nav-link link-dark">
+                          <a href="admin_duyet_truyen.asp?id_nguoi_dung=<%= rs("id_nguoi_dung") %>" class="nav-link link-dark">
                               <span class="material-symbols-outlined">
                                 check
                               </span>
@@ -62,11 +62,8 @@
                           </a>
                       </li>
                   <%
-                  End If
+                    End If
                   %>
-
-
-                  
                 </ul>
                 <hr>
                 <div class="dropdown">
@@ -77,6 +74,7 @@
                   <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
                     <li><a class="dropdown-item" href="them_truyen.asp?id_nguoi_dung=<%= rs("id_nguoi_dung") %>">Thêm truyện...</a></li>
                     <li><a class="dropdown-item" href="edit_info.asp?id_nguoi_dung=<%= rs("id_nguoi_dung") %>">Chỉnh sửa thông tin</a></li>
+                    <li><a class="dropdown-item" href="doimatkhau.asp?id_nguoi_dung=<%= rs("id_nguoi_dung") %>">Đổi mật khẩu</a></li>
                     <li><a class="dropdown-item" href="info.asp?id_nguoi_dung=<%= rs("id_nguoi_dung") %>">Trang cá nhân</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="/logout.asp`">Đăng xuất</a></li>

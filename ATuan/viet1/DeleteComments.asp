@@ -1,7 +1,9 @@
 <%
 Dim id_truyen,id_binh_luan
+Dim id_chuong
 id_truyen = Request.QueryString("id_truyen")
 id_binh_luan = Request.QueryString("id_binh_luan")
+id_chuong = Request.QueryString("id_chuong")
 
 ' Kết nối đến CSDL
 Set conn = Server.CreateObject("ADODB.Connection")
@@ -18,6 +20,10 @@ End If
 conn.Close
 Set conn = Nothing
 
-' Chuyển hướng trở lại trang truyện
-Response.Redirect "testTrangTruyen.asp?id_truyen=" & id_truyen
+' Kiểm tra giá trị id_chuong và thực hiện chuyển hướng
+If id_chuong <> "" Then
+    Response.Redirect "doc.asp?id_chuong=" & id_chuong & "&id_truyen=" & id_truyen 
+Else
+    Response.Redirect "testTrangTruyen.asp?id_truyen=" & id_truyen
+End If
 %>

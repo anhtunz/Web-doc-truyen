@@ -21,6 +21,12 @@
         margin-right: 20px;
     }
     /* End nav-bar */
+    .nav-bar img {
+        display: block;
+        max-width: 3%;
+        max-height: 3%;
+        margin: auto;
+    }
 
 </style>
 <%
@@ -33,7 +39,7 @@
     <div class="nav-bar">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="index.asp">Web đọc truyện</a>
+                <img src="/Anh/meme camdao.jpg" style="width:100%" class="img-thumbnail" alt="...">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

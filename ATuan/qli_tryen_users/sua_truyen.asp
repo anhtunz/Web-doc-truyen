@@ -135,7 +135,7 @@
                 %>
             <div class="card card-primary" style="width: 100%;">
                 <div class="card-header">
-                    <h2 class="card-title" style=" color: blue">Thêm Truyện Mới</h2>
+                    <h2 class="card-title" style=" color: blue">Sửa truyện <%= rs("ten_truyen") %> </h2>
                 </div>
                     <form id="myForm" method="post" action="sua_truyen_base.asp">
                         <div  style="display: none;">

@@ -126,8 +126,19 @@
         <div class="sidebar">
             <!-- #include file="sidebar.asp" -->
         </div>
-        
         <div class="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                    </div>
+                    <div class="col">
+                    <H2>DANH SÁCH NGƯỜI DÙNG</H2>
+                    </div>
+                    <div class="col">
+                    <a type="button" class="btn btn-primary" href="admin_themusers.asp?id_admin=<%=id_nguoi_dung%>" >Thêm tài khoản</a>
+                    </div>
+                </div>
+            </div>
             <%
                 strSQL =  "SELECT * FROM nguoi_dung ORDER BY id_nguoi_dung OFFSET ? ROWS FETCH NEXT ? ROWS ONLY"
                 Set cmdPrep = Server.CreateObject("ADODB.Command")
@@ -139,9 +150,6 @@
                 cmdPrep.Parameters.Append cmdPrep.CreateParameter("limit", 3, 1, , limit)
                 Set Result = cmdPrep.Execute
             %>
-            <div class="dan">
-                <h2>DANH SÁCH NGƯỜI DÙNG</h2>
-            </div>
             <div class="dsach-truyen" style="width: 90%;">
             <table class="table table-striped">
                 <thead class="thead-dark">

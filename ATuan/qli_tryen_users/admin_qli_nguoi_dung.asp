@@ -89,12 +89,12 @@
         
         <div class="content">
             <div class="eooo">
-                <h2>THÔNG TIN CÁ NHÂN</h2>
+                <h2>THÔNG TIN NGƯỜI DÙNG</h2>
             </div>
             <div class="thongtin">
                 <div class="personal-info">
                 <%
-                    Dim id_nguoi_dung
+                    Dim id_nguoi_dung 
                     id_nguoi_dung = Request.QueryString("id_nguoi_dung")
                     ' Kết nối đến cơ sở dữ liệu
                     Set conn = Server.CreateObject("ADODB.Connection")
@@ -102,13 +102,13 @@
                     ' Truy vấn dữ liệu từ bảng nguoi_dung với id_nguoi_dung = 1
                     sql = "SELECT * FROM nguoi_dung WHERE id_nguoi_dung = "&id_nguoi_dung
                     Set rs = conn.Execute(sql)
-
+                    
                     ' Kiểm tra xem có bản ghi nào hay không
                     If Not rs.EOF Then
                         ' Hiển thị thông tin người dùng
                         If IsNull(rs("ngay_sinh")) Then
                             ' Hiển thị "Chưa có"
-                            ngay_sinh = "Chưa có"
+                            ngay_sinh = "Null"
                         Else
                             ' Định dạng lại ngày tháng năm
                             ngay_sinh = FormatDateTime(rs("ngay_sinh"), 1) ' 1: Hiển thị ngày tháng năm
@@ -185,6 +185,8 @@
                         <%=rs("gioi_thieu")%>
                       </span>
                       <%
+                        Dim id_nguoi_sua
+                        id_nguoi_sua = rs("id_nguoi_dung")
                         Else
                             Response.Write "Không tìm thấy thông tin người dùng."
                         End If
@@ -197,7 +199,7 @@
                   </div>
             </div>
            <div class="nutthem" style="margin-top: 40px;">
-                <form method="post" action="admin_sua_nguoi_dung.asp?id_nguoi_dung=<%= id_nguoi_dung %>">
+                <form method="post" action="admin_sua_nguoi_dung.asp?id_nguoi_sua=<%= id_nguoi_sua %>">
                     <button type="submit" class="btn btn-success btn-lg">Sửa thông tin người dùng</button>
                 </form>
                 <a type="button" href="qli_nguoi_dung.asp?id_nguoi_dung=5" class="btn btn-primary btn-lg m5">Quay lại</a>
@@ -206,7 +208,7 @@
                 ' Xử lý sự kiện khi nhấn nút
                 If Request.ServerVariables("REQUEST_METHOD") = "POST" Then
                     ' Chuyển hướng sang trang edit_info.asp
-                    Response.Redirect "admin_sua_nguoi_dung.asp?id_nguoi_dung=" & id_nguoi_dung
+                    Response.Redirect "admin_sua_nguoi_dung.asp?id_nguoi_sua=" &id_nguoi_sua
                 End If
             %>
 

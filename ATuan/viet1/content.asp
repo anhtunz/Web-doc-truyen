@@ -79,6 +79,22 @@
         height: 100%;
         float: left;
     }
+    .content .content-phai .tieude-content-trai1-child{
+      background: #fff;
+      margin-bottom: 12px;
+      border-top: 1px solid #e5e6e9;
+      border-bottom: 1px solid #e5e6e9;
+    }
+    .content .content-phai .tieude-content-trai1-child .header{
+      padding: 8px 10px;
+      border-bottom: 1px solid #e5e6e9;
+      color: #2F52B2;
+      font-size: 18px;
+      line-height: 18px;
+      font-weight: 600;
+      letter-spacing: -2px;
+      text-transform: uppercase;
+    }
 
     /* End content phải */
   /* End content*/
@@ -267,38 +283,72 @@
 
       </div>
       <div class="content-phai">
-        <div class="tieude content-trai1-child">
-          <h4>THỂ LOẠI TRUYỆN</h4>
+        <div class="tieude-content-trai1-child">
+          <header>THỂ LOẠI TRUYỆN</header>
+            <div class="categories clearfix">
+              <%
+                Set conn = Server.CreateObject("ADODB.Connection")
+                conn.Open "Provider=SQLOLEDB.1;Data Source=VIET\MSSQLSERVER01;Database=Web_doc_truyen;User Id=sa;Password=123456;"
+                sql = "SELECT *  FROM the_loai "
+                Set rs = conn.Execute(sql)
+                ' Duyệt qua từng bản ghi trong kết quả truy vấn
+                Dim dem
+                dem = 0
+                Do While Not rs.EOF
+                If dem Mod 2 = 0 Then ' Chỉ hiển thị cho thẻ a đầu tiên của mỗi cặp
+                id_chuong = rs("id_the_loai")
+              %>
+              <ul class="list-group list-group-horizontal">
+                <a href="the_loai_truyen.asp?id_the_loai=<%=rs("id_the_loai")%>" class="list-group-item list-group-item-action"><%=rs("ten_the_loai")%></a>
+                <%
+                  Else ' Cho thẻ a thứ hai của mỗi cặp
+                %>
+                <a href="the_loai_truyen.asp?id_the_loai=<%=rs("id_the_loai")%>" class="list-group-item list-group-item-action"><%=rs("ten_the_loai")%></a>
+              </ul>
+              <%
+                End If
+                dem = dem + 1
+                rs.MoveNext
+                Loop
+                rs.Close
+                conn.Close
+                Set rs = Nothing
+                Set conn = Nothing
+              %>
+            </div>
+        </div><br>
+        <div class="tieude-content-trai1-child">
+          <header>REVIEW TRUYỆN</header>
+            <div class="categories clearfix" name="ListReview">
+              <ul class="list-group">
+                  <% 
+                  Dim connStr
+                  connStr = "Provider=SQLOLEDB.1;Data Source=VIET\MSSQLSERVER01;Database=Web_doc_truyen;User Id=sa;Password=123456"
+
+                  Dim conn
+                  Set conn = Server.CreateObject("ADODB.Connection")
+                  conn.Open connStr
+
+                  Dim rs
+                  Set rs = Server.CreateObject("ADODB.Recordset")
+                  rs.Open "SELECT * FROM reviewtruyen", conn
+
+                  While Not rs.EOF
+                  %>
+                   <a href="ReviewTruyen.asp?id_the_loai=<%=rs("id_the_loai")%>" class="list-group-item list-group-item-action"><%= rs("tieude") %></a>
+                  <%
+                  rs.MoveNext
+                  Wend
+
+                  rs.Close
+                  Set rs = Nothing
+
+                  conn.Close
+                  Set conn = Nothing
+                  %>
+              </ul>
+          </div>
         </div>
-        <%
-          Set conn = Server.CreateObject("ADODB.Connection")
-          conn.Open "Provider=SQLOLEDB.1;Data Source=VIET\MSSQLSERVER01;Database=Web_doc_truyen;User Id=sa;Password=123456;"
-          sql = "SELECT *  FROM the_loai "
-          Set rs = conn.Execute(sql)
-          ' Duyệt qua từng bản ghi trong kết quả truy vấn
-          Dim dem
-          dem = 0
-          Do While Not rs.EOF
-          If dem Mod 2 = 0 Then ' Chỉ hiển thị cho thẻ a đầu tiên của mỗi cặp
-          id_chuong = rs("id_the_loai")
-        %>
-        <ul class="list-group list-group-horizontal">
-          <a href="the_loai_truyen.asp?id_the_loai=<%=rs("id_the_loai")%>" class="list-group-item list-group-item-action"><%=rs("ten_the_loai")%></a>
-          <%
-            Else ' Cho thẻ a thứ hai của mỗi cặp
-          %>
-          <a href="the_loai_truyen.asp?id_the_loai=<%=rs("id_the_loai")%>" class="list-group-item list-group-item-action"><%=rs("ten_the_loai")%></a>
-        </ul>
-        <%
-          End If
-          dem = dem + 1
-          rs.MoveNext
-          Loop
-          rs.Close
-          conn.Close
-          Set rs = Nothing
-          Set conn = Nothing
-        %>
       </div>
     </div>
   </div>
