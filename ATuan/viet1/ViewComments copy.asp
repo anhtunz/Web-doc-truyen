@@ -96,36 +96,30 @@
   <%
   Else
   %>
-    <form id="comment-form" method="post" action="comments.asp?id_truyen=<%= id_truyen %>" onsubmit="return checkForm()">
-  <div id="" style="display: none;">
-    <input type="text" class="ID_Nguoi_dung" name="id_truyen" value="<%= id_truyen %>" placeholder="">
-  </div>
-  <div id="" style="display: none;">
-    <input type="" name="idusername" placeholder="" value="<%= id_nguoi_bl %>"><br>
-  </div>
-  <div id="" style="display: none;">
-    <input type="" name="id_chuong" placeholder="" value="<%= id_chuong %>"><br>
-  </div>
-  <textarea name="comment" placeholder="Nhập bình luận của bạn"></textarea><br>
-  <b id="login-message" style="display: none; color: red;">Bạn cần đăng nhập để có thể gửi bình luận!</b>
-  <button type="submit" class="submit-button"><b>Gửi</b></button>
-</form>
-
-<script>
-  function checkForm() {
-    var email = "<%= email %>";
-    var commentInput = document.querySelector('textarea[name="comment"]');
-    var loginMessage = document.getElementById("login-message");
-
-    if (email === "" || commentInput.value.trim() === "") {
-      loginMessage.style.display = "block";
-      return false; // Ngăn không gửi form
-    }
-    return true; // Cho phép gửi form
-  }
-</script>
-
-
+    <form id="comment-form" method="post" action="comments.asp?id_truyen=<%= id_truyen %>" onsubmit="return checkLoginStatus()">
+      <div id="" style="display: none;">
+        <input type="text" class="ID_Nguoi_dung" name="id_truyen" value="<%= id_truyen %>" placeholder="">
+      </div>
+      <div id="" style="display: none;">
+        <input type="" name="idusername" placeholder="" value="<%= id_nguoi_bl %>"><br>
+      </div>
+      <div id="" style="display: none;">
+        <input type="" name="id_chuong" placeholder="" value="<%= id_chuong %>"><br>
+      </div>
+      <textarea name="comment" placeholder="Nhập bình luận của bạn"></textarea><br>
+          <b id="login-message" style="display: none; color: red;">Bạn cần đăng nhập để có thể gửi bình luận!</b>
+      <button type="submit"><b>Gửi</b></button>
+    </form>
+    <script>
+      function checkLoginStatus() {
+        var email = "<%= email %>";
+        if (email === "") {
+          document.getElementById("login-message").style.display = "block";
+          return false; // Ngăn không gửi form
+        }
+        return true; // Cho phép gửi form
+      }
+    </script>
   <%
   End If
   %>

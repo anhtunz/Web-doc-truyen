@@ -88,10 +88,9 @@
                                 <%
                             End If
                         %>
-                    <p><b>ID Thể loại:</b> <%= rs("id_the_loai") %></p>
-                    <p><b>Số chương:</b> <%= rs("so_chuong") %></p>
+                    <p><b>Số chương hiện tại:</b> <%= rs("so_chuong") %></p>
                     <div style="text-align: center;">
-                        <img src="<%= rs("anh_truyen") %>" alt="Ảnh truyện" width="563" height="794">
+                        <img src="<%= rs("anh_truyen") %>" alt="Ảnh truyện" width="500" height="600">
                     </div>
                     <br>
                     <p style="text-align: justify;"><%= rs("mo_ta_ndung") %></p>

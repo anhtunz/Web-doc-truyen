@@ -163,7 +163,7 @@
               
             </div><br>
  
-  <div id= "ndungchuong" style= "background: #fff;font-family: Palatino Linotype, 'sans-serif';font-size: 22px;line-height: 160%;text-align: justify;">
+  <div id= "ndungchuong" style= "font-family: Palatino Linotype, 'sans-serif';font-size: 22px;line-height: 160%;text-align: justify;">
            <%
            Dim rs
            Set rs = Server.CreateObject("ADODB.Recordset")

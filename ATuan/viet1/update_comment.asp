@@ -7,17 +7,20 @@ Response.CharSet = "UTF-8"
 Set conn = Server.CreateObject("ADODB.Connection")
 conn.Open "Provider=SQLOLEDB.1;Data Source=VIET\MSSQLSERVER01;Database=Web_doc_truyen;User Id=sa;Password=123456;"
 
-' Lấy dữ liệu từ biểu mẫu gửi đi
-commentId = Request.Form("comment_id")
-updatedComment = Request.Form("updated_comment")
+' Xử lý yêu cầu chỉnh sửa comment
+If Request.Form("commentId") <> "" And Request.Form("commentText") <> "" Then
+    Dim commentId, commentText
+    commentId = Request.Form("commentId")
+    commentText = Request.Form("commentText")
 
-' Cập nhật bình luận trong cơ sở dữ liệu
-conn.Execute("UPDATE binh_luan SET ndung_binh_luan = N'" & updatedComment & "' WHERE id_binh_luan = " & commentId)
+    ' Cập nhật comment trong CSDL
+    conn.Execute("UPDATE binh_luan SET ndung_binh_luan = N'" & commentText & "' WHERE id_binh_luan = " & commentId)
+
+    ' Trả về phản hồi thành công
+    Response.Write "success"
+End If
 
 ' Đóng kết nối CSDL
 conn.Close
 Set conn = Nothing
-
-' Trở về trang gốc
-Response.Redirect("comments.asp?id_truyen=" & Request.QueryString("id_truyen"))
 %>
