@@ -15,10 +15,10 @@
 -Chưa làm được:
 + Chỉnh lại phần sửa,xóa Comments                             Việt        DOING
 + Duyệt truyện, chương                                        Tuấn làm    DONE
-+ chỉnh dark mode chương truyện                               Làm sau cùng
++ chỉnh dark mode chương truyện                               Lâm làm     Done
 + CSS lại all GDien                                           Làm sau cùng
 + Thêm sửa xóa Chương                                         Tuấn làm    DONE
-+ Cập nhật thêm truyện, chương truyện vào DB
++ Cập nhật thêm truyện, chương truyện vào DB 
 + Review Truyện                                               Việt DONE
 + Các thông báo khi thêm sửa xóa các phần xong                Bổ sung
 + Cập nhật thêm chức năng đổi mật khẩu		       Tuấn làm	Đang hoàn thiện
